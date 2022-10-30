@@ -2,6 +2,7 @@
     const thead = Table.querySelector("thead");
     const tbody = Table.querySelector("tbody");
     tbody.innerText = "";
+    thead.innerText = "";
 
     DataSet.forEach((item, index) => {
         const row = document.createElement("tr");
