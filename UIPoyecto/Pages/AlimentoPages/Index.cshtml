@@ -1,8 +1,98 @@
 ﻿@page
 
 @{
-    <link rel="stylesheet" href="~/css/AlimentoCss/Index.css">
+    ViewData["Title"] = "Alimentos";
+    <link rel="stylesheet" href="~/css/main.css">
 }
+
+
+<div class="alimContainer">
+
+    <h1>@ViewData["Title"]</h1>
+
+    <div class="colum2">
+        <div class="box">
+            <div class="datatable-container">
+                @*area de tabla de alimentos*@
+                <h3 class="datatable-header">Marca Alimentos</h3>
+                <table class="datatable" id="AlimTd">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="datatable-container">
+                @*area de tabla de marcas*@
+                <h3 class="datatable-header">Alimentos</h3>
+                <table class="datatable" id="AlimMarcasTd">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="box">
+            <div class="formContainer">
+                <div class="formTitle">Nuevo Marca</div>
+                <form action="#">
+                    <div class="box-detail">
+                        <div hidden>
+                            <input type="number" id="marcaId" />
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Nombre de la Marca</span>
+                            <input type="text" placeholder="Ingrese el Nombre de la Galera" id="marcaName" required>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarMarcaAlimento">
+                    </div>
+                </form>
+            </div>
+            <div class="formContainer">
+                <div class="formTitle">Nuevo Alimento</div>
+                <form action="#">
+                    <div class="box-detail">
+                        <div hidden>
+                            <input type="number" id="alimId" />
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Nombre Alimento</span>
+                            <input type="text" placeholder="Ingrese el Nombre de la Galera" id="alimName" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Marca</span>
+                            <select class="input" id="alimMarca">
+                                <option value="1">
+                                    Marcas
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Descripcion</span>
+                            <input type="text" placeholder="Ingrese una breve descripcion" id="alimdesc" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Semanas de implementacion</span>
+                            <input type="number" min="1" placeholder="Ingrese numero semanas" id="alimSem" required>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <input class="Primary-Button" type="submit" id="btnGuardarAlimento">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <script type="module">
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
     import CreateTable from "../js/ComponentesJs/TableComponent.js";
@@ -14,7 +104,7 @@
 
             let url = '../api/MarcaAlimento/SaveMarcaAlimento';
             const MarcaAlim = {
-                IdMarca:null,
+                IdMarca: null,
                 Nombre: marcaName.value
             }
             let response = await fetch(url, {
@@ -29,13 +119,15 @@
             response = await response.json();
             alert("La marca se guardado con este Id : " + response);
 
+            thead.innerText = "";
+            tbody.innerText = "";
             cargarDropdownMarca();
-
         };
+
         btnGuardarAlimento.onclick = async () => {
             let url = '../api/Alimento/SaveAlimento';
             const Alimento = {
-                IdAlimento:null,
+                IdAlimento: null,
                 Nombre: alimName.value,
                 IdMarca: alimMarca.value,
                 Descripcion: alimdesc.value,
@@ -53,6 +145,9 @@
             response = await response.json();
             alert("El Registro de Alimento se ha guardado con este ID : " + response);
 
+
+            thead.innerText = "";
+            tbody.innerText = "";
             cargarTdAlimento();
 
         };
@@ -71,11 +166,10 @@
             }
         });
 
-
+        thead.innerText = "";
+        tbody.innerText = "";
         response = await response.json();
         CreateTable(response, AlimMarcasTd, (item) => { editAlim(item); });
-
-
     }
 
     const cargarDropdownMarca = async () => {
@@ -94,108 +188,8 @@
     }
 
     const editAlim = (item) => {
-        //alimId.value = item.idMarca;
-        //alimName.value = item.nombre;
+        alimId.value = item.idMarca;
+        alimName.value = item.nombre;
         console.log(item)
     }
-
 </script>
-
-<div class="alimContainer">
-    <div class="alimdiv1">
-        @*area de tabla de alimentos*@
-        <table id="AlimTd">
-            <thead>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-    <div class="alimdiv2">
-        @*area de tabla de marcas*@
-        <table id="AlimMarcasTd">
-            <thead>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-
-
-    </div>
-    <div class="alimdiv3">
-        <div>
-            <div hidden>
-
-                <input value="-1" type="number" id="marcaId" />
-
-            </div>
-            <div style="display:flex;">
-                Nombre Marca :
-                <input placeholder="Nombre Marca ..." type="text" id="marcaName" />
-
-            </div>
-
-            <button id="btnGuardarMarcaAlimento">
-                Guardar
-            </button>
-        </div>
-        <br />
-        <div style="margin-top:40px;">
-            <div hidden>
-
-                <input type="number" id="alimId" />
-
-            </div>
-            <div style="display:flex">
-                Nombre Alimento :
-                <input placeholder="Nombre Alimento ..." type="text" id="alimName" />
-
-            </div>
-
-            <div style="display:flex">
-                Marca :
-                <select id="alimMarca">
-
-                    <option value="1">
-                        Marcas
-                    </option>
-
-                </select>
-
-            </div>
-            <div style="display:flex">
-                Semanas en produccion :
-                <input  type="number" min="1" id="alimSem" />
-
-            </div>
-            <div style="display:flex">
-                Descripcion :
-                <input placeholder="descripcion ..." type="text" id="alimdesc" />
-
-            </div>
-            <button id="btnGuardarAlimento">
-                Guardar
-            </button>
-        </div>
-
-    </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
