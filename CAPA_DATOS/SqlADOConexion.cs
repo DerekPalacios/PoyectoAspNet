@@ -7,7 +7,7 @@ namespace CAPA_DATOS
         private static string UserSQLConexion = "";
         public static SqlServerGDatos SQLM;
         public static string DataBaseName = "Poyecto";
-        static string SQLServer = "GEMELEK";
+        static string SQLServer = ".";
         static public bool IniciarConexion(string user, string password)
         {
             try
