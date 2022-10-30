@@ -429,6 +429,21 @@ form .buttons {
     box-shadow: 0 5px 5px rgba(255, 255, 255, 0.18);
 }
 
+.Link-Button {
+    width: 90%;
+    padding: 8px;
+    background: transparent;
+    border-radius: var(--border-radius-2);
+    border: solid var(--color-primary-variant) 2px;
+    color: var(--color-primary-variant);
+    font-size: 18px;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(255, 255, 255, 0.18);
+    text-align: center;
+    margin: 0 8px;
+}
+
 /*----====Data list====----*/
 .colum5 {
     display: grid;

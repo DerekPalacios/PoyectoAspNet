@@ -12,20 +12,18 @@
 
     <div class="colum2">
         <div class="box">
-            <div class="datatable-container">
-                @*area de tabla de alimentos*@
+            <div class="container">
                 <h3 class="datatable-header">Marca Alimentos</h3>
-                <table class="datatable" id="AlimTd">
+                <table class="datatable" id="AlimMarcasTd">
                     <thead>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
             </div>
-            <div class="datatable-container">
-                @*area de tabla de marcas*@
-                <h3 class="datatable-header">Alimentos</h3>
-                <table class="datatable" id="AlimMarcasTd">
+            <div class="container">
+                <h3 class="datatable-header">Marca Alimentos</h3>
+                <table class="datatable" id="AlimTd">
                     <thead>
                     </thead>
                     <tbody>
@@ -119,8 +117,6 @@
             response = await response.json();
             alert("La marca se guardado con este Id : " + response);
 
-            thead.innerText = "";
-            tbody.innerText = "";
             cargarDropdownMarca();
         };
 
@@ -145,9 +141,6 @@
             response = await response.json();
             alert("El Registro de Alimento se ha guardado con este ID : " + response);
 
-
-            thead.innerText = "";
-            tbody.innerText = "";
             cargarTdAlimento();
 
         };
@@ -166,8 +159,6 @@
             }
         });
 
-        thead.innerText = "";
-        tbody.innerText = "";
         response = await response.json();
         CreateTable(response, AlimMarcasTd, (item) => { editAlim(item); });
     }

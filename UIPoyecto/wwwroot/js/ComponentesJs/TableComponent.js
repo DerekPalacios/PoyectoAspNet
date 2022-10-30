@@ -22,7 +22,7 @@
         }
         const tdAction = document.createElement("td");
         const btnTable = document.createElement("input");
-        btnTable.className = "btnTableGenericClass";
+        btnTable.className = "Link-Button";
         btnTable.type = "button";
         btnTable.value = "Edit";
         btnTable.onclick = () => {
