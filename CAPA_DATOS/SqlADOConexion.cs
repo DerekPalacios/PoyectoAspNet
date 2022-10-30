@@ -10,7 +10,7 @@ namespace CAPA_DATOS
         //static string SQLServer = "GEMELEK";
         static string SQLServer = "."; // para que supuestamente jale en cualquier server
 
-        //edicion de linea en prueba git
+        //edicion de linea en prueba git prueba de linea desde la master
         static public bool IniciarConexion(string user, string password)
         {
             try
