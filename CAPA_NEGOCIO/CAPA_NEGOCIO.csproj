@@ -9,18 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="databaseScript.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>databaseScript.txt</LastGenOutput>
-    </None>
-    <None Update="databaseScript.txt">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>databaseScript.tt</DependentUpon>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
