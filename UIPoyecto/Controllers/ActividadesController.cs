@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CAPA_NEGOCIO.Models;
+using CAPA_NEGOCIO.Models.SubModel;
 using System.Collections.Generic;
 using CAPA_NEGOCIO.Security;
 using System.Linq;
@@ -37,11 +38,14 @@ namespace UIPoyecto.Controllers
             return UpdAct.IdActividad = (int)UpdAct.Save();
         }
 
-        public object GetActividadesByProduccion(int iodProduccion)
+        [HttpGet]
+        public object GetActividadProduccionActiva(int iodProduccion)
         {
-            //hay qyue hacer un inner join y vamosa ver como se trabaja
 
-            return 1;
+            var actividadProduccionActiva = new ActividadProduccionActiva().Get<ActividadProduccionActiva>();
+
+
+            return actividadProduccionActiva;
 
         }
 
