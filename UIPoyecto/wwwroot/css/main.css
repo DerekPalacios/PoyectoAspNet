@@ -1,0 +1,515 @@
+/*----===Fonts===----*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*----Varaibles----*/
+:root {
+    /*Colors*/
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-dark: #363949;
+    --color-info-light: #dce1eb;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #d8d8e6ad;
+
+    /*------------------------------------------------*/
+    /*---------------------DT-Colors------------------*/
+    /*------------------------------------------------*/
+    --dt-border-color: var(--color-dark);
+    --dt-input-color: var(--color-light);
+    --dt-text-color: #000;
+    --dt-hover-cell-color: var(--color-primary);
+    --dt-input-background-color: var(--color-primary);
+    --dt-even-row-color: rgba(115, 127, 236, 0.6);
+
+    /*------------------------------------------------*/
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    /*------------------------------------------------*/
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    /*------------------------------------------------*/
+    --box-shadow: 0 2rem 3rem var(--color-light);
+
+    /*------------------------------------------------*/
+    --dt-padding: 12px;
+    --dt-padding-s: 6px;
+    --dt-padding-xs: 2px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: none;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: poppins, sans-serif;
+    font-size: 0.88rem;
+    background: var(--color-background);
+    user-select: none;
+    overflow-x: hidden;
+}
+
+.main-container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    gap: 1.8rem;
+    grid-template-columns: 12rem auto;
+}
+
+a {
+    color: var(--color-dark);
+}
+
+.ico {
+    display: block;
+    font-size: 48px;
+    width: 100%;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-size: 0.87rem;
+}
+
+h4 {
+    font-size: 0.8rem;
+}
+
+h5 {
+    font-size: 0.77rem;
+}
+
+small {
+    font-size: 0.75rem;
+}
+
+.text-muted {
+    color: var(--color-info-dark);
+}
+
+P {
+    color: var(--color-dark-variant);
+}
+
+b {
+    color: var(--color-dark);
+}
+
+.primary {
+    color: var(--color-primary);
+}
+
+.danger {
+    color: var(--color-danger);
+}
+
+.success {
+    color: var(--color-success);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+aside {
+    height: 100vh;
+    position: sticky;
+}
+
+aside .top {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.4rem;
+}
+
+aside .logo {
+    display: flex;
+    gap: 0.8rem;
+}
+
+aside .logo .ico {
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-warning);
+}
+
+aside .close {
+    display: none;
+}
+
+aside .sidebar {
+    background: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    height: 86vh;
+    position: relative;
+    top: 3rem;
+}
+
+aside h3 {
+    font-weight: 300;
+}
+
+aside .sidebar a {
+    display: flex;
+    color: var(--color-info-dark);
+    margin-left: 2rem;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+    height: 3.7rem;
+    transition: all 300ms ease;
+}
+
+aside .sidebar a ion-icon {
+    font-size: 1.6rem;
+    transition: all 300ms ease;
+}
+
+aside .sidebar a:last-child {
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+}
+
+aside .sidebar .active {
+    background: var(--color-light);
+    color: var(--color-primary);
+    margin-left: 0;
+}
+
+aside .sidebar .active::before {
+    content: "";
+    width: 6px;
+    height: 100%;
+    background: var(--color-primary);
+}
+
+aside .sidebar .active ion-icon {
+    color: var(--color-primary);
+    margin-left: calc(1rem - 3px);
+}
+
+aside .sidebar a:hover {
+    color: var(--color-primary);
+}
+
+aside .sidebar a:hover ion-icon {
+    margin-left: 1rem;
+}
+
+/*----====Main====----*/
+main {
+    margin-top: 4rem;
+}
+
+main .date {
+    display: inline-block;
+    background: var(--color-light);
+    border-radius: var(--border-radius-1);
+    margin-top: 1rem;
+    padding: 0.5rem 1.6rem;
+}
+
+main .date input[type="date"] {
+    background: transparent;
+    color: var(--color-dark);
+}
+
+.colum2 {
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+}
+
+.squer {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.squer-active {
+    background-color: var(--color-success);
+}
+
+.squer-danger {
+    background-color: var(--color-danger);
+}
+
+.squer-warning {
+    background-color: var(--color-warning);
+}
+
+/*----====Data Table====----*/
+
+.container {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-1);
+    width: 90%;
+    margin: 1rem auto;
+    font-size: 12px;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.33);
+    padding: 8px;
+}
+
+.datatable-header {
+    width: 100%;
+    margin: 1.8rem 0 0 1.8rem;
+}
+
+.container .datatable {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 4.5%;
+}
+
+.container .datatable,
+.container .datatable th,
+.container .datatable td {
+    padding: var(--dt-padding) var(--dt-padding);
+}
+
+.container .datatable th {
+    font-weight: bolder;
+    text-align: left;
+    border-bottom: solid 1px var(--dt-border-color);
+}
+
+.container .datatable td {
+    border-bottom: solid 1px var(--dt-border-color);
+}
+
+.container .datatable tbody tr:nth-child(even) {
+    background-color: var(--dt-even-row-color);
+}
+
+.container .datatable tbody tr:hover {
+    background-color: var(--dt-hover-cell-color);
+}
+
+/*----------------------------------------------------------------------------------*/
+/*---------------------------------------Forms--------------------------------------*/
+/*----------------------------------------------------------------------------------*/
+
+.formContainer {
+    height: calc(auto + 20px);
+    width: 100%;
+    background: var(--color-white);
+    border-radius: var(--border-radius-1);
+    padding: 15px 20px;
+    top: 15%;
+    left: 10%;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.25);
+    margin: 2rem auto;
+}
+
+.formContainer .formTitle {
+    font-size: 1.4rem;
+    font-weight: 300;
+    position: relative;
+}
+
+.formContainer .formTitle::before {
+    content: '';
+    margin-top: 4px;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 3px;
+    width: 100%;
+    background: var(--color-primary);
+}
+
+.formContainer form .box-detail {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+form .box-detail .input-box {
+    margin: 4px 0 4px 0;
+    width: 90%;
+}
+
+.box-detail .input-box .detail {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.box-detail .input-box input,
+.input {
+    height: 35px;
+    width: 100%;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid var(--color-dark);
+    padding-left: 8px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.box-detail .input-box input:focus,
+.box-detail .input-box .input:focus,
+.box-detail .input-box input:valid {
+    border-color: var(--color-success);
+}
+
+form .buttons {
+    margin: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Primary-Button {
+    width: 90%;
+    padding: 10px 0;
+    background: var(--color-success);
+    color: var(--black1);
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(255, 255, 255, 0.18);
+}
+
+.Secondary-Button {
+    width: 90%;
+    padding: 8px 0;
+    background: var(--color-danger);
+    color: #000;
+    margin-left: 16px;
+    border: 0;
+    outline: none;
+    font-size: 14px;
+    border-radius: var(--border-radius-1);
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(255, 255, 255, 0.18);
+}
+
+/*----====Data list====----*/
+.colum5 {
+    display: grid;
+    grid-template-columns: 5% 10% 35% 35% 15%;
+}
+
+li div{
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+li div a {
+    font-weight: 300;
+    color: var(--color-primary-variant);
+}
+
+li div a:hover{
+    color: var(--color-danger);
+}
+
+/*----====Task list====----*/
+.task .box-detail .input-box{
+    padding: 18px 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto 20px auto;
+    grid-column-gap: 8px;
+}
+
+.dateTask{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.date-left{
+    display: flex;
+    align-items: center;
+}
+
+#date-number{
+    font-size: 36px;
+}
+
+#dateday{
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+#date-number,
+#dateday,
+#datemonth{
+    font-weight: bold;
+}
+
+#datemonth,
+#dateyear{
+    padding-left: 8px;
+    font-size: 16px;
+}
+
+.btn_addTask{
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+}
+
+.taskelement{
+    background-color: var(--color-warning);
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+}
+
+.done{
+    background-color: var(--color-success);
+    text-decoration: line-through;
+}
