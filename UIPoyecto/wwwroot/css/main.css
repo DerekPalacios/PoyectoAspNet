@@ -327,6 +327,11 @@ main .date input[type="date"] {
     background-color: var(--dt-hover-cell-color);
 }
 
+.container .datatable tbody tr:hover .Link-Button {
+    color: var(--color-info-light);
+    border-color: var(--color-info-light);
+}
+
 /*----------------------------------------------------------------------------------*/
 /*---------------------------------------Forms--------------------------------------*/
 /*----------------------------------------------------------------------------------*/
