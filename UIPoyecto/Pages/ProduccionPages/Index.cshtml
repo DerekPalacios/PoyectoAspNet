@@ -1,0 +1,203 @@
+﻿@page
+@{
+}
+
+<script type="module">
+    import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
+    import CreateTable from "../js/ComponentesJs/TableComponent.js";
+    var precio;
+    window.onload = async () => {
+        await cargarDataEspeciePollo();
+        await cargarDataGalera();
+        await cargarDDAlimento();
+        FechaProd.onchange = () => {
+            var fechaInicio = new Date(FechaProd.value);
+            fechaInicio.setDate(fechaInicio.getDate() + 45);
+
+            FechaSalidaProd.value = formatear(fechaInicio);
+        }
+
+
+    }
+
+    const formatear = f => {
+        const año = f.getFullYear();
+        const mes = ("0" + (f.getMonth() + 1)).substr(-2);
+        const dia = ("0" + f.getDate()).substr(-2);
+        return `${año}-${mes}-${dia}`
+    }
+
+    btnGuardarProduccion.onclick = async () => {
+        let url = '../api/Produccion/SaveProD';
+        const prodObj = {
+            IdProduccion: IdProd.value,
+            Lote: LoteProd.value,
+            CostoUnitLote: CostoProd.value,
+            QuintDisp: QuinProd.value,
+            IdAlimento: UbiLat.value,
+            IdEspecie: EspecieProd.value,
+            QuintUtil: CapMax.value,
+            FechaSalida: FechaSalidaProd.checked,
+            IdGalera: GaleraProd.value,
+            IdUsuarioRegistro: 1,
+            FechaDeIngreso: FechaProd.value
+        }
+        let response = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': "application/json; charset = utf-8",
+                'Accept': "*/*"
+            },
+            body: JSON.stringify(prodObj)
+        });
+
+        response = await response.json();
+        alert(response);
+    }
+
+
+
+
+
+    const cargarDDAlimento = async () => {
+        let url = '../api/Alimento/GetAlimentos';
+        let response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': "application/json; charset = utf-8",
+                'Accept': "*/*"
+            }
+        });
+
+
+        response = await response.json();
+        CreateDropdown(response, AlimenProd, 'nombre', 'idAlimento',);
+
+    }
+
+
+    const cargarDataEspeciePollo = async () => {
+        let url = '../api/EspeciePollo/GetEspeciesNombreCompuesto';
+        let response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': "application/json; charset = utf-8",
+                'Accept': "*/*"
+            }
+        });
+
+
+        response = await response.json();
+        CreateDropdown(response, EspecieProd, "descripccion", "idEspecie", (item) => { console.log(item); });
+
+    }
+
+    const cargarDataGalera = async () => {
+        let url = '../api/Galera/GetGalera';
+        let response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': "application/json; charset = utf-8",
+                'Accept': "*/*"
+            }
+        });
+
+
+        response = await response.json();
+        console.log(response);
+        CreateDropdown(response, GaleraProd, "nombre", "idGalera", (item) => { console.log(item); });
+
+    }
+</script>
+
+
+
+
+
+<h1>Produccion</h1>
+<div hidden>
+    IdProduccion
+    <input type="text" id="IdProd" />
+</div>
+<br />
+<div>
+    Fecha de Ingreso
+    <input type="date" id="FechaProd" />
+</div>
+<br />
+<div>
+    Fecha de Ingreso
+    <input type="date" id="FechaProd" />
+</div>
+<br />
+
+<div>
+    Costo Unidad
+    <input type="number" id="CostoProd" />
+</div>
+<br />
+
+<div>
+    Especie a ingresar
+    <select id="EspecieProd">
+
+        <option value="0">
+            Saleccuione una Especie
+        </option>
+
+    </select>
+</div>
+<br />
+<div>
+    Alimento
+    <select id="AlimenProd">
+
+        <option value="0">
+            Saleccuionar
+        </option>
+
+    </select>
+</div>
+<br />
+
+<div>
+    Quintales a utilizar
+    <input type="number" id="QuinProd" />
+</div>
+<br />
+
+<div>
+    Fecha de Salida Salida
+    <input type="date" disabled id="FechaSalidaProd" />
+</div>
+<br />
+
+<div>
+    Galera
+    <select id="GaleraProd">
+
+        <option value="0">
+            Saleccuione una galera
+        </option>
+
+    </select>
+</div>
+<br />
+
+<div>
+    Usuario
+    <input disabled type="text" id="IdUser" value="Admin" />
+</div>
+
+
+<button id="btnGuardarProduccion">
+    Guardar
+</button>
+
+
+
+
+
+
+
+

@@ -1,0 +1,110 @@
+﻿@page
+@using UIPoyecto.Pages.GaleraPages
+
+
+<component href="~/ComponentePrueba.razor"></component>
+
+<h1>Galeras</h1>
+<div class="parent">
+    <div>
+        <div class="inputForm">
+            <div>
+                IdGalera
+                <input type="text" id="IdGal" />
+            </div>
+            <div>
+                Nombre Galera
+                <input type="text" id="NombreGal" />
+            </div>
+        </div>
+        <div class="inputForm">
+            <div>
+                Largo Galera
+                <input type="text" id="DimL" />
+            </div>
+            <div>
+                Ancho Galera
+                <input type="text" id="DimA" />
+            </div>
+        </div>
+        Ubicacion Galera
+        <div class="inputForm">
+
+            <input type="text" placeholder="Latitud..." id="UbiLat" />
+            <input type="text" placeholder="Longitud..." id="UbiLon" />
+        </div>
+        <div>
+            Capacidad Maxima
+            <input type="number" id="CapMax" />
+        </div>
+        <div>
+            Estado
+            <input type="checkbox" id="EstadoProd" />
+        </div>
+        <div class="inputForm">
+            <button id="btnGuardarGalera">
+                Guardar
+            </button>
+            <button id="btnCancelarGalera">
+                cargar marca cancelar
+            </button>
+        </div>
+
+
+        aca se muestra el formulario para la nueva galera, que es lo que voy a hacer
+
+    </div>
+    <div class="div2">
+        Aca van bolitas que muestran las galeras si estan o no activas, el componente se renderiza por cada elemento
+
+    </div>
+    <div class="div3">
+        aca alguna informacion necesaria sobre las galeras, como lo son la cantidad de galeras disponibles
+        
+    </div>
+</div>
+
+
+<script type="module">
+
+    window.onload = async () => {
+
+
+        btnCancelarGalera.onclick = cargarDropdownMarca;
+        btnGuardarGalera.onclick = async () => {
+            let url = '../api/Galera/SaveGalera';
+            const GaleraObj = {
+                IdGalera: IdGal.value,
+                Nombre: NombreGal.value,
+                DimensionL: DimL.value,
+                DimensionA: DimA.value,
+                Latitud: UbiLat.value,
+                Longitud: UbiLon.value,
+                CapMproduccion: CapMax.value,
+                EstadoProd: EstadoProd.checked
+
+            }
+            let response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type': "application/json; charset = utf-8",
+                    'Accept': "*/*"
+                },
+                body: JSON.stringify(GaleraObj)
+            });
+
+            response = await response.json();
+
+        }
+
+
+    }
+
+
+
+</script>
+
+
+@{
+    <link rel="stylesheet" href="~/css/GaleraCss/Index.css">
+}

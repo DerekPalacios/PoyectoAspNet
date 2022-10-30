@@ -1,0 +1,201 @@
+﻿@page
+
+@{
+    <link rel="stylesheet" href="~/css/AlimentoCss/Index.css">
+}
+<script type="module">
+    import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
+    import CreateTable from "../js/ComponentesJs/TableComponent.js";
+
+    window.onload = async () => {
+        await cargarDropdownMarca();
+        await cargarTdAlimento();
+        btnGuardarMarcaAlimento.onclick = async () => {
+
+            let url = '../api/MarcaAlimento/SaveMarcaAlimento';
+            const MarcaAlim = {
+                IdMarca:null,
+                Nombre: marcaName.value
+            }
+            let response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type': "application/json; charset = utf-8",
+                    'Accept': "*/*"
+                },
+                body: JSON.stringify(MarcaAlim)
+            });
+
+            response = await response.json();
+            alert("La marca se guardado con este Id : " + response);
+
+            cargarDropdownMarca();
+
+        };
+        btnGuardarAlimento.onclick = async () => {
+            let url = '../api/Alimento/SaveAlimento';
+            const Alimento = {
+                IdAlimento:null,
+                Nombre: alimName.value,
+                IdMarca: alimMarca.value,
+                Descripcion: alimdesc.value,
+                SemanasProduccion: alimSem.value
+            }
+            let response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type': "application/json; charset = utf-8",
+                    'Accept': "*/*"
+                },
+                body: JSON.stringify(Alimento)
+            });
+
+            response = await response.json();
+            alert("El Registro de Alimento se ha guardado con este ID : " + response);
+
+            cargarTdAlimento();
+
+        };
+    }
+
+
+
+
+    const cargarTdAlimento = async () => {
+        let url = '../api/Alimento/GetAlimentos';
+        let response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': "application/json; charset = utf-8",
+                'Accept': "*/*"
+            }
+        });
+
+
+        response = await response.json();
+        CreateTable(response, AlimMarcasTd, (item) => { editAlim(item); });
+
+
+    }
+
+    const cargarDropdownMarca = async () => {
+        let url = '../api/MarcaAlimento/GetMarcaAlimento';
+        let response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': "application/json; charset = utf-8",
+                'Accept': "*/*"
+            }
+        });
+
+        response = await response.json();
+        CreateDropdown(response, alimMarca, "nombre", "idMarca");
+        CreateTable(response, AlimTd, (item) => { console.log(item); });
+    }
+
+    const editAlim = (item) => {
+        //alimId.value = item.idMarca;
+        //alimName.value = item.nombre;
+        console.log(item)
+    }
+
+</script>
+
+<div class="alimContainer">
+    <div class="alimdiv1">
+        @*area de tabla de alimentos*@
+        <table id="AlimTd">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div class="alimdiv2">
+        @*area de tabla de marcas*@
+        <table id="AlimMarcasTd">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+
+    </div>
+    <div class="alimdiv3">
+        <div>
+            <div hidden>
+
+                <input value="-1" type="number" id="marcaId" />
+
+            </div>
+            <div style="display:flex;">
+                Nombre Marca :
+                <input placeholder="Nombre Marca ..." type="text" id="marcaName" />
+
+            </div>
+
+            <button id="btnGuardarMarcaAlimento">
+                Guardar
+            </button>
+        </div>
+        <br />
+        <div style="margin-top:40px;">
+            <div hidden>
+
+                <input type="number" id="alimId" />
+
+            </div>
+            <div style="display:flex">
+                Nombre Alimento :
+                <input placeholder="Nombre Alimento ..." type="text" id="alimName" />
+
+            </div>
+
+            <div style="display:flex">
+                Marca :
+                <select id="alimMarca">
+
+                    <option value="1">
+                        Marcas
+                    </option>
+
+                </select>
+
+            </div>
+            <div style="display:flex">
+                Semanas en produccion :
+                <input  type="number" min="1" id="alimSem" />
+
+            </div>
+            <div style="display:flex">
+                Descripcion :
+                <input placeholder="descripcion ..." type="text" id="alimdesc" />
+
+            </div>
+            <button id="btnGuardarAlimento">
+                Guardar
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

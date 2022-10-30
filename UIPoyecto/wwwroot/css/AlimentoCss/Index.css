@@ -1,0 +1,24 @@
+﻿.alimContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, 50vh);
+    grid-column-gap: 10px;
+    grid-row-gap: 7px;
+}
+
+
+.alimdiv1 {
+    background-color: blue;
+    grid-area: 1 / 1 / 2 / 2;
+}
+.alimdiv3 {
+    display:flex;
+    flex-direction:column;
+    grid-area: 1 / 2 / 3 / 3;
+    
+}
+.alimdiv2 {
+    background-color: violet;
+    grid-area: 2 / 1 / 3 / 2;
+}
+
