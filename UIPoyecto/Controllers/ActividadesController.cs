@@ -39,7 +39,7 @@ namespace UIPoyecto.Controllers
         }
 
         [HttpGet]
-        public object GetActividadProduccionActiva(int iodProduccion)
+        public object GetActividadProduccionActiva()
         {
 
             var actividadProduccionActiva = new ActividadProduccionActiva().Get<ActividadProduccionActiva>();
