@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CAPA_NEGOCIO.Models;
+using CAPA_NEGOCIO.Models.SubModel;
 using System.Collections.Generic;
 using CAPA_NEGOCIO.Security;
 using System.Linq;
@@ -18,6 +19,18 @@ namespace UIPoyecto.Controllers
             AuthNetCore.loginIN("admin", "admin");
 
         }
+
+
+
+        [HttpGet]
+        public object GetVistaListaProduccionSimpleCalculada()
+        {
+            var listaProduccionSimple = new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>();
+
+            return listaProduccionSimple;
+
+        }
+
 
 
 

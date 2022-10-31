@@ -1,0 +1,15 @@
+﻿
+
+----METODOS DE GET DATOS  
+
+--DIRECCION BASE
+
+"../api/"
+
+
+-->GetVistaListaProduccionSimpleCalculada
+"Produccion/GetVistaListaProduccionSimpleCalculada"
+
+
+
+
