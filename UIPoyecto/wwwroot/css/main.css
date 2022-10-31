@@ -436,7 +436,7 @@ form .buttons {
 
 .Link-Button {
     width: 90%;
-    padding: 8px;
+    padding: 8px 0;
     background: transparent;
     border-radius: var(--border-radius-2);
     border: solid var(--color-primary-variant) 2px;

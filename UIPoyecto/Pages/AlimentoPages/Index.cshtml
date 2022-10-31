@@ -147,9 +147,6 @@
         };
     }
 
-
-
-
     const cargarTdAlimento = async () => {
         let alimentoData = await GetObjectData("../api/Alimento/GetAlimentos");
  
@@ -173,90 +170,7 @@
         alimName.value = item.nombre;
         console.log(item)
     }
-
-
 </script>
-
-<div class="alimContainer">
-    <div class="alimdiv1">
-        @*area de tabla de alimentos*@
-        <table id="AlimTd">
-            <thead>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-    <div class="alimdiv2">
-        @*area de tabla de marcas*@
-        <table id="AlimMarcasTd">
-            <thead>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-
-
-    </div>
-    <div class="alimdiv3">
-        <div>
-            <div hidden>
-
-                <input value="-1" type="number" id="marcaId" />
-
-            </div>
-            <div style="display:flex;">
-                Nombre Marca :
-                <input placeholder="Nombre Marca ..." type="text" id="marcaName" />
-
-            </div>
-
-            <button id="btnGuardarMarcaAlimento">
-                Guardar
-            </button>
-        </div>
-        <br />
-        <div style="margin-top:40px;">
-            <div hidden>
-
-                <input type="number" id="alimId" />
-
-            </div>
-            <div style="display:flex">
-                Nombre Alimento :
-                <input placeholder="Nombre Alimento ..." type="text" id="alimName" />
-
-            </div>
-
-            <div style="display:flex">
-                Marca :
-                <select id="alimMarca">
-
-                    <option value="1">
-                        Marcas
-                    </option>
-
-                </select>
-
-            </div>
-            <div style="display:flex">
-                Semanas en produccion :
-                <input type="number" min="1" id="alimSem" />
-
-            </div>
-            <div style="display:flex">
-                Descripcion :
-                <input placeholder="descripcion ..." type="text" id="alimdesc" />
-
-            </div>
-            <button id="btnGuardarAlimento">
-                Guardar
-            </button>
-        </div>
-
-    </div>
-
-</div>
 
 
 
