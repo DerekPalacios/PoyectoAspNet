@@ -14,21 +14,25 @@
         <div class="box">
             <div class="container">
                 <h3 class="datatable-header">Marca Alimentos</h3>
-                <table class="datatable" id="AlimMarcasTd">
-                    <thead>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div class="box scrollable">
+                    <table class="datatable" id="AlimMarcasTd">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="container">
                 <h3 class="datatable-header">Marca Alimentos</h3>
-                <table class="datatable" id="AlimTd">
-                    <thead>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div class="box scrollable">
+                    <table class="datatable" id="AlimTd">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -66,7 +70,7 @@
                         <div class="input-box">
                             <span class="detail">Marca</span>
                             <select class="input" id="alimMarca">
-                                <option value="1">
+                                <option value="0">
                                     Marcas
                                 </option>
                             </select>
@@ -91,86 +95,89 @@
 
 </div>
 
-<script type="module">
-    import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
-    import CreateTable from "../js/ComponentesJs/TableComponent.js";
-    import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
+    <script type="module">
+        import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
+        import CreateTable from "../js/ComponentesJs/TableComponent.js";
+        import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
 
-    window.onload = async () => {
-        await cargarDropdownMarca();
-        await cargarTdAlimento();
-        btnGuardarMarcaAlimento.onclick = async () => {
+        window.onload = async () => {
+            await cargarDropdownMarca();
+            await cargarTdAlimento();
+            btnGuardarMarcaAlimento.onclick = async () => {
 
-            let url = '../api/MarcaAlimento/SaveMarcaAlimento';
-            const MarcaAlim = {
-                IdMarca: null,
-                Nombre: marcaName.value
-            }
-            let response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    'Content-Type': "application/json; charset = utf-8",
-                    'Accept': "*/*"
-                },
-                body: JSON.stringify(MarcaAlim)
-            });
+                let url = '../api/MarcaAlimento/SaveMarcaAlimento';
+                const MarcaAlim = {
+                    IdMarca: null,
+                    Nombre: marcaName.value
+                }
+                let response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': "application/json; charset = utf-8",
+                        'Accept': "*/*"
+                    },
+                    body: JSON.stringify(MarcaAlim)
+                });
 
-            response = await response.json();
-            alert("La marca se guardado con este Id : " + response);
+                response = await response.json();
+                alert("La marca se guardado con este Id : " + response);
 
-            cargarDropdownMarca();
-        };
+                cargarDropdownMarca();
+            };
 
-        btnGuardarAlimento.onclick = async () => {
-            let url = '../api/Alimento/SaveAlimento';
-            const Alimento = {
-                IdAlimento: null,
-                Nombre: alimName.value,
-                IdMarca: alimMarca.value,
-                Descripcion: alimdesc.value,
-                SemanasProduccion: alimSem.value
-            }
-            let response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    'Content-Type': "application/json; charset = utf-8",
-                    'Accept': "*/*"
-                },
-                body: JSON.stringify(Alimento)
-            });
+            btnGuardarAlimento.onclick = async () => {
+                let url = '../api/Alimento/SaveAlimento';
+                const Alimento = {
+                    IdAlimento: null,
+                    Nombre: alimName.value,
+                    IdMarca: alimMarca.value,
+                    Descripcion: alimdesc.value,
+                    SemanasProduccion: alimSem.value
+                }
+                let response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': "application/json; charset = utf-8",
+                        'Accept': "*/*"
+                    },
+                    body: JSON.stringify(Alimento)
+                });
 
-            response = await response.json();
-            alert("El Registro de Alimento se ha guardado con este ID : " + response);
+                response = await response.json();
+                alert("El Registro de Alimento se ha guardado con este ID : " + response);
 
-            cargarTdAlimento();
+                cargarTdAlimento();
 
-        };
-    }
+            };
+        }
 
-    const cargarTdAlimento = async () => {
-        let alimentoData = await GetObjectData("../api/Alimento/GetAlimentos");
- 
-
-        //response = await response.json();
-        CreateTable(alimentoData, AlimMarcasTd, (item) => { editAlim(item); });
+        const cargarTdAlimento = async () => {
+            let alimentoData = await GetObjectData("../api/Alimento/GetAlimentos");
 
 
-    }
+            //response = await response.json();
+            CreateTable(alimentoData, AlimMarcasTd, (item) => { editAlim(item); });
 
-    const cargarDropdownMarca = async () => {
-        let MarcaData = await GetObjectData("../api/MarcaAlimento/GetMarcaAlimento");
 
-       
-        CreateDropdown(MarcaData, alimMarca, "nombre", "idMarca");
-        CreateTable(MarcaData, AlimTd, (item) => { console.log(item); });
-    }
+        }
 
-    const editAlim = (item) => {
-        alimId.value = item.idMarca;
-        alimName.value = item.nombre;
-        console.log(item)
-    }
-</script>
+        const cargarDropdownMarca = async () => {
+            let MarcaData = await GetObjectData("../api/MarcaAlimento/GetMarcaAlimento");
+
+
+            CreateDropdown(MarcaData, alimMarca, "nombre", "idMarca");
+            CreateTable(MarcaData, AlimTd, (item) => { console.log(item); });
+        }
+
+        const editAlim = (item) => {
+            alimId.value = item.idMarca;
+            alimName.value = item.nombre;
+            alimMarca.value = item.IdMarca;
+            alimdesc.value = item.Descripcion;
+            alimSem.value = item.SemanasProduccion;
+            console.log(item)
+        }
+    </script>
 
 
 

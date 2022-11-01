@@ -146,6 +146,7 @@ b {
 aside {
     height: 100vh;
     position: sticky;
+    top: 0;
 }
 
 aside .top {
@@ -292,6 +293,12 @@ main .date input[type="date"] {
     padding: 8px;
 }
 
+.scrollable {
+    max-height: 250px;
+    overflow-y: scroll;
+    overflow-x: none;
+}
+
 .datatable-header {
     width: 100%;
     margin: 1.8rem 0 0 1.8rem;
@@ -301,6 +308,13 @@ main .date input[type="date"] {
     border-collapse: collapse;
     width: 90%;
     margin: 4.5%;
+}
+
+.container .datatable thead {
+    background-color: var(--color-white);
+    position: sticky;
+    top: -16px;
+    box-shadow: 0 1px 1px -1px rgb(0, 0, 0);
 }
 
 .container .datatable,
@@ -368,7 +382,7 @@ main .date input[type="date"] {
 .formContainer form .box-detail {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 form .box-detail .input-box {
@@ -404,7 +418,7 @@ form .box-detail .input-box {
 form .buttons {
     margin: 16px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .Primary-Button {
@@ -436,7 +450,7 @@ form .buttons {
 
 .Link-Button {
     width: 90%;
-    padding: 8px 0;
+    padding: 2px 0;
     background: transparent;
     border-radius: var(--border-radius-2);
     border: solid var(--color-primary-variant) 2px;

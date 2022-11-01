@@ -1,10 +1,98 @@
 ﻿@page
 @using UIPoyecto.Pages.GaleraPages
-
+@{
+    ViewData["Title"] = "Galera";
+    <link rel="stylesheet" href="~/css/main.css">
+}
 
 <component href="~/ComponentePrueba.razor"></component>
 
-<h1>Galeras</h1>
+<div class="alimContainer">
+
+    <h1>@ViewData["Title"]</h1>
+
+    <div class="colum2">
+        <div class="box">
+            <div class="container">
+                <h3 class="datatable-header">Galeras Activas</h3>
+                <table class="datatable" id="ActiveGTD">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="container">
+                <h3 class="datatable-header">Galeras Inactivas</h3>
+                <table class="datatable" id="InactiveGTD">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="box">
+            <div class="formContainer">
+                <div class="formTitle">Nuevo Marca</div>
+                <form action="#">
+                    <div class="box-detail">
+                        <div hidden>
+                            <input type="number" id="marcaId" />
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Nombre de la Marca</span>
+                            <input type="text" placeholder="Ingrese el Nombre de la Galera" id="marcaName" required>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarMarcaAlimento">
+                    </div>
+                </form>
+            </div>
+            <div class="formContainer">
+                <div class="formTitle">Nuevo Alimento</div>
+                <form action="#">
+                    <div class="box-detail">
+                        <div hidden>
+                            <input type="number" id="alimId" />
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Nombre Alimento</span>
+                            <input type="text" placeholder="Ingrese el Nombre de la Galera" id="alimName" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Marca</span>
+                            <select class="input" id="alimMarca">
+                                <option value="1">
+                                    Marcas
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Descripcion</span>
+                            <input type="text" placeholder="Ingrese una breve descripcion" id="alimdesc" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Semanas de implementacion</span>
+                            <input type="number" min="1" placeholder="Ingrese numero semanas" id="alimSem" required>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <input class="Primary-Button" type="submit" id="btnGuardarAlimento">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
 <div class="parent">
     <div>
         <div class="inputForm">
@@ -60,7 +148,7 @@
     </div>
     <div class="div3">
         aca alguna informacion necesaria sobre las galeras, como lo son la cantidad de galeras disponibles
-        
+
     </div>
 </div>
 
@@ -70,7 +158,7 @@
     window.onload = async () => {
 
 
-        btnCancelarGalera.onclick = cargarDropdownMarca;
+        //btnCancelarGalera.onclick = cargarDropdownMarca;
         btnGuardarGalera.onclick = async () => {
             let url = '../api/Galera/SaveGalera';
             const GaleraObj = {
