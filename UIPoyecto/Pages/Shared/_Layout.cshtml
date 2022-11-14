@@ -8,33 +8,45 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-
-
     <section class="main-container">
 
         <aside>
             <section class="top">
-                <div class="logo">
-                    <ion-icon name="egg" class="ico"></ion-icon>
-                    <h2>Poyecto</h2>
-                </div>
-                <div class="close" id="btn_Close">
-                    <ion-icon name="close-outline"></ion-icon>
-                </div>
+                <a href="index.html">
+                    <div class="logo">
+                        <ion-icon name="egg" class="ico"></ion-icon>
+                        <h2>Poyecto</h2>
+                    </div>
+                    <div class="close" id="btn_Close">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </div>
+                </a>
             </section>
 
             <section class="sidebar">
-                <a href="~/AlimentoPages/Index">
+                <a href="~/Index">
                     <ion-icon name="stats-chart"></ion-icon>
-                    <h3>Alimentos</h3>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="~/ProduccionPages/Index">
+                    <ion-icon name="clipboard"></ion-icon>
+                    <h3>Produccion</h3>
                 </a>
                 <a href="~/GaleraPages/Index">
                     <ion-icon name="storefront"></ion-icon>
-                    <h3>Galeras</h3>
+                    <h3>Galera</h3>
                 </a>
-                <a href="~/ProduccionPages/Index">
+                <a href="~/AlimentoPages/Index">
+                    <ion-icon name="bag"></ion-icon>
+                    <h3>Alimentos</h3>
+                </a>
+                <a href="#">
                     <ion-icon name="file-tray-stacked"></ion-icon>
-                    <h3>Produccion</h3>
+                    <h3>Tareas</h3>
+                </a>
+                <a href="#" id="btn_Usuarios">
+                    <ion-icon name="medkit"></ion-icon>
+                    <h3>Tratamiento</h3>
                 </a>
                 <a href="#" id="btn_Usuarios">
                     <ion-icon name="people"></ion-icon>
@@ -48,6 +60,24 @@
         </aside>
 
         <main role="main" class="pb-3">
+            <div class="mainHeader">
+                <div class="Title">
+                    <h1>@ViewData["Title"]</h1>
+
+                    <div class="date">
+                        <input type="date">
+                    </div>
+                </div>
+                <div class="themeChange" id="btn_Theme">
+                    <div class="active">
+                        <ion-icon name="sunny"></ion-icon>
+                    </div>
+                    <div>
+                        <ion-icon name="moon"></ion-icon>
+                    </div>
+                </div>
+            </div>
+
             @RenderBody()
         </main>
 
@@ -55,7 +85,8 @@
 
 
 
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/changeTheme.js" asp-append-version="true"></script>
+    <script src="~/js/taskScript.js" asp-append-version="true"></script>
 
     <!--Icon Scripts-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
