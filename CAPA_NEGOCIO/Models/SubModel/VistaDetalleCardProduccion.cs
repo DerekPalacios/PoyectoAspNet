@@ -16,7 +16,7 @@ namespace CAPA_NEGOCIO.Models.SubModel
         public int? Lote { get; set; }
         public string Alimento { get; set; }
         public int? QuintDisp { get; set; }
-        public int? Perdidas { get; set; }
+        public int? Perdidas { get; set; } = 0;
 
 
 
