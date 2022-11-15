@@ -7,31 +7,32 @@
 
 
 <div class="alimContainer">
-
-    <h1>@ViewData["Title"]</h1>
-
     <div class="colum2">
         <div class="box">
             <div class="container">
                 <h3 class="datatable-header">Marca Alimentos</h3>
-                <table class="datatable" id="AlimMarcasTd">
-                    <thead>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div class="box scrollable table-small">
+                    <table class="datatable margin-left" id="AlimMarcasTd">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
             <div class="container">
-                <h3 class="datatable-header">Marca Alimentos</h3>
-                <table class="datatable" id="AlimTd">
-                    <thead>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <h3 class="datatable-header">Alimentos</h3>
+                <div class="box scrollable table-small">
+                    <table class="datatable margin-left" id="AlimTd">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
 
         <div class="box">
             <div class="formContainer">
@@ -43,7 +44,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Nombre de la Marca</span>
-                            <input type="text" placeholder="Ingrese el Nombre de la Galera" id="marcaName" required>
+                            <input type="text" placeholder="Ingrese el Nombre de la Marca" id="marcaName" required>
                         </div>
                     </div>
 
@@ -61,7 +62,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Nombre Alimento</span>
-                            <input type="text" placeholder="Ingrese el Nombre de la Galera" id="alimName" required>
+                            <input type="text" placeholder="Ingrese el Nombre del Alimento" id="alimName" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Marca</span>
@@ -91,12 +92,31 @@
 
 </div>
 
+<script src="~/js/changeTheme.js" asp-append-version="true"></script>
+
 <script type="module">
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
     import CreateTable from "../js/ComponentesJs/TableComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
 
     window.onload = async () => {
+
+        if (typeof (localStorage) !== "undefined") {
+            let themeMode = localStorage.getItem("theme");
+
+            if (themeMode == '"dark-theme-variables"') {
+                ChangeTheme();
+                console.log("tumareblack")
+            }
+            else { console.log("tumarelight") }
+        }
+
+        function ChangeTheme() {
+            document.body.classList.toggle('dark-theme-variables');
+            btn_Theme.querySelector('div:nth-child(1)').classList.toggle('active');
+            btn_Theme.querySelector('div:nth-child(2)').classList.toggle('active');
+        };
+
         await cargarDropdownMarca();
         await cargarTdAlimento();
         btnGuardarMarcaAlimento.onclick = async () => {
@@ -149,7 +169,7 @@
 
     const cargarTdAlimento = async () => {
         let alimentoData = await GetObjectData("../api/Alimento/GetAlimentos");
- 
+
 
         //response = await response.json();
         CreateTable(alimentoData, AlimMarcasTd, (item) => { editAlim(item); });
@@ -160,7 +180,7 @@
     const cargarDropdownMarca = async () => {
         let MarcaData = await GetObjectData("../api/MarcaAlimento/GetMarcaAlimento");
 
-       
+
         CreateDropdown(MarcaData, alimMarca, "nombre", "idMarca");
         CreateTable(MarcaData, AlimTd, (item) => { console.log(item); });
     }
