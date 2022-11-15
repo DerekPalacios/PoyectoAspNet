@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using CAPA_NEGOCIO.Models;
 using CAPA_NEGOCIO.Security;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UIPoyecto.Controllers
 {
@@ -22,13 +23,30 @@ namespace UIPoyecto.Controllers
         }
 
         [HttpGet]
-        public List<Galera> GetGalera()
+        public List<Galera> GetGaleraSinProduccion()
         {
 
-            return new Galera().Get<Galera>().FindAll(x=>x.EstadoProd==false);
+            return new Galera().Get<Galera>().FindAll(x => x.EstadoProd == false);
 
         }
 
+        [HttpGet]
+        public object GetGalera()
+        {
+
+            var obj = from Galera in new Galera().Get<Galera>()
+                      select new
+                      {
+                          nombre = Galera.Nombre,
+                          ancho = Galera.DimensionA,
+                          largo = Galera.DimensionL,
+                          latitud = Galera.Latitud,
+                          longitud = Galera.Longitud,
+                          capmax = Galera.CapMproduccion
+                      };
+
+            return obj;
+        }
 
 
 

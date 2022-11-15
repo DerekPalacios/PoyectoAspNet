@@ -14,7 +14,8 @@
 -->GetListaDetalleCardProduccion
 "Produccion/GetVistaDetalleProduiccionCardProduccion"
 
---GetFaleras
-"Galera/GetGaleras"
+-->GetFaleras
+"Galera/GetGalera"
 
-
+-->GetGaleraSinProduccion
+"Galera/GetGaleraSinProduccion"
