@@ -347,6 +347,10 @@ main .date input[type="date"] {
     padding: 16px;
 }
 
+.margin-left {
+    margin: 0 4.5%;
+}
+
 .colum2 .box .dl-header {
     padding: 24px 0 16px 0;
 }
@@ -386,11 +390,12 @@ main .date input[type="date"] {
 
 .scrollable {
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 .scrollable::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
     background: var(--color-info-dark);
     border-radius: var(--border-radius-2);
 }
@@ -420,7 +425,6 @@ main .date input[type="date"] {
 .container .datatable {
     border-collapse: collapse;
     width: 90%;
-    margin: 0 4.5%;
 }
 
 .container .datatable thead {

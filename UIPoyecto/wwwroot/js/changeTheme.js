@@ -6,10 +6,11 @@ window.onload = function() {
     {
         let themeMode = localStorage.getItem("theme");
 
-        if(themeMode == '"dark-theme-variables"')
-        {
+        if (themeMode == '"dark-theme-variables"') {
             ChangeTheme();
+            console.log("tumareblack")
         }
+        else {console.log("tumare")}
     }
 };
 
