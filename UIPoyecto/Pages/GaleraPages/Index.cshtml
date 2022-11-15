@@ -11,7 +11,7 @@
         <div class="box">
             <div class="container">
                 <h3 class="datatable-header">Galeras</h3>
-                <div class="box scrollable table-big">
+                <div class="box scrollable table-big Center">
                     <table class="datatable" id="GaleraTd">
                         <thead>
                         </thead>
@@ -100,7 +100,7 @@
     }
 
     const cargarTdGalera = async () => {
-        let galeraData = await GetObjectData("../api/Galera/GetGaleraSinProduccion");
+        let galeraData = await GetObjectData("../api/Galera/GetGalera");
         CreateTable(galeraData, GaleraTd, (item) => { editGal(item); });
 
         console.log(galeraData);
