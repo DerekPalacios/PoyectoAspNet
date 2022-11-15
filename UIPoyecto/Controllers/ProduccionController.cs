@@ -31,7 +31,12 @@ namespace UIPoyecto.Controllers
 
         }
 
-
+        [HttpGet]
+        public object GetVistaDetalleProduiccionCardProduccion()
+        {
+            var detalleCardProduccion = new VistaDetalleCardProduccion().Get<VistaDetalleCardProduccion>();
+            return detalleCardProduccion;
+        }
 
 
 

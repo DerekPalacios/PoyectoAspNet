@@ -11,5 +11,9 @@
 "Produccion/GetVistaListaProduccionSimpleCalculada"
 
 
+-->GetListaDetalleCardProduccion
+"Produccion/GetVistaDetalleProduiccionCardProduccion"
+
+
 
 
