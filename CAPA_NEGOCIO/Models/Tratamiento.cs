@@ -10,21 +10,25 @@ namespace CAPA_NEGOCIO.Models
 {
     public partial class Tratamiento : EntityClass
     {
-        //public Tratamiento()
-        //{
-        //    TratamientoProduccions = new HashSet<TratamientoProduccion>();
-        //}
+        public Tratamiento(bool v)
+        {
+            this.CargarPeriodicidad();
+        }
+        public Tratamiento()
+        {
 
-        public int IdTratamiento { get; set; }
+        }
+
+        public int? IdTratamiento { get; set; }
         public string Descripcion { get; set; } = null!;
         public string Nombre { get; set; } = null!;
         public string Marca { get; set; } = null!;
         public string DosisDiariaRecomendada { get; set; } = null!;
-        public int IdPeridiocidadRecomendada { get; set; }
-        public int IdUsuarioRegistro { get; set; }
-        public DateTime FechaRegistro { get; set; }
-        public decimal CostoTratamientoCompleto { get; set; }
-        public int DosisTotales { get; set; }
+        public int? IdPeridiocidadRecomendada { get; set; }
+        public int? IdUsuarioRegistro { get; set; }
+        public DateTime? FechaRegistro { get; set; }
+        public decimal? CostoTratamientoCompleto { get; set; }
+        public int? DosisTotales { get; set; }
        public Periodicidad PeriodicidadVar;
         public void CargarPeriodicidad()
         {

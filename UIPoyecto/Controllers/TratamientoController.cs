@@ -43,7 +43,8 @@ namespace UIPoyecto.Controllers
         [HttpGet]
         public object GetTratamientosProduccion()
         {
-            List<TratamientoProduccion> tratamientosProd = (List<TratamientoProduccion>)new TratamientoProduccion()
+                //con false carga el nombre del tratamiento
+            List<TratamientoProduccion> tratamientosProd = (List<TratamientoProduccion>)new TratamientoProduccion(false)
                 .Get<TratamientoProduccion>()
                 .Select(x => { x.CargarNombreTratamiento(); return x; });
             return tratamientosProd;
@@ -66,13 +67,11 @@ namespace UIPoyecto.Controllers
 
 
         [HttpGet]
-        public object GetTratamientos()
+        public object GetTratamientoConPeridiocidad()
         {
-            List<Tratamiento> Tratamientos = (List<Tratamiento>)new Tratamiento()
-                .Get<Tratamiento>()
-                .Select(x => { x.CargarPeriodicidad(); return x; });
-
-            var obj = from Tratamiento in Tratamientos
+           
+            //con true carga peridiocidad
+            var obj = from Tratamiento in new Tratamiento(true).Get<Tratamiento>()
                       select new
                       {
                           IdTratamiento = Tratamiento.IdTratamiento,
