@@ -11,11 +11,22 @@ namespace CAPA_NEGOCIO.Models
 
     public partial class TratamientoProduccion : EntityClass
     {
-        //public TratamientoProduccion()
-        //{
-        //    DetalleTratamientoAplicados = new HashSet<DetalleTratamientoAplicado>();
-        //}
+        //si es true en el ctor carga la peridiocidad, else, carga el nombre del tratamiento
+        public TratamientoProduccion(bool x)
+        {
+            if (x)
+            {
+            this.CargarPeriodicidad();
 
+            }
+            else
+            {
+                this.CargarNombreTratamiento();
+            }
+        }
+        public TratamientoProduccion()
+        {
+        }
         public int IdTratamientoProduccion { get; set; }
         public int IdProduccion { get; set; }
         public int IdTratamiento { get; set; }
@@ -66,7 +77,7 @@ namespace CAPA_NEGOCIO.Models
                     .Save();
 
 
-                    this.ultimaFechaAplicacion.AddDays(this.PeriodicidadVar.DiasSalto);
+                    this.ultimaFechaAplicacion.AddDays((int)this.PeriodicidadVar.DiasSalto);
                 }
                 FechaRecorridoActual.AddDays(1);
 

@@ -6,16 +6,68 @@
 
 "../api/"
 
-
--->GetVistaListaProduccionSimpleCalculada
+------PRODUCCION---------
+-->Lista simple calculada para visualizacion de lista
 "Produccion/GetVistaListaProduccionSimpleCalculada"
-
 
 -->GetListaDetalleCardProduccion
 "Produccion/GetVistaDetalleProduiccionCardProduccion"
 
--->GetFaleras
+-------GALERAS------------------
+-->Galera basico
 "Galera/GetGalera"
 
--->GetGaleraSinProduccion
+-->Galera sin produccion activa
 "Galera/GetGaleraSinProduccion"
+
+-------ALIMENTO------------------
+-->Guardar alimento (Alimento)
+"Alimento/SaveAlimento"
+
+-->Lista simple de alimentos
+"Alimento/GetAlimentos"
+
+-------MARCA------------------
+-->Guardar marca de alimento (MarcaAlimento)
+"MarcaAlimento/SaveMarcaAlimento"
+
+-->Lista simple de marca de alimentos
+"MarcaAlimento/GetMarcaAlimento"
+
+
+-------TRATAMIENTO------------------
+
+-->Lista de tratamiento con peridiocidad incluida y sin nombre de tratamiento
+"Tratamiento/GetTratamientoConPeridiocidad"
+
+-->Lista de tratamiento basico con nombre de tratamiento
+"Tratamiento/GetTratamientosProduccion"
+
+-->Lista de tratamientio filtrada por fecha de aplicacion (datetime)
+"Tratamiento/GetTratamientoDiarioaByFechaAplicacion"
+
+-->Lista de tratamiento diario por id de tratamiento produccion (int)
+"Tratamiento/GetTratamientoDiarioaByIdTratamientoProduccion"
+
+-->Asignar un nuevo tratamiento a produccion (TratamientoProduccion)
+"Tratamiento/SaveTratamientoProduccion"
+
+-->Agregar nuevo tratamiento (Tratamiento)
+"Tratamiento/SaveTratamiento"
+
+
+-------ACTIVIDAD------------------
+-->Guardar una nueva actividad general (ActividadGeneral)
+"Actividades/SaveActividadGeneral"
+
+-->Actualiza una actividad general (ActividadGeneral)
+"Actividades/UpdateActividadGeneral"
+
+-->Lista Simple de actividades activas en produccion de una vista
+"Actividades/GetActividadProduccionActiva"
+
+
+
+-------ESPECIE DE POLLO	------------------
+-->Guardar marca de alimento (EspeciePollo)
+"EspeciePollo/SaveEspeciePollo"

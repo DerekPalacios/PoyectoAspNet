@@ -66,7 +66,7 @@ namespace CAPA_NEGOCIO.Models
                             //assignar el usuario que lo verifica aca
                         }
                         .Save();
-                        ActividadGeneral.ultimaFechaAsigado.AddDays(ActividadGeneral.PeriodicidadVar.DiasSalto);
+                        ActividadGeneral.ultimaFechaAsigado.AddDays((int)ActividadGeneral.PeriodicidadVar.DiasSalto);
                     }
                     FechaRecorridoActual.AddDays(1);
                 }
