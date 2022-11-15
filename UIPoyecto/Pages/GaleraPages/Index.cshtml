@@ -66,24 +66,11 @@
 
 </div>
 
-<script src="~/js/changeTheme.js" asp-append-version="true"></script>
-
-
 <script type="module">
     import CreateTable from "../js/ComponentesJs/TableComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
 
     window.onload = async () => {
-
-        if (typeof (localStorage) !== "undefined") {
-            let themeMode = localStorage.getItem("theme");
-
-            if (themeMode == '"dark-theme-variables"') {
-                ChangeTheme();
-                console.log("tumareblack")
-            }
-            else { console.log("tumarelight") }
-        }
 
         await cargarTdGalera();
 
@@ -113,16 +100,10 @@
     }
 
     const cargarTdGalera = async () => {
-        let galeraData = await GetObjectData("../api/Galera/GetGalera");
+        let galeraData = await GetObjectData("../api/Galera/GetGaleraSinProduccion");
         CreateTable(galeraData, GaleraTd, (item) => { editGal(item); });
 
         console.log(galeraData);
     }
-
-    function ChangeTheme() {
-        document.body.classList.toggle('dark-theme-variables');
-        btn_Theme.querySelector('div:nth-child(1)').classList.toggle('active');
-        btn_Theme.querySelector('div:nth-child(2)').classList.toggle('active');
-    };
 
 </script>

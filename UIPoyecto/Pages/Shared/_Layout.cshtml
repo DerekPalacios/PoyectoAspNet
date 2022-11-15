@@ -6,6 +6,23 @@
     <title>@ViewData["Title"] - Poyecto</title>
     <link rel="stylesheet" href="~/css/main.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script>
+        if (typeof (localStorage) !== "undefined") {
+            let themeMode = localStorage.getItem("theme");
+
+            if (themeMode == '"dark-theme-variables"') {
+                ChangeTheme();
+                console.log("tumareblack")
+            }
+            else { console.log("tumarelight") }
+        }
+
+        function ChangeTheme() {
+            document.body.classList.toggle('dark-theme-variables');
+            btn_Theme.querySelector('div:nth-child(1)').classList.toggle('active');
+            btn_Theme.querySelector('div:nth-child(2)').classList.toggle('active');
+        };
+    </script>
 </head>
 <body>
     <section class="main-container">
@@ -44,7 +61,7 @@
         <ion-icon name="file-tray-stacked"></ion-icon>
         <h3>Tareas</h3>
     </a>-->
-                <a href="#">
+                <a href="~/TratamientoPages/Index">
                     <ion-icon name="medkit"></ion-icon>
                     <h3>Tratamiento</h3>
                 </a>
@@ -80,7 +97,7 @@
     </section>
 
 
-    <script src="~/js/changeTheme.js" asp-append-version="true"></script>/>
+    
     <script src="~/js/taskScript.js" asp-append-version="true"></script>/>
 
     <!--Icon Scripts-->
