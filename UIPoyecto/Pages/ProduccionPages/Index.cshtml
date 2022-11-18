@@ -59,24 +59,24 @@
                         <div class="input-box">
                             <span class="detail">Galeras</span>
                             <select class="input" id="GaleraProd">
-                                <option value="1">
-                                    Marcas
+                                <option value="0">
+                                    Seleccione
                                 </option>
                             </select>
                         </div>
                         <div class="input-box">
                             <span class="detail">Alimento</span>
                             <select class="input" id="AlimenProd">
-                                <option value="1">
-                                    Marcas
+                                <option value="0">
+                                    Seleccione
                                 </option>
                             </select>
                         </div>
                         <div class="input-box">
                             <span class="detail">Especie</span>
                             <select class="input" id="EspecieProd">
-                                <option value="1">
-                                    Marcas
+                                <option value="0">
+                                    Seleccione
                                 </option>
                             </select>
                         </div>
@@ -89,13 +89,14 @@
                             <input type="date" id="FechaSalidaProd">
                         </div>
 
-
                         <div class="buttons">
-                            <button class="Primary-Button" type="submit" style="width: 100%" id="btnGuardarProduccion"></button>
+                            <input class="Primary-Button" type="submit" value="Registrar" style="width: 100%" id="btnGuardarProduccion">
                         </div>
-</form>
+                    </div>
+                </form>
 
             </div>
+        </div>
     </div>
 </div>
 
@@ -103,34 +104,36 @@
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
     import CreateDataList from "../js/ComponentesJs/StatusListComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
+    import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
 
     window.onload = async () => {
 
         await cargarDLProduccion();
         await cargarDataGalera();
         await cargarDDAlimento();
+        await cargarDataEspeciePollo();
+
         FechaProd.onchange = () => {
             var fechaInicio = new Date(FechaProd.value);
             fechaInicio.setDate(fechaInicio.getDate() + 45);
 
             FechaSalidaProd.value = formatear(fechaInicio);
         }
-
-    }
+    };
 
     const cargarDLProduccion = async () => {
         let prodData = await GetObjectData("../api/Produccion/GetVistaListaProduccionSimpleCalculada");
         //response = await response.json();
         CreateDataList(prodData, prodDl, (item) => { editAlim(item); }, 'colum9');
         CreateDataList(prodData, histDl, (item) => { editAlim(item); }, 'colum9');
-    }
+    };
 
     const formatear = f => {
         const año = f.getFullYear();
         const mes = ("0" + (f.getMonth() + 1)).substr(-2);
         const dia = ("0" + f.getDate()).substr(-2);
         return `${año}-${mes}-${dia}`
-    }
+    };
 
     btnGuardarProduccion.onclick = async () => {
         let url = '../api/Produccion/SaveProD';
@@ -146,73 +149,28 @@
             IdGalera: GaleraProd.value,
             IdUsuarioRegistro: 1,
             FechaDeIngreso: FechaProd.value
-        }
-        let response = await fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-Type': "application/json; charset = utf-8",
-                'Accept': "*/*"
-            },
-            body: JSON.stringify(prodObj)
-        });
+        };
 
-        response = await response.json();
-        alert(response);
-    }
-
-
-
-
+        SaveObjectData(url, prodObj);
+    };
 
     const cargarDDAlimento = async () => {
-        let url = '../api/Alimento/GetAlimentos';
-        let response = await fetch(url, {
-            method: "GET",
-            headers: {
-                'Content-Type': "application/json; charset = utf-8",
-                'Accept': "*/*"
-            }
-        });
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentos');
 
-
-        response = await response.json();
-        CreateDropdown(response, AlimenProd, 'nombre', 'idAlimento',);
-
-    }
-
+        CreateDropdown(alimentoData, AlimenProd, 'nombre', 'idAlimento');
+    };
 
     const cargarDataEspeciePollo = async () => {
-        let url = '../api/EspeciePollo/GetEspeciesNombreCompuesto';
-        let response = await fetch(url, {
-            method: "GET",
-            headers: {
-                'Content-Type': "application/json; charset = utf-8",
-                'Accept': "*/*"
-            }
-        });
+        let especieData = await GetObjectData("../api/EspeciePollo/GetEspeciesNombreCompuesto");
 
-
-        response = await response.json();
-        CreateDropdown(response, EspecieProd, "descripccion", "idEspecie", (item) => { console.log(item); });
-
-    }
+        CreateDropdown(especieData, EspecieProd, "descripccion", "idEspecie");
+    };
 
     const cargarDataGalera = async () => {
-        let url = '../api/Galera/GetGalera';
-        let response = await fetch(url, {
-            method: "GET",
-            headers: {
-                'Content-Type': "application/json; charset = utf-8",
-                'Accept': "*/*"
-            }
-        });
+        let galeraData = await GetObjectData("../api/Galera/GetGalera");
 
-
-        response = await response.json();
-        console.log(response);
-        CreateDropdown(response, GaleraProd, "nombre", "idGalera", (item) => { console.log(item); });
-
-    }
+        CreateDropdown(galeraData, GaleraProd, "nombre", "idGalera");
+    };
 </script>
 
 

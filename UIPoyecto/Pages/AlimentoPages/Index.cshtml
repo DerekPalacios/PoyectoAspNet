@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="buttons">
-                        <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarMarcaAlimento">
+                        <input class="Primary-Button" type="submit" value="Registrar"  style="width: 100%" id="btnGuardarMarcaAlimento">
                     </div>
                 </form>
             </div>
@@ -67,8 +67,8 @@
                         <div class="input-box">
                             <span class="detail">Marca</span>
                             <select class="input" id="alimMarca">
-                                <option value="1">
-                                    Marcas
+                                <option value="0">
+                                    Seleccione
                                 </option>
                             </select>
                         </div>
@@ -76,14 +76,14 @@
                             <span class="detail">Descripcion</span>
                             <input type="text" placeholder="Ingrese una breve descripcion" id="alimdesc" required>
                         </div>
-                        <div class="input-box">
+                        <!--<div class="input-box">
                             <span class="detail">Semanas de implementacion</span>
                             <input type="number" min="1" placeholder="Ingrese numero semanas" id="alimSem" required>
-                        </div>
+                        </div>-->
                     </div>
 
                     <div class="buttons">
-                        <input class="Primary-Button" type="submit" id="btnGuardarAlimento">
+                        <input class="Primary-Button" type="submit" id="btnGuardarAlimento" style="width: 100%">
                     </div>
                 </form>
             </div>
@@ -98,11 +98,14 @@
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
     import CreateTable from "../js/ComponentesJs/TableComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
+    import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
 
     window.onload = async () => {
 
         await cargarDropdownMarca();
         await cargarTdAlimento();
+        await cargarTdMarca();
+
         btnGuardarMarcaAlimento.onclick = async () => {
 
             let url = '../api/MarcaAlimento/SaveMarcaAlimento';
@@ -110,18 +113,9 @@
                 IdMarca: null,
                 Nombre: marcaName.value
             }
-            let response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    'Content-Type': "application/json; charset = utf-8",
-                    'Accept': "*/*"
-                },
-                body: JSON.stringify(MarcaAlim)
-            });
 
-            response = await response.json();
-            alert("La marca se guardado con este Id : " + response);
-
+            SaveObjectData(url, MarcaAlim);
+            cargarTdMarca();
             cargarDropdownMarca();
         };
 
@@ -134,45 +128,40 @@
                 Descripcion: alimdesc.value,
                 SemanasProduccion: alimSem.value
             }
-            let response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    'Content-Type': "application/json; charset = utf-8",
-                    'Accept': "*/*"
-                },
-                body: JSON.stringify(Alimento)
-            });
 
-            response = await response.json();
-            alert("El Registro de Alimento se ha guardado con este ID : " + response);
-
+            SaveObjectData(url, Alimento);
             cargarTdAlimento();
-
         };
     }
 
     const cargarTdAlimento = async () => {
         let alimentoData = await GetObjectData("../api/Alimento/GetAlimentos");
+        
+        CreateTable(alimentoData, AlimTd, (item) => { editAlim(item); });
+    }
 
+    const cargarTdMarca = async () => {
+        let marcaData = await GetObjectData("../api/MarcaAlimento/GetMarcaAlimento");
 
-        //response = await response.json();
-        CreateTable(alimentoData, AlimMarcasTd, (item) => { editAlim(item); });
-
-
+        CreateTable(marcaData, AlimMarcasTd, (item) => { editMarca(item); });
     }
 
     const cargarDropdownMarca = async () => {
         let MarcaData = await GetObjectData("../api/MarcaAlimento/GetMarcaAlimento");
 
-
         CreateDropdown(MarcaData, alimMarca, "nombre", "idMarca");
-        CreateTable(MarcaData, AlimTd, (item) => { console.log(item); });
     }
 
+    const editMarca = (item) => {
+        marcaId.value = item.idMarca;
+        marcaName.value = item.nombre;
+    };
+
     const editAlim = (item) => {
-        alimId.value = item.idMarca;
+        alimId.value = item.idAlimento;
         alimName.value = item.nombre;
-        console.log(item)
+        alimMarca.value = item.marcaId;
+        alimdesc.value = item.descripcion;
     }
 </script>
 

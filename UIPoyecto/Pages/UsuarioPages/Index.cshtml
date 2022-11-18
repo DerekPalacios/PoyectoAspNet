@@ -25,13 +25,12 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Cargo</span>
-                            <input type="text" placeholder="Ingrese el Nombre de la Galera" required>
+                            <input type="text" placeholder="Ingrese el Cargo" id="Cargo" required>
                         </div>
                     </div>
 
                     <div class="buttons">
-                        <input class="Primary-Button" type="submit" value="Registrar" onclick="openPopup()">
-                        <input class="Secondary-Button" type="submit" value="Cancelar">
+                        <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarCargo" style="width: 100%">
                     </div>
                 </form>
             </div>
@@ -44,23 +43,23 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Nombre</span>
-                            <input type="text" placeholder="Ingrese el Nombre del Usuario" required>
+                            <input type="text" placeholder="Ingrese el Nombre del Usuario" id="nombreUsuario" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Cargo</span>
-                            <select class="input" id="alimMarca" required>
+                            <select class="input" id="cargoUser" required>
                                 <option value="0">
-                                    Marcas
+                                    Seleccione
                                 </option>
                             </select>
                         </div>
                         <div class="input-box">
                             <span class="detail">Correo</span>
-                            <input type="email" placeholder="Ingrese el Correo" required>
+                            <input type="email" placeholder="Ingrese el Correo" id="email" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Contraseña</span>
-                            <input type="password" placeholder="Ingrese la Contraseña" required>
+                            <input type="password" placeholder="Ingrese la Contraseña" id="password" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Verifique la Contraseña</span>
@@ -68,13 +67,12 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Numero de Telefono</span>
-                            <input type="tel" placeholder="Ingrese el Numero de Telefono" required>
+                            <input type="tel" placeholder="Ingrese el Numero de Telefono" id="tel" required>
                         </div>
                     </div>
 
                     <div class="buttons">
-                        <input class="Primary-Button" type="submit" value="Registrar" onclick="openPopup()">
-                        <input class="Secondary-Button" type="submit" value="Cancelar">
+                        <input class="Primary-Button" type="submit" value="Registrar" style="width: 100%" id="btnGuardarUsuario">
                     </div>
                 </form>
             </div>
@@ -83,13 +81,51 @@
 </div>
 
 <script>
+    import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
+    import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
+    import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
+
     window.onload = async () => {
+        await cargarDLUsuarios();
+
+        btnGuardarUsuario.onclick = async () => {
+
+            let url = '../api/Usuario/SaveUsuario';
+            const usuarioOBJ = {
+                IdUsuario: null,
+                Nombre: nombreUsuario.value,
+                Cargo: cargoUser.value,
+                Correo: email.value,
+                Contraseña: password.value,
+                Telefono: tel.value
+            }
+
+            SaveObjectData(url, usuarioOBJ);
+            cargarDLUsuarios();
+            cargarDropdownCargo();
+        };
+
+        btnGuardarCargo.onclick = async () => {
+            let url = '../api/CargoUsuario/SaveCargoUsuario';
+            const cargoOBJ = {
+                CargoId: null,
+                Cargo: Cargo.value
+            }
+
+            SaveObjectData(url, Alimento);
+            cargarTdAlimento();
+        };
     }
 
-    /*const cargarDLUsuarios = async () => {
-        let prodData = await GetObjectData("../api/Produccion/GetVistaListaProduccionSimpleCalculada");
+    const cargarDLUsuarios = async () => {
+        let prodData = await GetObjectData("../api/Produccion/GetUsuarios");
         //response = await response.json();
-        CreateDataList(prodData, prodDl, (item) => { editAlim(item); }, 'colum9');
-        CreateDataList(prodData, histDl, (item) => { editAlim(item); }, 'colum9');
-    }*/
+        CreateDataList(prodData, usuariosDL, (item) => { editAlim(item); }, 'colum9');
+    }
+
+    const cargarDropdownCargo = async () => {
+        let CargoData = await GetObjectData("../api/CargoUsuario/GetCargoUsuario");
+
+        CreateDropdown(CargoData, cargoUsuario, "cargo", "idCargo");
+    }
 </script>
