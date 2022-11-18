@@ -7,28 +7,12 @@
 <div>
     <div class="colum2">
         <div class="box">
-            <h3 class="dl-header">Producciones Activas</h3>
-            <ul class="datalist" id="prodDl">
-                <li class="container colum7">
-                    <div class="squer squer-active"></div>
-                    <div>#758</div>
-                    <div>69 pollos</div>
-                    <div>Purina Plus Ultra</div>
-                    <div><a href="detalleProduccion.html">Ver mas...</a></div>
-                </li>
-            </ul>
+            <h3 class="dl-header">Tratamientos Activas</h3>
+            <ul class="datalist" id="tratDl"></ul>
 
-            <h3 class="dl-header">Historial de Produccion</h3>
+            <h3 class="dl-header">Historial de Tratamientos</h3>
 
-            <ul class="datalist" id="histDl">
-                <li class="container colum7">
-                    <div class="squer squer-active"></div>
-                    <div>#758</div>
-                    <div>69 pollos</div>
-                    <div>Purina Plus Ultra</div>
-                    <div><a href="detalleProduccion.html">Ver mas...</a></div>
-                </li>
-            </ul>
+            <ul class="datalist" id="histDl"></ul>
         </div>
 
         <div class="box">
@@ -60,23 +44,20 @@
 
 
 <script>
-    /*import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
+    import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
     import CreateDataList from "../js/ComponentesJs/StatusListComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
 
     window.onload = async () => {
+        await cargarDLTratamiento();
+    };
 
-        await cargarDLProduccion();
-        await cargarDataGalera();
-        await cargarDDAlimento();
-    }
-
-    const cargarDLUsuario = async () => {
-        let prodData = await GetObjectData("../api/Produccion/GetVistaListaProduccionSimpleCalculada");
+    const cargarDLTratamiento = async () => {
+        let tratData = await GetObjectData("../api/Tratamiento/GetTratamientosProduccion");
         //response = await response.json();
-        CreateDataList(prodData, prodDl, (item) => { editAlim(item); }, 'colum9');
-        CreateDataList(prodData, histDl, (item) => { editAlim(item); }, 'colum9');
-    }*/
+        CreateDataList(tratData, tratDl, (item) => { editAlim(item); }, 'colum9');
+        CreateDataList(tratData, histDl, (item) => { editAlim(item); }, 'colum9');
+    };
 
 </script>
 
