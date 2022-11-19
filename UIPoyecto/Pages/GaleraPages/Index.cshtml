@@ -11,7 +11,7 @@
         <div class="box">
             <div class="container">
                 <h3 class="datatable-header">Galeras</h3>
-                <div class="box scrollable table-big">
+                <div class="box scrollable table-big Center">
                     <table class="datatable" id="GaleraTd">
                         <thead>
                         </thead>
@@ -66,31 +66,19 @@
 
 </div>
 
-<script src="~/js/changeTheme.js" asp-append-version="true"></script>
-
-
 <script type="module">
     import CreateTable from "../js/ComponentesJs/TableComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
+    import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
 
     window.onload = async () => {
-
-        if (typeof (localStorage) !== "undefined") {
-            let themeMode = localStorage.getItem("theme");
-
-            if (themeMode == '"dark-theme-variables"') {
-                ChangeTheme();
-                console.log("tumareblack")
-            }
-            else { console.log("tumarelight") }
-        }
 
         await cargarTdGalera();
 
         btnGuardarGalera.onclick = async () => {
             let url = '../api/Galera/SaveGalera';
             const GaleraObj = {
-                IdGalera: IdGal.value,
+                IdGalera: null,
                 Nombre: NombreGal.value,
                 DimensionL: DimL.value,
                 DimensionA: DimA.value,
@@ -98,31 +86,27 @@
                 Longitud: UbiLon.value,
                 CapMproduccion: CapMax.value
             }
-            let response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    'Content-Type': "application/json; charset = utf-8",
-                    'Accept': "*/*"
-                },
-                body: JSON.stringify(GaleraObj)
-            });
 
-            response = await response.json();
+            SaveObjectData(url, GaleraObj);
+            cargarTdGalera();
         }
 
     }
 
     const cargarTdGalera = async () => {
         let galeraData = await GetObjectData("../api/Galera/GetGalera");
-        CreateTable(galeraData, GaleraTd, (item) => { editGal(item); });
 
-        console.log(galeraData);
+        CreateTable(galeraData, GaleraTd, (item) => { editGal(item); });
     }
 
-    function ChangeTheme() {
-        document.body.classList.toggle('dark-theme-variables');
-        btn_Theme.querySelector('div:nth-child(1)').classList.toggle('active');
-        btn_Theme.querySelector('div:nth-child(2)').classList.toggle('active');
-    };
+    const editGal = (item) => {
+        IdGal.value = item.idGalera;
+        NombreGal.value = item.nombre;
+        DimL.value = item.largo;
+        DimA.value = item.ancho;
+        UbiLat.value = item.latitud;
+        UbiLon.value = item.longitud;
+        CapMax.value = item.capmax;
+    }
 
 </script>
