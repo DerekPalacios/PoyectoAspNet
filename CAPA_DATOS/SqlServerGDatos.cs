@@ -70,6 +70,10 @@ namespace CAPA_DATOS
                             ColumnNames = ColumnNames + AtributeName.ToString() + ",";
                             Values =  Values + "'" + AtributeValue.ToString() + "',";
                             break;
+                        case "bit":
+                            ColumnNames = ColumnNames + AtributeName.ToString() + ',';
+                            Values = Values + (AtributeValue.ToString() == "true" ? "1" : "0")+",";
+                            break;
                         case "datetime":
                         case "date":
                             ColumnNames = ColumnNames + AtributeName.ToString() + ",";
