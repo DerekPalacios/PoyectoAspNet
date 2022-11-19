@@ -25,6 +25,8 @@ namespace UIPoyecto.Controllers
             return NewTrat.IdTratamiento = (int)NewTrat.Save();
         }
 
+        //POSTS  --------------------------------------------------
+
         [HttpPost]
         public object SaveTratamientoProduccion(TratamientoProduccion NewTrat)
         {
@@ -39,6 +41,21 @@ namespace UIPoyecto.Controllers
                 return 0;
             }
         }
+
+
+        //GETS-----------------------------------------------
+
+        ///<summary>
+        ///Extrae los tratamientos en literal
+        ///</summary>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetTratamientosBasico()
+        {
+            return new Tratamiento().Get<Tratamiento>();
+        }
+
 
         [HttpGet]
         public object GetTratamientosProduccion()
