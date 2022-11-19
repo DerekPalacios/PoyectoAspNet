@@ -12,6 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UIPoyecto.Data;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.IO;
 
 namespace UIPoyecto
 {
@@ -34,6 +37,13 @@ namespace UIPoyecto
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
+            services.AddSwaggerGen(x =>
+            {
+                x.SwaggerDoc("v1", new OpenApiInfo { Title = "My Apis's", Version = "v1" });
+                var xmlfile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlpath = Path.Combine(AppContext.BaseDirectory, xmlfile);
+                x.IncludeXmlComments(xmlpath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +74,15 @@ namespace UIPoyecto
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
+
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Api's V1");
+            });
+
+
         }
     }
 }
