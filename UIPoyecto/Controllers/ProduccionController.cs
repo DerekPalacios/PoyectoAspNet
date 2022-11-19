@@ -20,6 +20,31 @@ namespace UIPoyecto.Controllers
 
         }
 
+        //gets ->
+
+        ///<summary>
+        ///Extrae las producciones en literal
+        ///</summary>
+        ///<returns></returns>
+
+        [HttpGet]
+        public object GetProduccionBasica()
+        {
+            return new Produccion().Get<Produccion>();
+        }
+
+        ///<summary>
+        ///Extrae las producciones activas en literal
+        ///</summary>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetProduccionActivaBasica()
+        {
+            return new Produccion().Get<Produccion>("EstadoProduccion = 1");
+        }
+
+
 
 
         [HttpGet]
@@ -38,6 +63,8 @@ namespace UIPoyecto.Controllers
             return detalleCardProduccion;
         }
 
+
+        //posts ->
 
 
         [HttpPost]
