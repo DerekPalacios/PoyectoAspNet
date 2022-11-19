@@ -18,16 +18,16 @@ namespace CAPA_NEGOCIO.Models
 
         public DateTime FechaDeIngreso { get; set; }
         public int? IdProduccion { get; set; }
-        public int Lote { get; set; }
-        public decimal CostoUnitLote { get; set; }
-        public decimal QuintDisp { get; set; }
-        public int IdAlimento { get; set; }
-        public int IdEspecie { get; set; }
-        public decimal QuintUtil { get; set; }
+        public int? Lote { get; set; }
+        public decimal? CostoUnitLote { get; set; }
+        public decimal? QuintDisp { get; set; }
+        public int? IdAlimento { get; set; }
+        public int? IdEspecie { get; set; }
+        public decimal? QuintUtil { get; set; }
         public DateTime FechaSalida { get; set; }
-        public int IdGalera { get; set; }
-        public int IdUsuarioRegistro { get; set; }
-        public bool EstadoProduccion { get; set; }
+        public int? IdGalera { get; set; }
+        public int? IdUsuarioRegistro { get; set; }
+        public bool? EstadoProduccion { get; set; }
 
         //public virtual Alimento IdAlimentoNavigation { get; set; } = null!;
         //public virtual EspeciePollo IdEspecieNavigation { get; set; } = null!;
