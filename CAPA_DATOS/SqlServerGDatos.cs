@@ -205,16 +205,16 @@ namespace CAPA_DATOS
                 {
                     var AtributeValue = oProperty.GetValue(Inst);
                     Columns = Columns + AtributeName + ",";
-                    if (AtributeValue != null)
-                    {
-                        WhereConstruction(ref ConditionString, ref index, AtributeName, AtributeValue);
-                    }
+                    //if (AtributeValue != null)
+                    //{
+                    //    WhereConstruction(ref ConditionString, ref index, AtributeName, AtributeValue);
+                    //}
                 }
             }
             ConditionString = ConditionString.TrimEnd(new char[] { '0', 'R' });
             if (ConditionString == "" && CondSQL != "")
             {
-                ConditionString = " WHERE";
+                ConditionString = " WHERE ";
             }
             else if (ConditionString != null && CondSQL != "")
             {
