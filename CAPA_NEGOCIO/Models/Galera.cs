@@ -20,7 +20,7 @@ namespace CAPA_NEGOCIO.Models
         public decimal? DimensionA { get; set; }
         public decimal? Latitud { get; set; } = null!;
         public decimal? Longitud { get; set; } = null!;
-        public int? CapMproduccion { get; set; }
+        public int? CapMProduccion { get; set; }
         public bool EstadoProd { get; set; }
 
         //public virtual ICollection<Produccion> Produccions { get; set; }
