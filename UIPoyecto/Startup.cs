@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using UIPoyecto.Data;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.IO;
 
 namespace UIPoyecto
 {
@@ -38,6 +40,9 @@ namespace UIPoyecto
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new OpenApiInfo { Title = "My Apis's", Version = "v1" });
+                var xmlfile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlpath = Path.Combine(AppContext.BaseDirectory, xmlfile);
+                x.IncludeXmlComments(xmlpath);
             });
         }
 

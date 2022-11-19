@@ -16,6 +16,12 @@ namespace UIPoyecto.Controllers
             AuthNetCore.loginIN("admin", "admin");
             //aca hay que insertar las validaciones de ussuarios 
         }
+
+        ///<summary>
+        ///Guarda galera basico
+        ///</summary>
+        ///<returns></returns>
+
         [HttpPost]
         public object SaveAlimento(Alimento NewAl)
         {
