@@ -5,9 +5,9 @@ using CAPA_DATOS;
 
 namespace CAPA_NEGOCIO.Models
 {
-    public partial class MarcaAlimento : EntityClass
+    public partial class MarcaLineaAlimento : EntityClass
     {
-        //public MarcaAlimento()
+        //public MarcaLineaAlimento()
         //{
         //    Alimentos = new HashSet<Alimento>();
         //}

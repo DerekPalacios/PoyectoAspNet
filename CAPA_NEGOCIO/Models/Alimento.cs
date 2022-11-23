@@ -15,12 +15,14 @@ namespace CAPA_NEGOCIO.Models
         //    Produccions = new HashSet<Produccion>();
         //}
 
-        public int? IdAlimento { get; set; }
-        public string Nombre { get; set; } = null!;
-        public int? IdMarca { get; set; }
-        public string Descripcion { get; set; } = null!;
+        public int IdAlimento { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
 
-        //public virtual MarcaAlimento IdMarcaNavigation { get; set; } = null!;
+        public int IdEtapaAlimentoRecomendado { get; set; }
+        public string IdLineaAlimentoRecomendado { get; set; } = null!;
+
+        //public virtual MarcaLineaAlimento IdMarcaNavigation { get; set; } = null!;
         //public virtual ICollection<Produccion> Produccions { get; set; }
     }
 }
