@@ -17,8 +17,6 @@ namespace CAPA_NEGOCIO.Models
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFinal { get; set; }
         public int IdUsuarioRegistro { get; set; }
-
-        public virtual Produccion IdProduccionSemNavigation { get; set; } = null!;
-        public virtual TblUsuario IdUsuarioRegistroNavigation { get; set; } = null!;
+        public int IdConsumoEstandarSemanalDetalleSemanal { get; set; }
     }
 }

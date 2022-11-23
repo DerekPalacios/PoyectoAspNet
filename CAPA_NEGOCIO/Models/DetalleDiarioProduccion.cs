@@ -9,10 +9,6 @@ namespace CAPA_NEGOCIO.Models
 {
     public partial class DetalleDiarioProduccion : EntityClass
     {
-        public DetalleDiarioProduccion()
-        {
-            DetalleMortalidadDiarios = new HashSet<DetalleMortalidadDiario>();
-        }
 
         public int IdDetalle { get; set; }
         public decimal ConsumoAlimento { get; set; }
@@ -21,9 +17,6 @@ namespace CAPA_NEGOCIO.Models
         public int IdUsuarioRegistro { get; set; }
         public DateTime FechaDetalleDiario { get; set; }
         public int IdProduccion { get; set; }
-
-        public virtual Produccion IdProduccionNavigation { get; set; } = null!;
-        public virtual TblUsuario IdUsuarioRegistroNavigation { get; set; } = null!;
-        public virtual ICollection<DetalleMortalidadDiario> DetalleMortalidadDiarios { get; set; }
+        public int IdConsumoEstandarDiario { get; set; }
     }
 }
