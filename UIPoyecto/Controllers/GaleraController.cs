@@ -42,7 +42,7 @@ namespace UIPoyecto.Controllers
                           largo = Galera.DimensionL,
                           latitud = Galera.Latitud,
                           longitud = Galera.Longitud,
-                          capmax = Galera.CapMProduccion
+                          capmax = Galera.CapMproduccion
                       };
 
             return obj;

@@ -17,13 +17,13 @@ namespace UIPoyecto.Controllers
             //aca hay que insertar las validaciones de ussuarios 
         }
         [HttpGet]
-        public List<MarcaAlimento> GetMarcaAlimento()
+        public List<MarcaLineaAlimento> GetMarcaAlimento()
         {
-            return new MarcaAlimento().Get<MarcaAlimento>();
+            return new MarcaLineaAlimento().Get<MarcaLineaAlimento>();
         
         }
         [HttpPost]
-        public object SaveMarcaAlimento(MarcaAlimento NewMA)
+        public object SaveMarcaAlimento(MarcaLineaAlimento NewMA)
         {
             
             return NewMA.Save();
