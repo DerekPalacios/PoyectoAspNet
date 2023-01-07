@@ -37,7 +37,7 @@ namespace UIPoyecto.Controllers
                           IdAlimento = Alimento.IdAlimento,
                           Nombre = Alimento.Nombre,
                           Descripcion = Alimento.Descripcion,
-                          MarcaId = Alimento.IdMarca
+                          MarcaId = Alimento.IdLineaAlimentoRecomendado
                       };
             return obj;
 
