@@ -31,7 +31,7 @@ namespace UIPoyecto.Controllers
         public object UpdateActividadGeneral(ActividadGeneral UpdAct)
         {
 
-            UpdAct.IdActividadBase = UpdAct.IdActividad;
+            UpdAct.IdActividadBase = (int)UpdAct.IdActividad;
             UpdAct.IdActividad = null;
 
 
