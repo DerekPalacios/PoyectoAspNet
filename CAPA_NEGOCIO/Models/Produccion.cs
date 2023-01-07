@@ -13,7 +13,7 @@ namespace CAPA_NEGOCIO.Models
         //{
         //    DetalleDiarioProduccions = new HashSet<DetalleDiarioProduccion>();
         //    DetalleSemanals = new HashSet<DetalleSemanal>();
-        //    TratamientoProduccions = new HashSet<TratamientoProduccion>();
+        //    TratamientoProduccions = new HashSet<TratamientoProduccionAsignado>();
         //}
 
         public DateTime FechaDeIngreso { get; set; }
@@ -33,7 +33,7 @@ namespace CAPA_NEGOCIO.Models
         //public virtual TblUsuario IdUsuarioRegistroNavigation { get; set; } = null!;
         //public virtual ICollection<DetalleDiarioProduccion> DetalleDiarioProduccions { get; set; }
         //public virtual ICollection<DetalleSemanal> DetalleSemanals { get; set; }
-        //public virtual ICollection<TratamientoProduccion> TratamientoProduccions { get; set; }
+        //public virtual ICollection<TratamientoProduccionAsignado> TratamientoProduccions { get; set; }
 
 
         public void GenerarActividadesDiarias()

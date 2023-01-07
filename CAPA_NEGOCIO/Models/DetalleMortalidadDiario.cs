@@ -15,6 +15,5 @@ namespace CAPA_NEGOCIO.Models
         public string DetalleMuerte { get; set; } = null!;
         public string DescripcionEvento { get; set; } = null!;
 
-        public virtual DetalleDiarioProduccion IdDetalleDiarioNavigation { get; set; } = null!;
     }
 }

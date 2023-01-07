@@ -13,10 +13,10 @@ namespace CAPA_NEGOCIO.Models
         public int IdProduccionSem { get; set; }
         public decimal ConsumoSem { get; set; }
         public decimal Pesajepromedio { get; set; }
-        public int Muestra { get; set; }
-        public DateTime FechaInicio { get; set; }
-        public DateTime FechaFinal { get; set; }
+        public int MuestraPesaje { get; set; }
+        public DateTime FechaInicioSemana { get; set; }
+        public DateTime FechaFinalSemana { get; set; }
         public int IdUsuarioRegistro { get; set; }
-        public int IdConsumoEstandarSemanalDetalleSemanal { get; set; }
+        public int IdConsumoEstandarSemanal { get; set; }
     }
 }

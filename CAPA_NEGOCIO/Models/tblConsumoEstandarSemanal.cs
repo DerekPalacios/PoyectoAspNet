@@ -12,9 +12,9 @@ namespace CAPA_NEGOCIO.Models
     {
         public int IdConsumoEstandarSemanal { get; set; }
         public int SemanaProduccion { get; set; }
-        public decimal PesoUnitarioEsperado { get; set; }
+        public int? IdEtapaAlimentoRecomendada { get; set; }
+        public decimal? PesoUnitarioEsperado { get; set; }
 
-        public int IdEtapaAlimento { get; set; }
 
     }
 }
