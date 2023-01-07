@@ -15,7 +15,7 @@ namespace CAPA_NEGOCIO.Models
         //    DetalleSemanals = new HashSet<DetalleSemanal>();
         //    DetalleTratamientoAplicados = new HashSet<DetalleTratamientoAplicado>();
         //    Produccions = new HashSet<Produccion>();
-        //    TratamientoProduccions = new HashSet<TratamientoProduccion>();
+        //    TratamientoProduccions = new HashSet<TratamientoProduccionAsignado>();
         //    Tratamientos = new HashSet<Tratamiento>();
         //}
 
@@ -32,7 +32,7 @@ namespace CAPA_NEGOCIO.Models
         //public virtual ICollection<DetalleSemanal> DetalleSemanals { get; set; }
         //public virtual ICollection<DetalleTratamientoAplicado> DetalleTratamientoAplicados { get; set; }
         //public virtual ICollection<Produccion> Produccions { get; set; }
-        //public virtual ICollection<TratamientoProduccion> TratamientoProduccions { get; set; }
+        //public virtual ICollection<TratamientoProduccionAsignado> TratamientoProduccions { get; set; }
         //public virtual ICollection<Tratamiento> Tratamientos { get; set; }
     }
 }

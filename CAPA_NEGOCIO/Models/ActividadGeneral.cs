@@ -9,13 +9,13 @@ namespace CAPA_NEGOCIO.Models
 {
     public partial class ActividadGeneral : EntityClass
     {
-        public int? IdActividad { get; set; }
+        public int? IdActividad { get; set; } 
         public string NombreActividad { get; set; } = null!;
-        public string DescripcionActividad { get; set; }
-        public int? IdActividadBase { get; set; } = null!;
-        public int IdPeriodicidadActividad { get; set; }
+        public string DescripcionActividad { get; set; } = null!;
+        public int IdActividadBase { get; set; }
         public int IdUsuarioActividad { get; set; }
         public bool ActividadHabilitada { get; set; }
+        public int IdPeriodicidadActividad { get; set; }
 
         public Periodicidad PeriodicidadVar { get; set; }
         public DateTime ultimaFechaAsigado;

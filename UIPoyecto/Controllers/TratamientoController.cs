@@ -28,7 +28,7 @@ namespace UIPoyecto.Controllers
         //POSTS  --------------------------------------------------
 
         [HttpPost]
-        public object SaveTratamientoProduccion(TratamientoProduccion NewTrat)
+        public object SaveTratamientoProduccion(TratamientoProduccionAsignado NewTrat)
         {
             try
             {
@@ -61,8 +61,8 @@ namespace UIPoyecto.Controllers
         public object GetTratamientosProduccion()
         {
                 //con false carga el nombre del tratamiento
-            List<TratamientoProduccion> tratamientosProd = (List<TratamientoProduccion>)new TratamientoProduccion(false)
-                .Get<TratamientoProduccion>()
+            List<TratamientoProduccionAsignado> tratamientosProd = (List<TratamientoProduccionAsignado>)new TratamientoProduccionAsignado(false)
+                .Get<TratamientoProduccionAsignado>()
                 .Select(x => { x.CargarNombreTratamiento(); return x; });
             return tratamientosProd;
         }
@@ -99,7 +99,6 @@ namespace UIPoyecto.Controllers
                           Periodicidad = Tratamiento.PeriodicidadVar,
                           IdUsuario = Tratamiento.IdUsuarioRegistro,
                           FechaRegsitro = Tratamiento.FechaRegistro,
-                          CostoTratamiento = Tratamiento.CostoTratamientoCompleto,
                           Dosis = Tratamiento.DosisTotales
                       };
             return obj;

@@ -11,6 +11,9 @@ namespace CAPA_NEGOCIO.Models
     public partial class EtapaAlimentoProduccion : EntityClass
     {
         public int IdEtapaAlimento { get; set; }
+
+        public string DescripcionEtapa { get; set; }
+
         public string NombreEtapa { get; set; }
     }
 }

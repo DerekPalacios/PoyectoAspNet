@@ -27,7 +27,11 @@ namespace CAPA_NEGOCIO.Models
         public int? IdPeridiocidadRecomendada { get; set; }
         public int? IdUsuarioRegistro { get; set; }
         public DateTime? FechaRegistro { get; set; }
-        public decimal? CostoTratamientoCompleto { get; set; }
+        public int? IdViaAdministracionRecomendada { get; set; }
+
+        public int? LoteAdministracionRecomendada { get; set; }
+
+        public int DosisTotalesRecomendadas { get; set; }
         public int? DosisTotales { get; set; }
        public Periodicidad PeriodicidadVar;
         public void CargarPeriodicidad()
@@ -37,6 +41,6 @@ namespace CAPA_NEGOCIO.Models
 
 
         //public virtual TblUsuario IdUsuarioRegistroNavigation { get; set; } = null!;
-        //public virtual ICollection<TratamientoProduccion> TratamientoProduccions { get; set; }
+        //public virtual ICollection<TratamientoProduccionAsignado> TratamientoProduccions { get; set; }
     }
 }

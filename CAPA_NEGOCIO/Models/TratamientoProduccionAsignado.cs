@@ -9,10 +9,10 @@ using System.Linq;
 namespace CAPA_NEGOCIO.Models
 {
 
-    public partial class TratamientoProduccion : EntityClass
+    public partial class TratamientoProduccionAsignado : EntityClass
     {
         //si es true en el ctor carga la peridiocidad, else, carga el nombre del tratamiento
-        public TratamientoProduccion(bool x)
+        public TratamientoProduccionAsignado(bool x)
         {
             if (x)
             {
@@ -24,7 +24,7 @@ namespace CAPA_NEGOCIO.Models
                 this.CargarNombreTratamiento();
             }
         }
-        public TratamientoProduccion()
+        public TratamientoProduccionAsignado()
         {
         }
         public int IdTratamientoProduccion { get; set; }
@@ -32,9 +32,22 @@ namespace CAPA_NEGOCIO.Models
         public int IdTratamiento { get; set; }
         public int DosisTotalesAplicada { get; set; }
         public int IdPeridiocidadTratamiento { get; set; }
-        public int DosisDiaria { get; set; }
+        public int DosisDiaria { get; set; }//quitar
+        public int? IdViaAdministracionAplicacada { get; set; }
+
+        public decimal? CostoTratamiento { get; set; }
+
+        public DateTime? FechaAsignacion { get; set; }
+
+        public int IdUsuarioAsigna { get; set; }
+
+        public bool EstadoAplicacion { get; set; }
+
+        public bool EstadoCompletado { get; set; }
+
+        public bool? CambioEstadoPermitidoTratamientoProduccion { get; set; }
         public int IdUsuarioRegistro { get; set; }
-        public decimal ProgresoAplicacion { get; set; }
+        public decimal ProgresoAplicacion { get; set; }//quitar
         public bool TratamientoSanitario { get; set; }
         public string nombreTatamiento;
         DateTime ultimaFechaAplicacion;
@@ -49,6 +62,9 @@ namespace CAPA_NEGOCIO.Models
         }
         public void GenerarTratamientoDiario()
         {
+            //trabajar aca
+
+
             Produccion produccionAplicado = new Produccion().Get<Produccion>("IdProduccion = " + this.IdProduccion).First();
 
             DateTime FechaRecorridoActual = produccionAplicado.FechaDeIngreso;
