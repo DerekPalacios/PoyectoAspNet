@@ -21,7 +21,7 @@ namespace CAPA_NEGOCIO.Models
         public string Descripcion { get; set; }
 
         public int IdEtapaAlimentoRecomendado { get; set; }
-        public string IdLineaAlimentoRecomendado { get; set; } = null!;
+        public int IdLineaAlimentoRecomendado { get; set; } 
 
         //public virtual MarcaLineaAlimento IdMarcaNavigation { get; set; } = null!;
         //public virtual ICollection<Produccion> Produccions { get; set; }
