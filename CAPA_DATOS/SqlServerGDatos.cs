@@ -50,11 +50,11 @@ namespace CAPA_DATOS
             {
                 string AtributeName = oProperty.Name;
                 var AtributeValue = oProperty.GetValue(Inst);
-                if(AtributeName.ToUpper().Contains("ID"))
+                if (AtributeName.ToUpper().Contains("ID") && AtributeValue != null)
                 {
-                    if((int)AtributeValue == 0)
+                    if ((int)AtributeValue == 0)
                     {
-                        AtributeValue= null;
+                        AtributeValue = null;
                     }
                 }
                 var EntityProp = entityProps.Find(e => e.COLUMN_NAME == AtributeName);
@@ -75,11 +75,11 @@ namespace CAPA_DATOS
                         case "money":
                         case "smallint":
                             ColumnNames = ColumnNames + AtributeName.ToString() + ",";
-                            Values =  Values + "'" + AtributeValue.ToString() + "',";
+                            Values = Values + "'" + AtributeValue.ToString() + "',";
                             break;
                         case "bit":
                             ColumnNames = ColumnNames + AtributeName.ToString() + ',';
-                            Values = Values + (AtributeValue.ToString() == "true" ? "1" : "0")+",";
+                            Values = Values + (AtributeValue.ToString() == "true" ? "1" : "0") + ",";
                             break;
                         case "datetime":
                         case "date":
