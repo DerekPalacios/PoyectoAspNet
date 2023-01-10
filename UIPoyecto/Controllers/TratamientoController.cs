@@ -43,13 +43,62 @@ namespace UIPoyecto.Controllers
         }
 
 
+
+
+
+        ///<summary>
+        ///Guardar Via de administracion de tratamiento basico
+        ///</summary>
+        ///<returns></returns>
+        ///
+
+        [HttpPost]
+        public object SaveViaAdministracionTratamiento(ViaAdministracionTratamiento administracionTratamiento)
+        {
+            return  administracionTratamiento.IdViaAdministracion = (int)administracionTratamiento.Save();
+        }
+
+
+        ///<summary>
+        ///Guardar tratamiento de produccion asignado
+        ///</summary>
+        ///<remarks>
+        ///podes mandar todos los bool de estado en false para que no te compliques
+        ///</remarks>
+        ///<returns></returns>
+        ///
+
+        [HttpPost]
+        public object SaveTratamiendoProduccionAsignado(TratamientoProduccionAsignado tratamientoProduccion)
+        {
+            //se aplican reglas de negocio por la generacion de actividades de tratamiento, asi que 
+            //van cargados al modelo directamente
+            return tratamientoProduccion.GuardarTratamientoProduccionCompleto(tratamientoProduccion);
+        }
+
+
         //GETS-----------------------------------------------
+
+        ///<summary>
+        ///Extrae las vias de administracion de tratamiento basicos
+        ///</summary>
+        ///<returns></returns>
+        ///
+
+        [HttpGet]
+        public object GetViaAdministracionBasico()
+        {
+            return new ViaAdministracionTratamiento().Get<ViaAdministracionTratamiento>();
+        }
+
+
 
         ///<summary>
         ///Extrae los tratamientos en literal
         ///</summary>
         ///<returns></returns>
         ///
+
         [HttpGet]
         public object GetTratamientosBasico()
         {
