@@ -36,7 +36,7 @@ namespace CAPA_NEGOCIO.Models
        public Periodicidad PeriodicidadVar;
         public void CargarPeriodicidad()
         {
-            this.PeriodicidadVar = new Periodicidad().Get<Periodicidad>("IdPeriodicidad = " + IdPeridiocidadRecomendada).First();
+            this.PeriodicidadVar = new Periodicidad().Get<Periodicidad>(" IdPeriodicidad = " + IdPeridiocidadRecomendada).First();
         }
 
 

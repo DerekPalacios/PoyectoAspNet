@@ -50,6 +50,16 @@ namespace CAPA_DATOS
             {
                 string AtributeName = oProperty.Name;
                 var AtributeValue = oProperty.GetValue(Inst);
+                //con esto prevengo que nuevos items se guarden con id 0
+                //cambio todos los id 0 por nulos, pero compruebo primero si efectivamente no son nulos 
+                if (AtributeName.ToUpper().Contains("ID") && AtributeValue != null)
+                {
+                    if ((int)AtributeValue == 0)
+                    {
+                        AtributeValue = null;
+                    }
+                }
+
                 var EntityProp = entityProps.Find(e => e.COLUMN_NAME == AtributeName);
                 if (AtributeValue != null && EntityProp != null)
                 {
@@ -68,11 +78,11 @@ namespace CAPA_DATOS
                         case "money":
                         case "smallint":
                             ColumnNames = ColumnNames + AtributeName.ToString() + ",";
-                            Values =  Values + "'" + AtributeValue.ToString() + "',";
+                            Values = Values + "'" + AtributeValue.ToString() + "',";
                             break;
                         case "bit":
                             ColumnNames = ColumnNames + AtributeName.ToString() + ',';
-                            Values = Values + (AtributeValue.ToString() == "true" ? "1" : "0")+",";
+                            Values = Values + (AtributeValue.ToString() == "true" ? "1" : "0") + ",";
                             break;
                         case "datetime":
                         case "date":
