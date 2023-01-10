@@ -50,6 +50,13 @@ namespace CAPA_DATOS
             {
                 string AtributeName = oProperty.Name;
                 var AtributeValue = oProperty.GetValue(Inst);
+                if(AtributeName.ToUpper().Contains("ID"))
+                {
+                    if((int)AtributeValue == 0)
+                    {
+                        AtributeValue= null;
+                    }
+                }
                 var EntityProp = entityProps.Find(e => e.COLUMN_NAME == AtributeName);
                 if (AtributeValue != null && EntityProp != null)
                 {
