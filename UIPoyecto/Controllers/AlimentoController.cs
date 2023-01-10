@@ -17,6 +17,9 @@ namespace UIPoyecto.Controllers
             //aca hay que insertar las validaciones de ussuarios 
         }
 
+
+        //insercion de datos
+
         ///<summary>
         ///Guarda alimento basico
         ///</summary>
@@ -27,6 +30,54 @@ namespace UIPoyecto.Controllers
         {
             return NewAl.IdAlimento = (int)NewAl.Save();
         }
+
+        ///<summary>
+        ///Guarda Linea basico basico
+        ///</summary>
+        ///<returns></returns>
+
+        [HttpPost]
+        public object SaveLineaAlimento(LineaAlimento linea)
+        {
+            return linea.IdLineaAlimento = (int)linea.Save();
+        }
+
+        ///<summary>
+        ///Guarda Marca Linea Alimento basico
+        ///</summary>
+        ///<returns></returns>
+
+        [HttpPost]
+        public object SaveMarcaLineaAlimento(MarcaLineaAlimento marca)
+        {
+            return marca.IdMarca = (int)marca.Save();
+        }
+
+        ///<summary>
+        ///Guarda Etapa Alimento basico
+        ///</summary>
+        ///<returns></returns>
+
+        [HttpPost]
+        public object SaveEtapaAlimento (EtapaAlimentoProduccion etapa)
+        {
+            return etapa.IdEtapaAlimento = (int)etapa.Save();
+        }
+
+        ///<summary>
+        ///Guarda Detalle de Alimento Aplicado por Etapa en produccion
+        ///</summary>
+        ///<returns></returns>
+
+        [HttpPost]
+        public object SaveDetalleAlimentoProduccion(DetalleEtapaAlimentoProduccion detalleEtapa)
+        {
+            return detalleEtapa.IdDetalleEstapaAlimentoProduccion = (int)detalleEtapa.Save();
+        }
+
+
+        //extraccion de datos ------------------------------------------------------------------
+
 
         ///<summary>
         ///Regresa informacion de alimento de simplificada
@@ -108,23 +159,34 @@ namespace UIPoyecto.Controllers
         }
 
         ///<summary>
-        ///Regresa lista basica de Marca de linea de alimentacion
+        ///Regresa lista basica de Etapa de alimento
         ///</summary>
         ///<returns></returns>
 
         [HttpGet]
-        public object Get()
+        public object GetEtapaAlimento()
         {
-            var obj = from Marca in new MarcaLineaAlimento().Get<MarcaLineaAlimento>()
+            var obj = from Etapa in new EtapaAlimentoProduccion().Get<EtapaAlimentoProduccion>()
                       select new
                       {
-                          IdMarca = Marca.IdMarca,
-                          Nombre = Marca.Nombre,
-                          Descripcion = Marca.DescripcionMarca
+                          IdEtapa = Etapa.IdEtapaAlimento,
+                          Nombre = Etapa.NombreEtapa,
+                          Descripcion = Etapa.DescripcionEtapa
                       };
             return obj;
 
         }
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }
