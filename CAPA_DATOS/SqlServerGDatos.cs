@@ -50,6 +50,8 @@ namespace CAPA_DATOS
             {
                 string AtributeName = oProperty.Name;
                 var AtributeValue = oProperty.GetValue(Inst);
+                //con esto prevengo que nuevos items se guarden con id 0
+                //cambio todos los id 0 por nulos, pero compruebo primero si efectivamente no son nulos 
                 if (AtributeName.ToUpper().Contains("ID") && AtributeValue != null)
                 {
                     if ((int)AtributeValue == 0)
@@ -57,6 +59,7 @@ namespace CAPA_DATOS
                         AtributeValue = null;
                     }
                 }
+
                 var EntityProp = entityProps.Find(e => e.COLUMN_NAME == AtributeName);
                 if (AtributeValue != null && EntityProp != null)
                 {
