@@ -75,6 +75,16 @@ namespace UIPoyecto.Controllers
             return detalleEtapa.IdDetalleEstapaAlimentoProduccion = (int)detalleEtapa.Save();
         }
 
+        ///<summary>
+        ///Guarda lista Detalle de Alimento Aplicado por Etapa en produccion
+        ///</summary>
+        ///<returns></returns>
+
+        [HttpPost]
+        public object SaveListaDetalleAlimentoProduccion(List<DetalleEtapaAlimentoProduccion> detalleEtapa)
+        {
+            return new DetalleEtapaAlimentoProduccion().GuardarColleccionDetallesAlimentoProduccion(detalleEtapa);
+        }
 
         //extraccion de datos ------------------------------------------------------------------
 
