@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using CAPA_DATOS;
 using System.Linq;
+using System.Diagnostics.Contracts;
 #nullable disable
 
 namespace CAPA_NEGOCIO.Models
@@ -16,7 +17,7 @@ namespace CAPA_NEGOCIO.Models
         {
             if (x)
             {
-            this.CargarPeriodicidad();
+                this.CargarPeriodicidad();
 
             }
             else
@@ -73,15 +74,15 @@ namespace CAPA_NEGOCIO.Models
             {
                 FechaRecorridoActual = DateTime.Today;
             }
-            for(int i = 0; i < aplicaciones; i++)
+            for (int i = 0; i < aplicaciones; i++)
             {
-                if(i == 0)
+                if (i == 0)
                 {
                     this.CargarPeriodicidad();
                     this.ultimaFechaAplicacion = FechaRecorridoActual;
                 }
 
-                if(FechaRecorridoActual == this.ultimaFechaAplicacion)
+                if (FechaRecorridoActual == this.ultimaFechaAplicacion)
                 {
                     new AplicacionTratamientoDiario
                     {
@@ -107,6 +108,14 @@ namespace CAPA_NEGOCIO.Models
         }
 
 
+
+        public object GuardarTratamientoProduccionCompleto(TratamientoProduccionAsignado tratamientoProduccion)
+        {
+            tratamientoProduccion.IdTratamientoProduccion = (int)tratamientoProduccion.Save();
+
+
+            return 0;
+        }
 
 
     }
