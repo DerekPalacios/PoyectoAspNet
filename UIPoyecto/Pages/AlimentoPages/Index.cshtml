@@ -7,7 +7,7 @@
 
 
 <div class="alimContainer">
-    <div class="colum2">
+    <!--<div class="colum2">
         <div class="box">
             <div class="container">
                 <h3 class="datatable-header">Marca Alimentos</h3>
@@ -75,12 +75,12 @@
                         <div class="input-box">
                             <span class="detail">Descripcion</span>
                             <input type="text" placeholder="Ingrese una breve descripcion" id="alimdesc" required>
-                        </div>
-                        <!--<div class="input-box">
-                            <span class="detail">Semanas de implementacion</span>
-                            <input type="number" min="1" placeholder="Ingrese numero semanas" id="alimSem" required>
                         </div>-->
-                    </div>
+    <!--<div class="input-box">
+        <span class="detail">Semanas de implementacion</span>
+        <input type="number" min="1" placeholder="Ingrese numero semanas" id="alimSem" required>
+    </div>-->
+    <!--</div>
 
                     <div class="buttons">
                         <input class="Primary-Button" type="submit" id="btnGuardarAlimento" style="width: 100%">
@@ -88,8 +88,163 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>-->
 
+    <div class="colum2">
+        <div class="container CenterColum">
+            <input type="radio" name="slider" id="tab-1" checked>
+            <input type="radio" name="slider" id="tab-2">
+            <input type="radio" name="slider" id="tab-3">
+            <header class="w40">
+                <label for="tab-1" class="tab-1"><ion-icon name="bag"></ion-icon></label>
+                <label for="tab-2" class="tab-2"><ion-icon name="ribbon"></ion-icon></label>
+                <label for="tab-3" class="tab-3"><ion-icon name="analytics"></ion-icon></label>
+                <div class="slider-btn"></div>
+            </header>
+
+            <section class="box">
+                <div class="slider">
+                    <div class="box row1">
+                        <h3 class="datatable-header">Alimentos</h3>
+                        <div class="box scrollable table-small">
+                            <table class="datatable" id="AlimTd">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="box row1">
+                        <h3 class="datatable-header">Marca Alimentos</h3>
+                        <div class="box scrollable table-small">
+                            <table class="datatable" id="AlimMarcasTd">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="box row1">
+                        <h3 class="datatable-header">Linea Alimentos</h3>
+                        <div class="box scrollable table-small">
+                            <table class="datatable" id="AlimLineaTd">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="box" style="z-index: 4;">
+            <div class="formContainer hiden" id="form-1">
+                <div class="formTitle">Nuevo Marca</div>
+                <form action="#">
+                    <div class="box-detail">
+                        <div hidden>
+                            <input type="number" id="alimId" />
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Nombre de la Marca</span>
+                            <input type="text" placeholder="Ingrese el Nombre de la Galera" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Descripcion de la Marca</span>
+                            <input type="text" placeholder="Ingrese el Descripcion de la Marca" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Marca</span>
+                            <select class="input" id="alimMarca">
+                                <option value="1">
+                                    Marcas
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <input class="Primary-Button" type="submit" value="Registrar" onclick="openPopup()">
+                        <input class="Secondary-Button" type="submit" value="Cancelar">
+                    </div>
+                </form>
+            </div>
+            <div class="formContainer hiden" id="form-2">
+                <div class="formTitle">Nuevo Linea</div>
+                <form action="#">
+                    <div class="box-detail">
+                        <div hidden>
+                            <input type="number" id="alimId" />
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Nombre de la Linea</span>
+                            <input type="text" placeholder="Ingrese el Nombre de la Galera" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Descripcion de la Linea</span>
+                            <input type="text" placeholder="Ingrese el Nombre de la Galera" required>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <input class="Primary-Button" type="submit" value="Registrar" onclick="openPopup()">
+                        <input class="Secondary-Button" type="submit" value="Cancelar">
+                    </div>
+                </form>
+            </div>
+            <div class="formContainer" id="form-3">
+                <div class="formTitle">Nuevo Marca</div>
+                <form action="#">
+                    <div class="box-detail">
+                        <div hidden>
+                            <input type="number" id="alimId" />
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Nombre Alimento</span>
+                            <input type="text" placeholder="Ingrese el Nombre de la Galera" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Marca</span>
+                            <select class="input" id="alimMarca">
+                                <option value="1">
+                                    Marcas
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Linea</span>
+                            <select class="input" id="alimMarca">
+                                <option value="1">
+                                    Lineas
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Etapa Recomendada</span>
+                            <select class="input" id="alimMarca">
+                                <option value="1">
+                                    Etapa
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Descripcion</span>
+                            <input type="text" placeholder="Ingrese una breve descripcion" required>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <input class="Primary-Button" type="submit" value="Registrar" onclick="openPopup()">
+                        <input class="Secondary-Button" type="submit" value="Cancelar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="~/js/changeTheme.js" asp-append-version="true"></script>
