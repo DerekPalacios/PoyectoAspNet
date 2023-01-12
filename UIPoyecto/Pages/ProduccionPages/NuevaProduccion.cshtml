@@ -295,7 +295,7 @@
                                 <input type="text" placeholder="Ingrese la Peridiosidad" id="txtPeridiocidadRecom" required>
                             </div>
                             <div class="input-box">
-                                <span class="detail">Via de Administracion Recomendada</span>
+                                <span class="detail">Via Recomendada</span>
                                 <input type="text" placeholder="Ingrese Dosis" id="txtViaRecomendada" required>
                             </div>
                         </div>
@@ -431,12 +431,23 @@
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
 
-    tipoAlimentacion1.addEventListener('click', () => {
-        if (!tipoAlimentacion1.classList.contains('squer-active')) {
-            tipoAlimentacion1.classList.toggle('squer-active');
+    const rdAlimentacion1 = document.getElementById('tipoAlimentacion1');
+    const rdAlimentacion2 = document.getElementById('tipoAlimentacion2');
+    const rdAlimentacion3 = document.getElementById('tipoAlimentacion3');
+    const rdFinalizacion1 = document.getElementById('finalizacion1');
+    const rdFinalizacion2 = document.getElementById('finalizacion2');
+    const rdTratamiento1 = document.getElementById('tipoTratamiento1');
+    const rdTratamiento2 = document.getElementById('tipoTratamiento2');
+    const ddlLinea = document.getElementById('ddlLinea');
+    const ddlTratamiento = document.getElementById('ddlTratamiento');
+    const txtTratamiento = document.getElementById('txtTratamiento');
 
-            tipoAlimentacion2.classList.remove('squer-active');
-            tipoAlimentacion3.classList.remove('squer-active');
+    rdAlimentacion1.addEventListener('click', async () => {
+        if (!rdAlimentacion1.classList.contains('squer-active')) {
+            rdAlimentacion1.classList.toggle('squer-active');
+
+            rdAlimentacion2.classList.remove('squer-active');
+            rdAlimentacion3.classList.remove('squer-active');
             ddlLinea.value = 0;
             ddlLinea.disabled = true;
 
@@ -447,12 +458,12 @@
         }
     });
 
-    tipoAlimentacion2.addEventListener('click', () => {
-        if (!tipoAlimentacion2.classList.contains('squer-active')) {
-            tipoAlimentacion2.classList.toggle('squer-active');
+    rdAlimentacion2.addEventListener('click', async () => {
+        if (!rdAlimentacion2.classList.contains('squer-active')) {
+            rdAlimentacion2.classList.toggle('squer-active');
 
-            tipoAlimentacion1.classList.remove('squer-active');
-            tipoAlimentacion3.classList.remove('squer-active');
+            rdAlimentacion1.classList.remove('squer-active');
+            rdAlimentacion3.classList.remove('squer-active');
             ddlLinea.value = 0;
             ddlLinea.disabled = true;
 
@@ -463,44 +474,44 @@
         }
     });
 
-    tipoAlimentacion3.addEventListener('click', () => {
-        if (!tipoAlimentacion3.classList.contains('squer-active')) {
-            tipoAlimentacion3.classList.toggle('squer-active');
+    rdAlimentacion3.addEventListener('click',  () => {
+        if (!rdAlimentacion3.classList.contains('squer-active')) {
+            rdAlimentacion3.classList.toggle('squer-active');
 
-            tipoAlimentacion1.classList.remove('squer-active');
-            tipoAlimentacion2.classList.remove('squer-active');
+            rdAlimentacion1.classList.remove('squer-active');
+            rdAlimentacion2.classList.remove('squer-active');
             ddlLinea.disabled = false;
         }
     });
 
-    finalizacion1.addEventListener('click', () => {
-        if (!finalizacion1.classList.contains('squer-active')) {
-            finalizacion1.classList.toggle('squer-active');
-            finalizacion2.classList.toggle('squer-active');
+    rdFinalizacion1.addEventListener('click', () => {
+        if (!rdFinalizacion1.classList.contains('squer-active')) {
+            rdFinalizacion1.classList.toggle('squer-active');
+            rdFinalizacion2.classList.toggle('squer-active');
         }
     });
 
-    finalizacion2.addEventListener('click', () => {
-        if (!finalizacion2.classList.contains('squer-active')) {
-            finalizacion1.classList.toggle('squer-active');
-            finalizacion2.classList.toggle('squer-active');
+    rdFinalizacion2.addEventListener('click', () => {
+        if (!rdFinalizacion2.classList.contains('squer-active')) {
+            rdFinalizacion1.classList.toggle('squer-active');
+            rdFinalizacion2.classList.toggle('squer-active');
         }
     });
 
-    tipoTratamiento1.addEventListener('click', () => {
-        if (!tipoTratamiento1.classList.contains('squer-active')) {
-            tipoTratamiento1.classList.toggle('squer-active');
-            tipoTratamiento2.classList.toggle('squer-active');
+    rdTratamiento1.addEventListener('click', () => {
+        if (!rdTratamiento1.classList.contains('squer-active')) {
+            rdTratamiento1.classList.toggle('squer-active');
+            rdTratamiento2.classList.toggle('squer-active');
 
             ddlTratamiento.classList.toggle('hiden');
             txtTratamiento.classList.toggle('hiden');
         }
     });
 
-    tipoTratamiento2.addEventListener('click', () => {
-        if (!tipoTratamiento2.classList.contains('squer-active')) {
-            tipoTratamiento1.classList.toggle('squer-active');
-            tipoTratamiento2.classList.toggle('squer-active');
+    rdTratamiento2.addEventListener('click', () => {
+        if (!rdTratamiento2.classList.contains('squer-active')) {
+            rdTratamiento1.classList.toggle('squer-active');
+            rdTratamiento2.classList.toggle('squer-active');
 
             ddlTratamiento.classList.toggle('hiden');
             txtTratamiento.classList.toggle('hiden');
