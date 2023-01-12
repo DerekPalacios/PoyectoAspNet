@@ -1,0 +1,298 @@
+﻿@page
+@{
+    ViewData["Title"] = "Nueva Produccion";
+    <link rel="stylesheet" href="~/css/main.css">
+}
+
+<div class="container CenterColum">
+    <input type="radio" name="slider" id="tab-1" checked>
+    <input type="radio" name="slider" id="tab-2">
+    <input type="radio" name="slider" id="tab-3">
+    <header>
+        <label for="tab-1" class="tab-1">1</label>
+        <label for="tab-2" class="tab-2">2</label>
+        <label for="tab-3" class="tab-3">3</label>
+        <div class="slider-btn"></div>
+    </header>
+
+    <section class="box">
+        <div class="formTitle">Nueva Produccion</div>
+        <div class="slider">
+            <div class="box row8515 row1">
+                <form class="colum5050" action="#">
+                    <div class="box-detail">
+                        <div class="input-box">
+                            <span class="detail">Fecha de Ingreso</span>
+                            <input type="date" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Costo Unitario del Lote</span>
+                            <input type="number" step="1" placeholder="Selecione una Especie" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Semanas de Produccion</span>
+                            <input type="number" step="1" placeholder="Selecione una Especie" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Especie De Pollo</span>
+                            <select class="input" id="especie">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                            <div class="text-collaps hiden">
+                                <div class="colum5050">
+                                    <div>Semanas Min. de Produccion:</div>
+                                    <div>7</div>
+                                </div>
+                                <div class="colum5050">
+                                    <div>Pais de Origen:</div>
+                                    <div>Rusia</div>
+                                </div>
+                                <div class="colum5050">
+                                    <div>Descripcion:</div>
+                                    <div>
+                                        Mucho texto, Mucho texto, Mucho texto, Mucho texto, Mucho texto,
+                                        Mucho texto, Mucho texto, Mucho texto, Mucho texto, Mucho texto,
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-detail">
+                        <div class="input-box">
+                            <span class="detail">Fecha de Cierre</span>
+                            <input type="date" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Tamaño del Lote</span>
+                            <input type="number" step="1" placeholder="Ingrese el Tamaño del Lote" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Galera</span>
+                            <select class="input" id="galera">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                            <div class="text-collaps hiden">
+                                <div class="colum5050">
+                                    <div>Semanas Min. de Produccion:</div>
+                                    <div>7</div>
+                                </div>
+                                <div class="colum5050">
+                                    <div>Pais de Origen:</div>
+                                    <div>Rusia</div>
+                                </div>
+                                <div class="colum5050">
+                                    <div>Descripcion:</div>
+                                    <div>
+                                        Mucho texto, Mucho texto, Mucho texto, Mucho texto, Mucho texto,
+                                        Mucho texto, Mucho texto, Mucho texto, Mucho texto, Mucho texto,
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="formfooter colum5050 box-detail">
+                    <a href="produccion.html" class="Secondary-Button">Cancelar</a>
+                    <label for="tab-2" class="tab-2 Primary-Button">Siguiente</label>
+                </div>
+            </div>
+            <div class="box row8515 row1">
+                <form class="colum5" action="#">
+                    <div class="box-detail">
+                        <h3>Semanas</h3>
+                        <h4>Filtrar por:</h4>
+                        <div class="input-box colum1580">
+                            <div class="filter squer squer-active" id="tipoAlimentacion1"></div>
+                            <span class="detail">Alimento</span>
+                        </div>
+                        <div class="input-box colum1580">
+                            <div class="filter squer" id="tipoAlimentacion2"></div>
+                            <span class="detail">Etapa</span>
+                        </div>
+                        <div class="input-box colum1580">
+                            <div class="filter squer" id="tipoAlimentacion3"></div>
+                            <span class="detail">Linea</span>
+                        </div>
+                        <div class="input-box" style="margin-top: 20px;">
+                            <span class="detail">Seleccione la Linea</span>
+                            <select class="input" id="ddlLinea" disabled>
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                                <option value="1">
+                                    Rojo
+                                </option>
+                                <option value="2">
+                                    Azul
+                                </option>
+                                <option value="3">
+                                    Verde
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="box-detail">
+                        <h3>Pre-Inicio</h3>
+                        <div class="input-box">
+                            <span class="detail">Seleccione Alimento</span>
+                            <select class="input" id="preinicio">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box margin-top">
+                            <span class="detail">Quintales Dispuestos</span>
+                            <input type="number" step="1" placeholder="Ingrese el Nombre de la Galera" required>
+                        </div>
+                    </div>
+                    <div class="box-detail">
+                        <h3>Inicio</h3>
+                        <div class="input-box">
+                            <span class="detail">Seleccione Alimento</span>
+                            <select class="input" id="inicio">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box margin-top">
+                            <span class="detail">Quintales Dispuestos</span>
+                            <input type="number" step="1" width="20%" placeholder="Ingrese el Nombre de la Galera" required>
+                        </div>
+                    </div>
+                    <div class="box-detail">
+                        <h3>Desarrollo</h3>
+                        <div class="input-box">
+                            <span class="detail">Seleccione Alimento</span>
+                            <select class="input" id="desarrollo">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box margin-top">
+                            <span class="detail">Quintales Dispuestos</span>
+                            <input type="number" step="1" width="20%" placeholder="Ingrese el Nombre de la Galera" required>
+                        </div>
+                    </div>
+                    <div class="box-detail">
+                        <h3>Final/Desarrollo</h3>
+                        <div class="input-box colum1580">
+                            <div class="type squer squer-active" id="finalizacion1"></div>
+                            <span class="detail">Finalizacion</span>
+                        </div>
+                        <div class="input-box colum1580">
+                            <div class="type squer" id="finalizacion2"></div>
+                            <span class="detail">Desarrollo</span>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Especie De Pollo</span>
+                            <select class="input" id="finalizacion">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Quintales Dispuestos</span>
+                            <input type="number" step="1" width="20%" placeholder="Ingrese el Nombre de la Galera" required>
+                        </div>
+                    </div>
+                </form>
+                <div class="formfooter colum5050 box-detail">
+                    <label for="tab-1" class="tab-1 Secondary-Button">Anterior</label>
+                    <label for="tab-3" class="tab-3 Primary-Button">Siguiente</label>
+                </div>
+            </div>
+            <div class="box row8515 row1">
+                <form class="colum5050" action="#">
+                    <div class="box-detail">
+                        <h3>Tratamiento a Aplicar</h3>
+                        <div class="input-box">
+                            <span class="detail">Dosis a Aplicar</span>
+                            <input type="number" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Aplicar Cada(dias)</span>
+                            <select class="input" id="especie">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Via de Administracion</span>
+                            <select class="input" id="especie">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Costo Tratamiento</span>
+                            <input type="number" required>
+                        </div>
+                    </div>
+                    <div class="box-detail">
+                        <h3>Detalle Tratamiento</h3>
+                        <div class="input-box colum5050">
+                            <div class="input-box colum1580">
+                                <div class="squer squer-active" id="tipoTratamiento1"></div>
+                                <span class="detail">Existente</span>
+                            </div>
+                            <div class="input-box colum1580">
+                                <div class="squer" id="tipoTratamiento2"></div>
+                                <span class="detail">Nuevo</span>
+                            </div>
+                        </div>
+                        <div class="input-box hiden" id="txtTratamiento">
+                            <span class="detail">Nombre Tratamiento</span>
+                            <input type="text" required>
+                        </div>
+                        <div class="input-box" id="ddlTratamiento">
+                            <span class="detail">Tratamiento</span>
+                            <select class="input" id="galera">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Descripcion</span>
+                            <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                        </div>
+                        <div class="input-box colum5050">
+                            <div class="input-box">
+                                <span class="detail">Marca</span>
+                                <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="detail">Dosis Recomendada</span>
+                                <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                            </div>
+                        </div>
+                        <div class="input-box colum5050">
+                            <div class="input-box">
+                                <span class="detail">Lote Recomendado</span>
+                                <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="detail">Dosis Totales</span>
+                                <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="formfooter colum5050 box-detail">
+                    <label for="tab-2" class="tab-2 Secondary-Button">Anterior</label>
+                    <label class="Primary-Button">Registrar</label>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
