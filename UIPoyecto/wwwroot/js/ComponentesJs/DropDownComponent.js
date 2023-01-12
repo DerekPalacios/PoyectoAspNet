@@ -7,6 +7,13 @@
         Select.onchange = SelectedFunction(Select.Value);
     }
 
+    Select.innerHTML = "";
+
+    const options = document.createElement("option");
+    options.innerText = "--Seleccione--";
+    options.value = 0;
+    Select.append(options);
+
     dataset.forEach((item, index) => {
         const options = document.createElement("option");
         options.innerText = item[Display];
