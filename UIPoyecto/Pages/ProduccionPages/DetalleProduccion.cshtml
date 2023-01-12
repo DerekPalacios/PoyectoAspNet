@@ -1,4 +1,53 @@
 ﻿@page
-@model UIPoyecto.Pages.ProduccionPages.DetalleProduccionModel
 @{
+    ViewData["Title"] = "Detalle Produccion";
+    <link rel="stylesheet" href="~/css/main.css">
 }
+
+<div class="colum1">
+    <div class="box Center">
+        <div class="cardDetail">
+            <div class="row">
+                <div class="NumProd Center">
+                    <div class="squer squer-active left"></div>
+                    <span>758</span>
+                </div>
+                <div class="box colum5050">
+                    <ul class="details">
+                        <li class="border-left"><span>Fecha Inicio: 15/06/22</span></li>
+                        <li class="border-left"><span>Fecha Fin: 16/09/22</span></li>
+                        <li class="border-left"><span>Estado: En Produccion</span></li>
+                        <li class="border-left"><span>Pollos Ingresados: 100</span></li>
+                        <li class="border-left"><span>Galera: Galera 3</span></li>
+                    </ul>
+                    <ul class="details">
+                        <li><span>Tasa de Mortalidad/Decesos: 6%/6</span></li>
+                        <li><span>Tratamientos: <a class="link" href="#">Ver Detalle...</a></span></li>
+                        <li><span>Alimentos: Purina, Purina2</span></li>
+                        <li><span>Cant. Alimentos: 300lbs</span></li>
+                        <li><span>Estado: En Produccion</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tabs box">
+        <div class="tab-container">
+            <div id="tab2" class="tab">
+                <a href="#tab2">Actividades Tratamiento</a>
+                <div class="tab-content">
+                    <h2>Titulo 2</h2>
+                    <p>Lorem ipsum ...</p>
+                </div>
+            </div>
+            <div id="tab1" class="tab">
+                <a href="#tab1">Actividades Produccion</a>
+                <div class="tab-content">
+                    <h2>Titulo 1</h2>
+                    <p>Lorem ipsum ...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
