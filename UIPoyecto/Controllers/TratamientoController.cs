@@ -28,24 +28,6 @@ namespace UIPoyecto.Controllers
 
         //POSTS  --------------------------------------------------
 
-        [HttpPost]
-        public object SaveTratamientoProduccion(TratamientoProduccionAsignado NewTrat)
-        {
-            try
-            {
-                NewTrat.IdTratamientoProduccion = (int)NewTrat.Save();
-                NewTrat.GenerarTratamientoDiario();
-                return NewTrat.IdTratamientoProduccion;
-            }
-            catch
-            {
-                return 0;
-            }
-        }
-
-
-
-
 
         ///<summary>
         ///Guardar Via de administracion de tratamiento basico

@@ -115,7 +115,7 @@ namespace CAPA_NEGOCIO.Models
             tratamientoProduccion.IdTratamientoProduccion = (int)tratamientoProduccion.Save();
 
 
-            return 0;
+            return tratamientoProduccion.IdTratamientoProduccion;
         }
 
 
