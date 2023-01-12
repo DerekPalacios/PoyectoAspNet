@@ -49,6 +49,7 @@ namespace CAPA_NEGOCIO.Models
         public bool? CambioEstadoPermitidoTratamientoProduccion { get; set; }
         public int IdUsuarioRegistro { get; set; }
         public decimal ProgresoAplicacion { get; set; }//quitar
+        public string DescripcionDosisdiaria { get; set; }
         public bool TratamientoSanitario { get; set; }
         public string nombreTatamiento;
         DateTime ultimaFechaAplicacion;

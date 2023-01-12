@@ -91,6 +91,8 @@ namespace UIPoyecto.Controllers
             return new ViaAdministracionTratamiento().Get<ViaAdministracionTratamiento>();
         }
 
+        
+
 
 
         ///<summary>
