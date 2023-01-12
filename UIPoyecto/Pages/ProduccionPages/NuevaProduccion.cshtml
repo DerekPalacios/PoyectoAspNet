@@ -23,15 +23,15 @@
                     <div class="box-detail">
                         <div class="input-box">
                             <span class="detail">Fecha de Ingreso</span>
-                            <input type="date" required>
+                            <input type="date" required id="dpFechaInicio">
                         </div>
                         <div class="input-box">
                             <span class="detail">Costo Unitario del Lote</span>
-                            <input type="number" step="1" placeholder="Selecione una Especie" required>
+                            <input type="number" step="1" placeholder="Ingrese el Costo" id="txtPrecioUnitario" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Semanas de Produccion</span>
-                            <input type="number" step="1" placeholder="Selecione una Especie" required>
+                            <input type="number" step="1" placeholder="Selecione una Especie" id="txtSemanasProd" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Especie De Pollo</span>
@@ -62,11 +62,11 @@
                     <div class="box-detail">
                         <div class="input-box">
                             <span class="detail">Fecha de Cierre</span>
-                            <input type="date" required>
+                            <input type="date" id="dpFechaFin" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Tamaño del Lote</span>
-                            <input type="number" step="1" placeholder="Ingrese el Tamaño del Lote" required>
+                            <input type="number" step="1" placeholder="Ingrese el Tamaño del Lote"id="txtTamanioLote" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Galera</span>
@@ -96,7 +96,7 @@
                     </div>
                 </form>
                 <div class="formfooter colum5050 box-detail">
-                    <a href="produccion.html" class="Secondary-Button">Cancelar</a>
+                    <a href="~/ProduccionPages/Index" class="Secondary-Button">Cancelar</a>
                     <label for="tab-2" class="tab-2 Primary-Button">Siguiente</label>
                 </div>
             </div>
@@ -122,15 +122,6 @@
                             <select class="input" id="ddlLinea" disabled>
                                 <option value="0">
                                     --Seleccione--
-                                </option>
-                                <option value="1">
-                                    Rojo
-                                </option>
-                                <option value="2">
-                                    Azul
-                                </option>
-                                <option value="3">
-                                    Verde
                                 </option>
                             </select>
                         </div>
@@ -200,7 +191,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Quintales Dispuestos</span>
-                            <input type="number" step="1" width="20%" placeholder="Ingrese el Nombre de la Galera" required>
+                            <input type="number" step="1" placeholder="Ingrese los Quintales" required>
                         </div>
                     </div>
                 </form>
@@ -215,11 +206,19 @@
                         <h3>Tratamiento a Aplicar</h3>
                         <div class="input-box">
                             <span class="detail">Dosis a Aplicar</span>
-                            <input type="number" required>
+                            <input type="number" id="txtDosis" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Dosis Totales a Aplicar</span>
+                            <input type="number" id="txtDosisTotal" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Descripcion Dosis</span>
+                            <input type="number" id="txtDosisDesc" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Aplicar Cada(dias)</span>
-                            <select class="input" id="especie">
+                            <select class="input" id="ddlPeridiocidad">
                                 <option value="0">
                                     --Seleccione--
                                 </option>
@@ -227,7 +226,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Via de Administracion</span>
-                            <select class="input" id="especie">
+                            <select class="input" id="ddlViaAdministracion">
                                 <option value="0">
                                     --Seleccione--
                                 </option>
@@ -235,7 +234,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Costo Tratamiento</span>
-                            <input type="number" required>
+                            <input type="number" id="txtCosto" required>
                         </div>
                     </div>
                     <div class="box-detail">
@@ -252,38 +251,52 @@
                         </div>
                         <div class="input-box hiden" id="txtTratamiento">
                             <span class="detail">Nombre Tratamiento</span>
-                            <input type="text" required>
+                            <input type="text" id="txtNombreTrat" required>
                         </div>
                         <div class="input-box" id="ddlTratamiento">
                             <span class="detail">Tratamiento</span>
-                            <select class="input" id="galera">
+                            <select class="input" id="ddlTratamiento">
                                 <option value="0">
                                     --Seleccione--
                                 </option>
                             </select>
                         </div>
                         <div class="input-box">
-                            <span class="detail">Descripcion</span>
-                            <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                            <span class="detail">Descripcion Tratamiento</span>
+                            <input type="text" placeholder="Ingrese descripcion" id="txtDescTrat" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Descripcion Dosis</span>
+                            <input type="text" placeholder="Ingrese descripcion" id="txtDescDosis" required>
                         </div>
                         <div class="input-box colum5050">
                             <div class="input-box">
                                 <span class="detail">Marca</span>
-                                <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                                <input type="text" placeholder="Ingrese Marca" id="txtMarcaTrat" required>
                             </div>
                             <div class="input-box">
                                 <span class="detail">Dosis Recomendada</span>
-                                <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTrat" required>
                             </div>
                         </div>
                         <div class="input-box colum5050">
                             <div class="input-box">
                                 <span class="detail">Lote Recomendado</span>
-                                <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                                <input type="text" placeholder="Ingrese el Tamaño del Lote" id="txtTamaño" required>
                             </div>
                             <div class="input-box">
                                 <span class="detail">Dosis Totales</span>
-                                <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTotales" required>
+                            </div>
+                        </div>
+                        <div class="input-box colum5050">
+                            <div class="input-box">
+                                <span class="detail">Peridiocidad Recomendado</span>
+                                <input type="text" placeholder="Ingrese la Peridiosidad" id="txtPeridiocidadRecom" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="detail">Via de Administracion Recomendada</span>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtViaRecomendada" required>
                             </div>
                         </div>
                     </div>
@@ -299,3 +312,122 @@
 
 <script src="~/js/changeTheme.js" asp-append-version="true"></script>
 <script src="~/js/changeRadioBTN.js" asp-append-version="true"></script>
+<script src="~/js/filterSelect.js" asp-append-version="true"></script>
+
+<script type="module">
+    import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
+    import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
+    import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
+
+    window.onload = async () => {
+
+        await cargarDLEspecie();
+        await cargarDLGalera();
+        await cargarDLLinea();
+        await cargarDLPreinicio();
+        await cargarDLInicio();
+        await cargarDLDesarrollo();
+        await cargarDLFinalizacion();
+        await cargarDLDosis();
+        await cargarDLViaAdm();
+        await cargarDLTratamiento();
+
+        dpFechaInicio.onchange = () => {
+            var fechaInicio = new Date(FechaProd.value);
+            fechaInicio.setDate(fechaInicio.getDate() + (txtSemanasProd.value * 7));
+
+            dpFechaFin.value = formatear(fechaInicio);
+        }
+    };
+
+    const formatear = f => {
+        const año = f.getFullYear();
+        const mes = ("0" + (f.getMonth() + 1)).substr(-2);
+        const dia = ("0" + f.getDate()).substr(-2);
+        return `${año}-${mes}-${dia}`
+    };
+
+    const cargarDLEspecie = async () => {
+        let especieData = await GetObjectData('../api/EspeciePollo/GetEspeciesNombreCompuesto');
+
+        CreateDropdown(especieData, especie, 'descripccion', 'idEspecie');
+    };
+
+    const cargarDLGalera = async () => {
+        let galeraData = await GetObjectData('../api/Galera/GetGaleraSinProduccion');
+
+        CreateDropdown(galeraData, galera, 'nombre', 'idGalera');
+    };
+
+    const cargarDLLinea = async () => {
+        let lineaData = await GetObjectData('../api/Alimento/GetLineaAlimentoDropdown');
+
+        CreateDropdown(lineaData, ddlLinea, 'nombre', 'idLinea');
+    };
+
+    const cargarDLViaAdm = async () => {
+        let ViaAdmData = await GetObjectData('../api/Tratamiento/GetViaAdministracionBasico');
+
+        CreateDropdown(ViaAdmData, ddlViaAdministracion, 'tipoAdministracion', 'idViaAdministracion');
+    };
+
+    const cargarDLDosis = async () => {
+        let dosisData = await GetObjectData('../api/Catalogos/GetPeridiocidadDropdown');
+
+        CreateDropdown(dosisData, ddlPeridiocidad, 'nombre', 'idPeridiosidad');
+    };
+
+    const cargarDLTratamiento = async () => {
+        let tratamientoData = await GetObjectData('../api/Tratamiento/GetTratamientoBasico');
+
+        CreateDropdown(tratamientoData, ddlTratamiento, 'nombre', 'idTratamiento');
+    };
+
+    const cargarDLPreinicio = async () => {
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoAllDropdown');
+
+        CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
+    };
+
+    const cargarDLInicio = async () => {
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoAllDropdown');
+
+        CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
+    };
+
+    const cargarDLDesarrollo = async () => {
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoAllDropdown');
+
+        CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
+    };
+
+    const cargarDLFinalizacion = async () => {
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoAllDropdown');
+
+        CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
+    };
+
+    const cargarDLPreinicioEtapa = async () => {
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoPreInicioDropdown');
+
+        CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
+    };
+
+    const cargarDLInicioEtapa = async () => {
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoInicioDropdown');
+
+        CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
+    };
+
+    const cargarDLDesarrolloEtapa = async () => {
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoDesarrolloDropdown');
+
+        CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
+    };
+
+    const cargarDLFinalizacionEtapa = async () => {
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoFinalizacioDropdown');
+
+        CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
+    };
+</script>
