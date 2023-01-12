@@ -311,8 +311,8 @@
 </div>
 
 <script src="~/js/changeTheme.js" asp-append-version="true"></script>
-<script src="~/js/changeRadioBTN.js" asp-append-version="true"></script>
-<script src="~/js/filterSelect.js" asp-append-version="true"></script>
+@*<script src="~/js/changeRadioBTN.js" asp-append-version="true"></script>
+<script src="~/js/filterSelect.js" asp-append-version="true"></script>*@
 
 <script type="module">
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
@@ -430,4 +430,80 @@
 
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
+
+    tipoAlimentacion1.addEventListener('click', () => {
+        if (!tipoAlimentacion1.classList.contains('squer-active')) {
+            tipoAlimentacion1.classList.toggle('squer-active');
+
+            tipoAlimentacion2.classList.remove('squer-active');
+            tipoAlimentacion3.classList.remove('squer-active');
+            ddlLinea.value = 0;
+            ddlLinea.disabled = true;
+
+            await cargarDLPreinicio();
+            await cargarDLInicio();
+            await cargarDLDesarrollo();
+            await cargarDLFinalizacion();
+        }
+    });
+
+    tipoAlimentacion2.addEventListener('click', () => {
+        if (!tipoAlimentacion2.classList.contains('squer-active')) {
+            tipoAlimentacion2.classList.toggle('squer-active');
+
+            tipoAlimentacion1.classList.remove('squer-active');
+            tipoAlimentacion3.classList.remove('squer-active');
+            ddlLinea.value = 0;
+            ddlLinea.disabled = true;
+
+            await cargarDLPreinicioEtapa();
+            await cargarDLInicioEtapa();
+            await cargarDLDesarrolloEtapa();
+            await cargarDLFinalizacionEtapa();
+        }
+    });
+
+    tipoAlimentacion3.addEventListener('click', () => {
+        if (!tipoAlimentacion3.classList.contains('squer-active')) {
+            tipoAlimentacion3.classList.toggle('squer-active');
+
+            tipoAlimentacion1.classList.remove('squer-active');
+            tipoAlimentacion2.classList.remove('squer-active');
+            ddlLinea.disabled = false;
+        }
+    });
+
+    finalizacion1.addEventListener('click', () => {
+        if (!finalizacion1.classList.contains('squer-active')) {
+            finalizacion1.classList.toggle('squer-active');
+            finalizacion2.classList.toggle('squer-active');
+        }
+    });
+
+    finalizacion2.addEventListener('click', () => {
+        if (!finalizacion2.classList.contains('squer-active')) {
+            finalizacion1.classList.toggle('squer-active');
+            finalizacion2.classList.toggle('squer-active');
+        }
+    });
+
+    tipoTratamiento1.addEventListener('click', () => {
+        if (!tipoTratamiento1.classList.contains('squer-active')) {
+            tipoTratamiento1.classList.toggle('squer-active');
+            tipoTratamiento2.classList.toggle('squer-active');
+
+            ddlTratamiento.classList.toggle('hiden');
+            txtTratamiento.classList.toggle('hiden');
+        }
+    });
+
+    tipoTratamiento2.addEventListener('click', () => {
+        if (!tipoTratamiento2.classList.contains('squer-active')) {
+            tipoTratamiento1.classList.toggle('squer-active');
+            tipoTratamiento2.classList.toggle('squer-active');
+
+            ddlTratamiento.classList.toggle('hiden');
+            txtTratamiento.classList.toggle('hiden');
+        }
+    });
 </script>
