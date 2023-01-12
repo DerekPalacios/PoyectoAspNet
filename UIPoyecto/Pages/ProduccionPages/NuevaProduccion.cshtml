@@ -378,7 +378,7 @@
     };
 
     const cargarDLTratamiento = async () => {
-        let tratamientoData = await GetObjectData('../api/Tratamiento/GetTratamientoBasico');
+        let tratamientoData = await GetObjectData('../api/Tratamiento/GetTratamientosBasico');
 
         CreateDropdown(tratamientoData, ddlTratamiento, 'nombre', 'idTratamiento');
     };
