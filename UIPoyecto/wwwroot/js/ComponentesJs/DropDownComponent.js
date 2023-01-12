@@ -10,7 +10,7 @@
     Select.innerHTML = "";
 
     const options = document.createElement("option");
-    options.innerText = "--Seleccione--";
+    options.innerText = "-Seleccione-";
     options.value = 0;
     Select.append(options);
 
