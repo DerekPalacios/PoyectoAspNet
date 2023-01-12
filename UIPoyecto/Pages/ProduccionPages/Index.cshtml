@@ -27,74 +27,8 @@
                     </div>
                     <div id="dateday"></div>
                 </div>
-                <form class="task" onsubmit="addNewTask(event)">
-                    <div class="box-detail">
-                        <div class="input-box">
-                            <input type="text" name="taskTitle" autocomplete="off" placeholder="Nueva Tarea">
-                            <button type="submit" class="btn_addTask">+</button>
-                        </div>
-                    </div>
-                </form>
+                <a href="~/ProduccionPages/NuevaProduccion" class="Primary-Button" style="width: 100%; display: inline-block; text-align: center;">+ Agregar Produccion</a>
                 <div id="tasklist"></div>
-            </div>
-            <div class="formContainer">
-                <div class="formTitle">Nueva Produccion</div>
-                <form action="#">
-                    <div class="box-detail">
-                        <div hidden>
-                            <input type="number" id="IdProd" />
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Numero de Lote</span>
-                            <input type="number" placeholder="Ingrese el Numero de lote" id="LoteProd" required>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Costo Produccion</span>
-                            <input type="number" placeholder="Ingrese el Numero de lote" id="CostoProd" required>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Quintales Disponibles</span>
-                            <input type="number" placeholder="Ingrese el Numero Q" id="QuinProd" required>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Galeras</span>
-                            <select class="input" id="GaleraProd">
-                                <option value="0">
-                                    Seleccione
-                                </option>
-                            </select>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Alimento</span>
-                            <select class="input" id="AlimenProd">
-                                <option value="0">
-                                    Seleccione
-                                </option>
-                            </select>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Especie</span>
-                            <select class="input" id="EspecieProd">
-                                <option value="0">
-                                    Seleccione
-                                </option>
-                            </select>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Fecha Inicio</span>
-                            <input type="date" id="FechaProd">
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Fecha Fin</span>
-                            <input type="date" id="FechaSalidaProd">
-                        </div>
-
-                        <div class="buttons">
-                            <input class="Primary-Button" type="submit" value="Registrar" style="width: 100%" id="btnGuardarProduccion">
-                        </div>
-                    </div>
-                </form>
-
             </div>
         </div>
     </div>

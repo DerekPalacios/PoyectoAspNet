@@ -1,0 +1,59 @@
+﻿@page
+@{
+    ViewData["Title"] = "Especie";
+    <link rel="stylesheet" href="~/css/main.css">
+}
+
+<div class="colum2">
+    <div class="box">
+        <div class="container">
+            <h3 class="datatable-header">Especies</h3>
+            <div class="box scrollable table-medium">
+                <table class="datatable">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="formContainer">
+            <div class="formTitle">Nuevo Marca</div>
+            <form action="#">
+                <div class="box-detail">
+                    <div hidden>
+                        <input type="number" id="especieId" />
+                    </div>
+                    <div class="input-box">
+                        <span class="detail">Nombre Especie</span>
+                        <input type="text" placeholder="Ingrese el Nombre" id="txtEspecieName" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detail">Descripcion</span>
+                        <input type="number" placeholder="Ingrese una Descripcion" id="txtEspecieDesc" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detail">Pais de Origen</span>
+                        <input type="number" placeholder="Ingrese el Pais" id="txtEspecieCountry" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detail">Precio Unitario</span>
+                        <input type="number" placeholder="Ingrese Precio Unitario" id="txtEspeciePrice" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detail">Semanas de Produccion</span>
+                        <input type="text" placeholder="Ingrese la Semanas" id="txtEspecieWeek" required>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <input class="Primary-Button" type="submit" value="Registrar">
+                    <input class="Secondary-Button" type="submit" value="Cancelar">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
