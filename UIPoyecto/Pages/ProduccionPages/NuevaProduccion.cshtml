@@ -317,8 +317,8 @@
 <script type="module">
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
-    import GetDataByFilter from "../js/ComponentesJs/GetDatosByApiUrlFiltering.js";
     import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
+    import GetObjectDataByFilter from "../js/ComponentesJs/GetDatoByApiUrlFiltering.js";
 
     window.onload = async () => {
 
@@ -427,31 +427,31 @@
     };
 
     const cargarDLFinalizacionEtapa = async () => {
-        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoFinalizacioDropdown');
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoFinalizacionDropdown');
 
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
 
     const cargarDLPreinicioLinea = async (id) => {
-        let alimentoData = await GetDataByFilter('../api/Alimento/GetAlimentoPreInicioDropdownByIdLinea', "IdLinea", id);
+        let alimentoData = await GetObjectDataByFilter('../api/Alimento/GetAlimentoPreInicioDropdownByIdLinea', "IdLinea", id);
 
         CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
     };
 
     const cargarDLInicioLinea = async (id) => {
-        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoInicioDropdownByIdLinea', "IdLinea", id);
+        let alimentoData = await GetObjectDataByFilter('../api/Alimento/GetAlimentoInicioDropdownByIdLinea', "IdLinea", id);
 
         CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
     };
 
     const cargarDLDesarrolloLinea = async (id) => {
-        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoDesarrolloDropdownByIdLinea', "IdLinea", id);
+        let alimentoData = await GetObjectDataByFilter('../api/Alimento/GetAlimentoDesarrolloDropdownByIdLinea', "IdLinea", id);
 
         CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
     };
 
     const cargarDLFinalizacionLinea = async (id) => {
-        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoFinalizacioDropdownByIdLinea', "IdLinea", id);
+        let alimentoData = await GetObjectDataByFilter('../api/Alimento/GetAlimentoFinalizacionDropdownByIdLinea', "IdLinea", id);
 
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
