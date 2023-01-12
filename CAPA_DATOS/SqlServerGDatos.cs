@@ -54,7 +54,7 @@ namespace CAPA_DATOS
                 //cambio todos los id 0 por nulos, pero compruebo primero si efectivamente no son nulos 
                 if (AtributeName.ToUpper().Contains("ID") && AtributeValue != null)
                 {
-                    if ((int)AtributeValue == 0)
+                    if (AtributeValue.ToString() == "0")
                     {
                         AtributeValue = null;
                     }
@@ -82,7 +82,7 @@ namespace CAPA_DATOS
                             break;
                         case "bit":
                             ColumnNames = ColumnNames + AtributeName.ToString() + ',';
-                            Values = Values + (AtributeValue.ToString() == "true" ? "1" : "0") + ",";
+                            Values = Values + (AtributeValue.ToString().ToLower() == "true" ? "1" : "0") + ",";
                             break;
                         case "datetime":
                         case "date":
