@@ -54,7 +54,7 @@ namespace CAPA_DATOS
                 //cambio todos los id 0 por nulos, pero compruebo primero si efectivamente no son nulos 
                 if (AtributeName.ToUpper().Contains("ID") && AtributeValue != null)
                 {
-                    if ((int)AtributeValue == 0)
+                    if (AtributeValue.ToString() == "0")
                     {
                         AtributeValue = null;
                     }
@@ -82,7 +82,7 @@ namespace CAPA_DATOS
                             break;
                         case "bit":
                             ColumnNames = ColumnNames + AtributeName.ToString() + ',';
-                            Values = Values + (AtributeValue.ToString() == "true" ? "1" : "0") + ",";
+                            Values = Values + (AtributeValue.ToString().ToLower() == "true" ? "1" : "0") + ",";
                             break;
                         case "datetime":
                         case "date":
@@ -146,6 +146,15 @@ namespace CAPA_DATOS
                 var EntityProp = entityProps.Find(e => e.COLUMN_NAME == AtributeName);
                 if (AtributeValue != null && EntityProp != null)
                 {
+                    //con esto prevengo que nuevos items se guarden con id 0
+                    //cambio todos los id 0 por nulos, pero compruebo primero si efectivamente no son nulos 
+                    if (AtributeName.ToUpper().Contains("ID") && AtributeValue != null)
+                    {
+                        if (AtributeValue.ToString() == "0")
+                        {
+                            AtributeValue = null;
+                        }
+                    }
                     if (WhereProp != AtributeName)
                     {
                         Values = BuildSetsForUpdate(Values, AtributeName, AtributeValue, EntityProp);
@@ -228,7 +237,7 @@ namespace CAPA_DATOS
             }
             else if (ConditionString != null && CondSQL != "")
             {
-                ConditionString = ConditionString + "AND";
+                ConditionString = ConditionString + " AND ";
             }
             Columns = Columns.TrimEnd(',');
             string queryString = "SELECT " + Columns + " FROM " + Inst.GetType().Name + ConditionString + CondSQL;
@@ -244,7 +253,7 @@ namespace CAPA_DATOS
                 case "varchar":
                 case "char":
 
-                    Values = Values + AtributeName + "= '" + AtributeValue.ToString() + "',";
+                    Values = Values + AtributeName + " = '" + AtributeValue.ToString() + "',";
                     break;
                 case "int":
                 case "float":
@@ -252,11 +261,23 @@ namespace CAPA_DATOS
                 case "bigint":
                 case "money":
                 case "smallint":
-                    Values = Values + AtributeName + "= " + AtributeValue.ToString() + ",";
+                    if(AtributeValue!= null)
+                    {
+
+                    Values = Values + AtributeName + " = " + AtributeValue.ToString() + ",";
+                    }
+                    else
+                    {
+                        Values = Values + AtributeName + " = " + "null,";
+
+                    }
+                    break;
+                case "bit":
+                    Values = Values + AtributeName + " = " + (AtributeValue.ToString().ToLower() == "true" ? "1" : "0") + ",";
                     break;
                 case "datetime":
                 case "date":
-                    Values = Values + AtributeName + "= '" + ((DateTime)AtributeValue).ToString("yyyy/MM/dd") + "',";
+                    Values = Values + AtributeName + " = '" + ((DateTime)AtributeValue).ToString("yyyy/MM/dd") + "',";
                     break;
             }
             return Values;

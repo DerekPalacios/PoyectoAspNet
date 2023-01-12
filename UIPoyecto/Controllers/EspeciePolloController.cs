@@ -23,8 +23,15 @@ namespace UIPoyecto.Controllers
         public object GetEspeciesNombreCompuesto()
         {
             var obj = from Especie in new EspeciePollo().Get<EspeciePollo>()
-                      select new { IdEspecie = Especie.IdEspecie, Descripccion = Especie.Descripccion + "-- $" + Especie.PrecioUnit, PaisOrigen = Especie.PaisOrigen, PrecioUnit = Especie.PrecioUnit };
-                      
+                      select new
+                      {
+                          IdEspecie = Especie.IdEspecie,
+                          Descripccion = Especie.Descripccion + "-- $" + Especie.PrecioUnit,
+                          PaisOrigen = Especie.PaisOrigen,
+                          PrecioUnit = Especie.PrecioUnit,
+                          semanaProduccion = Especie.SemanasProduccion
+                      };
+
             return obj;
         }
         [HttpPost]

@@ -47,12 +47,7 @@ namespace UIPoyecto.Controllers
         [HttpPost]
         public object UpdateActividadGeneral(ActividadGeneral UpdAct)
         {
-
-            UpdAct.IdActividadBase = (int)UpdAct.IdActividad;
-            UpdAct.IdActividad = null;
-
-
-            return UpdAct.IdActividad = (int)UpdAct.Save();
+            return UpdAct.ActualizarActividad(UpdAct);
         }
 
 

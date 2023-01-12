@@ -17,12 +17,24 @@ namespace CAPA_NEGOCIO.Models
         public bool ActividadHabilitada { get; set; }
         public int IdPeriodicidadActividad { get; set; }
 
-        public Periodicidad PeriodicidadVar { get; set; }
+        public Periodicidad? PeriodicidadVar { get; set; }
         public DateTime ultimaFechaAsigado;
         public void CargarPeriodicidad()
         {
            this.PeriodicidadVar= new Periodicidad().Get<Periodicidad>("IdPeriodicidad = " + IdPeriodicidadActividad).First();
         }
+
+        public object ActualizarActividad(ActividadGeneral act)
+        {
+            act.ActividadHabilitada = false;
+            act.Update("IdActividad");
+            act.ActividadHabilitada = true;
+            act.IdActividadBase = (int)act.IdActividad;
+            act.IdActividad = null;
+            return act.IdActividad = (int)act.Save();
+
+        }
+
 
     }
 }
