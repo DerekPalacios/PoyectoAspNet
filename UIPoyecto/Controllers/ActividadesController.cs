@@ -21,12 +21,29 @@ namespace UIPoyecto.Controllers
             AuthNetCore.loginIN("admin", "admin");
         }
 
+        ///<summary>
+        ///Guardar Actividad general
+        ///</summary>
+        ///<remarks>
+        ///envio de a ctividades generales nuevas solamente
+        ///</remarks>
+        ///<returns></returns>
+        ///
+
         [HttpPost]
         public object SaveActividadGeneral(ActividadGeneral NewAct)
         {
             return NewAct.IdActividad = (int)NewAct.Save();
         }
 
+        ///<summary>
+        ///Guardar  actuaizar la actividad general
+        ///</summary>
+        ///<remarks>
+        ///aqui la actividad no es actualizada, simplemente crea una nueva y hace referencia a una vieja
+        ///</remarks>
+        ///<returns></returns>
+        ///
         [HttpPost]
         public object UpdateActividadGeneral(ActividadGeneral UpdAct)
         {
@@ -38,14 +55,15 @@ namespace UIPoyecto.Controllers
             return UpdAct.IdActividad = (int)UpdAct.Save();
         }
 
+
         [HttpGet]
-        public object GetActividadProduccionActiva()
+        public object GetActividadProduccionActiva(int id)
         {
 
-            var actividadProduccionActiva = new ActividadProduccionActiva().Get<ActividadProduccionActiva>();
+            return  new ActividadProduccion().Get<ActividadProduccion>("IdActividadProduccion + " + id );
 
 
-            return actividadProduccionActiva;
+            
 
         }
 
