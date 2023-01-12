@@ -317,6 +317,7 @@
 <script type="module">
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
+    import GetDataByFilter from "../js/ComponentesJs/GetDatosByApiUrlFiltering.js";
     import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
 
     window.onload = async () => {
@@ -431,6 +432,30 @@
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
 
+    const cargarDLPreinicioLinea = async (id) => {
+        let alimentoData = await GetDataByFilter('../api/Alimento/GetAlimentoPreInicioDropdownByIdLinea', "IdLinea", id);
+
+        CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
+    };
+
+    const cargarDLInicioLinea = async (id) => {
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoInicioDropdownByIdLinea', "IdLinea", id);
+
+        CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
+    };
+
+    const cargarDLDesarrolloLinea = async (id) => {
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoDesarrolloDropdownByIdLinea', "IdLinea", id);
+
+        CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
+    };
+
+    const cargarDLFinalizacionLinea = async (id) => {
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoFinalizacioDropdownByIdLinea', "IdLinea", id);
+
+        CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
+    };
+
     const rdAlimentacion1 = document.getElementById('tipoAlimentacion1');
     const rdAlimentacion2 = document.getElementById('tipoAlimentacion2');
     const rdAlimentacion3 = document.getElementById('tipoAlimentacion3');
@@ -517,4 +542,14 @@
             txtTratamiento.classList.toggle('hiden');
         }
     });
+
+    document.querySelector('#ddlLinea').onchange = async e => {
+
+        const { value: property, text: label } = e.target.selectedOptions[0]
+
+        await cargarDLPreinicioLinea(property);
+        await cargarDLInicioLinea(property);
+        await cargarDLDesarrolloLinea(property);
+        await cargarDLFinalizacionLinea(property);
+    }
 </script>
