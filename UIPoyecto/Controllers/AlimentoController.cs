@@ -90,6 +90,227 @@ namespace UIPoyecto.Controllers
 
 
         ///<summary>
+        ///Extrae informacion de linea preparada apara dropdown
+        ///</summary>
+        ///<remarks>
+        ///es el id, puesto con el nombre y la marca contatenados para una mejor legibilidad
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetLineaAlimentoDropdown()
+        {
+            var obj = from Linea in new LineaAlimento().Get<LineaAlimento>()
+                      select new
+                      {
+                          idLinea = Linea.IdLineaAlimento,
+                          Nombre = Linea.NombreLinea + " - " + Linea.cargarNombreMarcaAlimento()
+                      };
+            return obj;
+
+        }
+
+
+        ///<summary>
+        ///Extrae los datos de alimento de la etapa de pre Inicio
+        ///</summary>
+        ///<remarks>
+        ///datos de linea estandar por lo que se puede dejar una funcion estatica
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetAlimentoPreInicioDropdown()
+        {
+            var obj = from Aliemnto in new Alimento().Get<Alimento>("IdEtapaAlimentoRecomendado = 1")
+                      select new
+                      {
+                          idAlimento = Aliemnto.IdAlimento,
+                          Nombre = Aliemnto.Nombre 
+                      };
+            return obj;
+
+        }
+
+
+        ///<summary>
+        ///Extrae los datos de alimento de la etapa de inicio
+        ///</summary>
+        ///<remarks>
+        ///datos de linea estandar por lo que se puede dejar una funcion estatica
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetAlimentoInicioDropdown()
+        {
+            var obj = from Aliemnto in new Alimento().Get<Alimento>("IdEtapaAlimentoRecomendado = 2")
+                      select new
+                      {
+                          idAlimento = Aliemnto.IdAlimento,
+                          Nombre = Aliemnto.Nombre
+                      };
+            return obj;
+
+        }
+
+        ///<summary>
+        ///Extrae los datos de alimento de la etapa de Desarrollo
+        ///</summary>
+        ///<remarks>
+        ///datos de linea estandar por lo que se puede dejar una funcion estatica
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetAlimentoDesarrolloDropdown()
+        {
+            var obj = from Aliemnto in new Alimento().Get<Alimento>("IdEtapaAlimentoRecomendado = 3")
+                      select new
+                      {
+                          idAlimento = Aliemnto.IdAlimento,
+                          Nombre = Aliemnto.Nombre
+                      };
+            return obj;
+
+        }
+
+        ///<summary>
+        ///Extrae los datos de alimento de la etapa de Finalizacion
+        ///</summary>
+        ///<remarks>
+        ///datos de linea estandar por lo que se puede dejar una funcion estatica
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetAlimentoFinalizacionDropdown()
+        {
+            var obj = from Aliemnto in new Alimento().Get<Alimento>("IdEtapaAlimentoRecomendado = 4")
+                      select new
+                      {
+                          idAlimento = Aliemnto.IdAlimento,
+                          Nombre = Aliemnto.Nombre
+                      };
+            return obj;
+
+        }
+
+        ///<summary>
+        ///Extrae los datos de alimento de todas las etapas
+        ///</summary>
+        ///<remarks>
+        ///datos de linea estandar por lo que se puede dejar una funcion estatica
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetAlimentoAllDropdown()
+        {
+            var obj = from Aliemnto in new Alimento().Get<Alimento>()
+                      select new
+                      {
+                          idAlimento = Aliemnto.IdAlimento,
+                          Nombre = Aliemnto.Nombre
+                      };
+            return obj;
+
+        }
+
+
+
+        ///<summary>
+        ///Extrae los datos de alimento de la etapa de pre Inicio filtrado por linea
+        ///</summary>
+        ///<remarks>
+        ///datos de linea estandar por lo que se puede dejar una funcion estatica
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetAlimentoPreInicioDropdownByIdLinea(int IdLinea)
+        {
+            var obj = from Aliemnto in new Alimento().Get<Alimento>("IdEtapaAlimentoRecomendado = 1 and IdLineaAlimentoRecomendado = "+IdLinea)
+                      select new
+                      {
+                          idAlimento = Aliemnto.IdAlimento,
+                          Nombre = Aliemnto.Nombre
+                      };
+            return obj;
+
+        }
+
+
+        ///<summary>
+        ///Extrae los datos de alimento de la etapa de inicio filtrado por linea
+        ///</summary>
+        ///<remarks>
+        ///datos de linea estandar por lo que se puede dejar una funcion estatica
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetAlimentoInicioDropdownByIdLinea(int IdLinea)
+        {
+            var obj = from Aliemnto in new Alimento().Get<Alimento>("IdEtapaAlimentoRecomendado = 2 and IdLineaAlimentoRecomendado = " + IdLinea)
+                      select new
+                      {
+                          idAlimento = Aliemnto.IdAlimento,
+                          Nombre = Aliemnto.Nombre
+                      };
+            return obj;
+
+        }
+
+        ///<summary>
+        ///Extrae los datos de alimento de la etapa de Desarrollo filtrado por linea
+        ///</summary>
+        ///<remarks>
+        ///datos de linea estandar por lo que se puede dejar una funcion estatica
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetAlimentoDesarrolloDropdownByIdLinea(int IdLinea)
+        {
+            var obj = from Aliemnto in new Alimento().Get<Alimento>("IdEtapaAlimentoRecomendado = 3 and IdLineaAlimentoRecomendado = " + IdLinea)
+                      select new
+                      {
+                          idAlimento = Aliemnto.IdAlimento,
+                          Nombre = Aliemnto.Nombre
+                      };
+            return obj;
+
+        }
+
+        ///<summary>
+        ///Extrae los datos de alimento de la etapa de Finalizacion filtrado por linea
+        ///</summary>
+        ///<remarks>
+        ///datos de linea estandar por lo que se puede dejar una funcion estatica
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetAlimentoFinalizacionDropdownByIdLinea(int IdLinea)
+        {
+            var obj = from Aliemnto in new Alimento().Get<Alimento>("IdEtapaAlimentoRecomendado = 4 and IdLineaAlimentoRecomendado = " + IdLinea)
+                      select new
+                      {
+                          idAlimento = Aliemnto.IdAlimento,
+                          Nombre = Aliemnto.Nombre
+                      };
+            return obj;
+
+        }
+
+
+
+
+
+
+
+        ///<summary>
         ///Regresa informacion de alimento de simplificada
         ///</summary>
         ///<returns></returns>
