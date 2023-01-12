@@ -23,15 +23,15 @@
                     <div class="box-detail">
                         <div class="input-box">
                             <span class="detail">Fecha de Ingreso</span>
-                            <input type="date" required>
+                            <input type="date" required id="dpFechaInicio">
                         </div>
                         <div class="input-box">
                             <span class="detail">Costo Unitario del Lote</span>
-                            <input type="number" step="1" placeholder="Selecione una Especie" required>
+                            <input type="number" step="1" placeholder="Ingrese el Costo" id="txtPrecioUnitario" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Semanas de Produccion</span>
-                            <input type="number" step="1" placeholder="Selecione una Especie" required>
+                            <input type="number" step="1" placeholder="Selecione una Especie" id="txtSemanasProd" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Especie De Pollo</span>
@@ -62,11 +62,11 @@
                     <div class="box-detail">
                         <div class="input-box">
                             <span class="detail">Fecha de Cierre</span>
-                            <input type="date" required>
+                            <input type="date" id="dpFechaFin" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Tamaño del Lote</span>
-                            <input type="number" step="1" placeholder="Ingrese el Tamaño del Lote" required>
+                            <input type="number" step="1" placeholder="Ingrese el Tamaño del Lote"id="txtTamanioLote" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Galera</span>
@@ -122,15 +122,6 @@
                             <select class="input" id="ddlLinea" disabled>
                                 <option value="0">
                                     --Seleccione--
-                                </option>
-                                <option value="1">
-                                    Rojo
-                                </option>
-                                <option value="2">
-                                    Azul
-                                </option>
-                                <option value="3">
-                                    Verde
                                 </option>
                             </select>
                         </div>
@@ -215,11 +206,11 @@
                         <h3>Tratamiento a Aplicar</h3>
                         <div class="input-box">
                             <span class="detail">Dosis a Aplicar</span>
-                            <input type="number" required>
+                            <input type="number" id="txtDosis" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Aplicar Cada(dias)</span>
-                            <select class="input" id="especie">
+                            <select class="input" id="ddlPeridiocidad">
                                 <option value="0">
                                     --Seleccione--
                                 </option>
@@ -227,7 +218,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Via de Administracion</span>
-                            <select class="input" id="especie">
+                            <select class="input" id="ddlViaAdministracion">
                                 <option value="0">
                                     --Seleccione--
                                 </option>
@@ -235,7 +226,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Costo Tratamiento</span>
-                            <input type="number" required>
+                            <input type="number" id="txtCosto" required>
                         </div>
                     </div>
                     <div class="box-detail">
@@ -252,11 +243,11 @@
                         </div>
                         <div class="input-box hiden" id="txtTratamiento">
                             <span class="detail">Nombre Tratamiento</span>
-                            <input type="text" required>
+                            <input type="text" id="txtNombreTrat" required>
                         </div>
                         <div class="input-box" id="ddlTratamiento">
                             <span class="detail">Tratamiento</span>
-                            <select class="input" id="galera">
+                            <select class="input" id="ddlTratamiento">
                                 <option value="0">
                                     --Seleccione--
                                 </option>
@@ -264,26 +255,26 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Descripcion</span>
-                            <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                            <input type="text" placeholder="Ingrese descripcion" id="txtDescTrat" required>
                         </div>
                         <div class="input-box colum5050">
                             <div class="input-box">
                                 <span class="detail">Marca</span>
-                                <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                                <input type="text" placeholder="Ingrese Marca" id="txtMarcaTrat" required>
                             </div>
                             <div class="input-box">
                                 <span class="detail">Dosis Recomendada</span>
-                                <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTrat" required>
                             </div>
                         </div>
                         <div class="input-box colum5050">
                             <div class="input-box">
                                 <span class="detail">Lote Recomendado</span>
-                                <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                                <input type="text" placeholder="Ingrese el Tamaño del Lote" id="txtTamaño" required>
                             </div>
                             <div class="input-box">
                                 <span class="detail">Dosis Totales</span>
-                                <input type="text" placeholder="Ingrese el Tamaño del Lote" required>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTotales" required>
                             </div>
                         </div>
                     </div>
@@ -300,3 +291,68 @@
 <script src="~/js/changeTheme.js" asp-append-version="true"></script>
 <script src="~/js/changeRadioBTN.js" asp-append-version="true"></script>
 <script src="~/js/filterSelect.js" asp-append-version="true"></script>
+
+<script type="module">
+    import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
+    import CreateDataList from "../js/ComponentesJs/StatusListComponent.js";
+    import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
+    import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
+
+    window.onload = async () => {
+
+        await cargarDLEspecie();
+        await cargarDLGalera();
+        await cargarDLLinea();
+        await cargarDLPreinicio();
+        await cargarDLInicio();
+        await cargarDLDesarrollo();
+        await cargarDLFinalizacion();
+        await cargarDLDosis();
+        await cargarDLViaAdm();
+        await cargarDLTratamiento();
+
+        dpFechaInicio.onchange = () => {
+            var fechaInicio = new Date(FechaProd.value);
+            fechaInicio.setDate(fechaInicio.getDate() + (txtSemanasProd.value * 7));
+
+            dpFechaFin.value = formatear(fechaInicio);
+        }
+    };
+
+    const formatear = f => {
+        const año = f.getFullYear();
+        const mes = ("0" + (f.getMonth() + 1)).substr(-2);
+        const dia = ("0" + f.getDate()).substr(-2);
+        return `${año}-${mes}-${dia}`
+    };
+
+    const cargarDLEspecie = async () => {
+        let especieData = await GetObjectData('../api/EspeciePollo/GetEspeciesNombreCompuesto');
+
+        CreateDropdown(especieData, especie, 'descripccion', 'idEspecie');
+    };
+
+    const cargarDLGalera = async () => {
+        let galeraData = await GetObjectData('../api/Galera/GetGaleraSinProduccion');
+
+        CreateDropdown(galeraData, galera, 'nombre', 'idGalera');
+    };
+
+    const cargarDLLinea = async () => {
+        let lineaData = await GetObjectData('../api/Alimento/GetLineaAlimentoDropdown');
+
+        CreateDropdown(lineaData, ddlLinea, 'nombre', 'idLinea');
+    };
+
+    const cargarDLViaAdm = async () => {
+        let ViaAdmData = await GetObjectData('../api/Tratamiento/GetViaAdministracionBasico');
+
+        CreateDropdown(ViaAdmData, ddlViaAdministracion, 'tipoAdministracion', 'idViaAdministracion');
+    };
+
+    const cargarDLTratamiento = async () => {
+        let tratamientoData = await GetObjectData('../api/Tratamiento/GetTratamientoBasico');
+
+        CreateDropdown(tratamientoData, AlimenProd, 'nombre', 'idTratamiento');
+    };
+</script>
