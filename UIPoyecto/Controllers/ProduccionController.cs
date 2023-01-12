@@ -22,6 +22,22 @@ namespace UIPoyecto.Controllers
 
         //gets ->
 
+
+        ///<summary>
+        ///Extrae los detalles de alimento by id produccion
+        ///</summary>
+        ///<returns></returns>
+        [HttpGet]
+        public object GetDetalleEtapaAimentoProduccionByIdProduccion(int IdProduccion)
+        {
+            return new DetalleEtapaAlimentoProduccion().Get<DetalleEtapaAlimentoProduccion>("IdProduccionDetalleAlimento = " + IdProduccion);
+        }
+
+
+
+
+
+
         ///<summary>
         ///Extrae las producciones en literal
         ///</summary>

@@ -30,6 +30,16 @@ namespace UIPoyecto.Controllers
 
         }
 
+
+
+        [HttpGet]
+        public object getnormal(int idAlgo)
+        {
+
+            return idAlgo;
+        }
+
+
         [HttpGet]
         public object GetGalera()
         {
