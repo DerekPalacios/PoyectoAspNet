@@ -89,7 +89,7 @@ namespace UIPoyecto.Controllers
             try
             {
                 newPro.IdProduccion = (int)newPro.Save();
-                newPro.GenerarActividadesDiarias();
+                // newPro.GenerarActividadesDiarias();
                 return 1;
             }
             catch (System.Exception)
