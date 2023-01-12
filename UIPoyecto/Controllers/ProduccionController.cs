@@ -86,17 +86,7 @@ namespace UIPoyecto.Controllers
         [HttpPost]
         public object SaveProD(Produccion newPro)
         {
-            try
-            {
-                newPro.IdProduccion = (int)newPro.Save();
-                //newPro.GenerarActividadesDiarias();
-                return newPro.IdProduccion;
-            }
-            catch (System.Exception)
-            {
-
-                return 0;
-            }
+            return newPro.GuardarProduccionCompleta(newPro);
 
         }
 

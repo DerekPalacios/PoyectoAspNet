@@ -38,7 +38,7 @@ namespace UIPoyecto.Controllers
         [HttpPost]
         public object SaveViaAdministracionTratamiento(ViaAdministracionTratamiento administracionTratamiento)
         {
-            return  administracionTratamiento.IdViaAdministracion = (int)administracionTratamiento.Save();
+            return administracionTratamiento.IdViaAdministracion = (int)administracionTratamiento.Save();
         }
 
 
@@ -74,7 +74,7 @@ namespace UIPoyecto.Controllers
             return new ViaAdministracionTratamiento().Get<ViaAdministracionTratamiento>();
         }
 
-        
+
 
 
 
@@ -94,7 +94,7 @@ namespace UIPoyecto.Controllers
         [HttpGet]
         public object GetTratamientosProduccion()
         {
-                //con false carga el nombre del tratamiento
+            //con false carga el nombre del tratamiento
             List<TratamientoProduccionAsignado> tratamientosProd = (List<TratamientoProduccionAsignado>)new TratamientoProduccionAsignado(false)
                 .Get<TratamientoProduccionAsignado>()
                 .Select(x => { x.CargarNombreTratamiento(); return x; });
@@ -120,7 +120,7 @@ namespace UIPoyecto.Controllers
         [HttpGet]
         public object GetTratamientoConPeridiocidad()
         {
-           
+
             //con true carga peridiocidad
             var obj = from Tratamiento in new Tratamiento(true).Get<Tratamiento>()
                       select new

@@ -113,10 +113,41 @@ namespace CAPA_NEGOCIO.Models
         public object GuardarTratamientoProduccionCompleto(TratamientoProduccionAsignado tratamientoProduccion)
         {
             tratamientoProduccion.IdTratamientoProduccion = (int)tratamientoProduccion.Save();
-
+            GenerarActividadesDiariasTratamiento();
 
             return tratamientoProduccion.IdTratamientoProduccion;
         }
+
+        public void GenerarActividadesDiariasTratamiento()
+        {
+            CargarPeriodicidad();
+            Produccion produccion = new Produccion().Get<Produccion>(" IdProduccion = " + IdProduccion).First();
+            DateTime FechaRecorridoActual = DateTime.Today;
+            int diasProducion = (produccion.FechaSalida - FechaRecorridoActual).Days;
+            ActividadDiariaTratamiento actividadDiaria = new ActividadDiariaTratamiento
+            {
+                IdUsuarioVerifica = 0,
+                FechaAplicacion = FechaRecorridoActual,
+                EstadoAlplicacion = false,
+                CambioEstadoPermitidoActividadTratamiento = true,
+                IdTratamientoProduccionAsignado = this.IdTratamientoProduccion
+
+            };
+
+
+            for (int i = 0; i < diasProducion; i++)
+            {
+                if (FechaRecorridoActual == actividadDiaria.FechaAplicacion)
+                {
+                    actividadDiaria.Save();
+
+                    actividadDiaria.FechaAplicacion = actividadDiaria.FechaAplicacion.AddDays((int)this.PeriodicidadVar.DiasSalto);
+                }
+
+                FechaRecorridoActual = FechaRecorridoActual.AddDays(1);
+            }
+        }
+
 
 
     }
