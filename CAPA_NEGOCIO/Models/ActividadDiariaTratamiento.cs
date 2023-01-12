@@ -20,5 +20,6 @@ namespace CAPA_NEGOCIO.Models
         public bool CambioEstadoPermitidoActividadTratamiento { get; set; }
 
         public int IdTratamientoProduccionAsignado { get; set; }
+        DateTime ultimaFechaDeAplicacion;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.Contracts;
 using CAPA_DATOS;
 #nullable disable
 
@@ -35,10 +36,24 @@ namespace CAPA_NEGOCIO.Models
         //public virtual ICollection<DetalleSemanal> DetalleSemanals { get; set; }
         //public virtual ICollection<TratamientoProduccionAsignado> TratamientoProduccions { get; set; }
 
+        public object GuardarProduccionCompleta(Produccion newPro)
+        {
+            try
+            {
+                newPro.IdProduccion = (int)newPro.Save();
+                newPro.GenerarActividadesDiarias();
+                return newPro.IdProduccion;
+            }
+            catch (System.Exception)
+            {
+
+                return 0;
+            }
+        }
 
         public void GenerarActividadesDiarias()
         {
-            List<ActividadGeneral> ActividadesDisponibles = new ActividadGeneral().Get<ActividadGeneral>().FindAll(x=>x.ActividadHabilitada);
+            List<ActividadGeneral> ActividadesDisponibles = new ActividadGeneral().Get<ActividadGeneral>("ActividadHabilitada = 1");
             DateTime FechaRecorridoActual = this.FechaDeIngreso;
             int diasProducion = (this.FechaSalida - this.FechaDeIngreso).Days;
             for(int i = 0; i < diasProducion; i++)
@@ -60,14 +75,15 @@ namespace CAPA_NEGOCIO.Models
                             IdActividad = ActividadGeneral.IdActividad,
                             IdProduccion = this.IdProduccion,
                             FechaAsignacionActividad = FechaRecorridoActual,
-                            IdUsuarioVerifica = this.IdUsuarioRegistro,
+                            IdUsuarioVerifica = null,
                             //assignar el usuario que lo verifica aca
                         }
                         .Save();
-                        ActividadGeneral.ultimaFechaAsigado.AddDays((int)ActividadGeneral.PeriodicidadVar.DiasSalto);
+                        ActividadGeneral.ultimaFechaAsigado= ActividadGeneral.ultimaFechaAsigado.AddDays((int)ActividadGeneral.PeriodicidadVar.DiasSalto);
                     }
-                    FechaRecorridoActual.AddDays(1);
                 }
+
+                FechaRecorridoActual= FechaRecorridoActual.AddDays(1);
             }
         }
     
