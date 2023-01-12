@@ -38,7 +38,7 @@ namespace CAPA_NEGOCIO.Models
 
         public void GenerarActividadesDiarias()
         {
-            List<ActividadGeneral> ActividadesDisponibles = new ActividadGeneral().Get<ActividadGeneral>().FindAll(x=>x.ActividadHabilitada);
+            List<ActividadGeneral> ActividadesDisponibles = new ActividadGeneral().Get<ActividadGeneral>("ActividadHabilitada = 1");
             DateTime FechaRecorridoActual = this.FechaDeIngreso;
             int diasProducion = (this.FechaSalida - this.FechaDeIngreso).Days;
             for(int i = 0; i < diasProducion; i++)
@@ -60,7 +60,7 @@ namespace CAPA_NEGOCIO.Models
                             IdActividad = ActividadGeneral.IdActividad,
                             IdProduccion = this.IdProduccion,
                             FechaAsignacionActividad = FechaRecorridoActual,
-                            IdUsuarioVerifica = this.IdUsuarioRegistro,
+                            IdUsuarioVerifica = null,
                             //assignar el usuario que lo verifica aca
                         }
                         .Save();
