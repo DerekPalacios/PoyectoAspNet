@@ -255,7 +255,7 @@
                         </div>
                         <div class="input-box" id="ddlTratamiento">
                             <span class="detail">Tratamiento</span>
-                            <select class="input" id="ddlTratamiento">
+                            <select class="input" id="ddlTratamientoSelect">
                                 <option value="0">
                                     --Seleccione--
                                 </option>
@@ -380,7 +380,7 @@
     const cargarDLTratamiento = async () => {
         let tratamientoData = await GetObjectData('../api/Tratamiento/GetTratamientoBasico');
 
-        CreateDropdown(tratamientoData, ddlTratamiento, 'nombre', 'idTratamiento');
+        CreateDropdown(tratamientoData, ddlTratamientoSelect, 'nombre', 'idTratamiento');
     };
 
     const cargarDLPreinicio = async () => {
