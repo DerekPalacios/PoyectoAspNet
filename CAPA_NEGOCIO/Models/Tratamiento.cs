@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using CAPA_DATOS;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 #nullable disable
 
 namespace CAPA_NEGOCIO.Models
@@ -32,8 +33,10 @@ namespace CAPA_NEGOCIO.Models
         public int? LoteAdministracionRecomendada { get; set; }
 
         public int DosisTotalesRecomendadas { get; set; }
+        public int DosisDiariaAplicada { get; set; }
         public int? DosisTotales { get; set; }
-       public Periodicidad PeriodicidadVar;
+        public string DescripcionDosisdiaria { get; set; }
+        public Periodicidad PeriodicidadVar;
         public void CargarPeriodicidad()
         {
             this.PeriodicidadVar = new Periodicidad().Get<Periodicidad>(" IdPeriodicidad = " + IdPeridiocidadRecomendada).First();

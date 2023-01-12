@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using CAPA_NEGOCIO.Security;
 using System.Linq;
 using System;
+using CAPA_NEGOCIO.Models.SubModel;
 
 namespace UIPoyecto.Controllers
 {
@@ -91,6 +92,8 @@ namespace UIPoyecto.Controllers
             return new ViaAdministracionTratamiento().Get<ViaAdministracionTratamiento>();
         }
 
+        
+
 
 
         ///<summary>
@@ -102,7 +105,7 @@ namespace UIPoyecto.Controllers
         [HttpGet]
         public object GetTratamientosBasico()
         {
-            return new Tratamiento().Get<Tratamiento>();
+            return new VistaTratamientoBasico().Get<VistaTratamientoBasico>();
         }
 
 
