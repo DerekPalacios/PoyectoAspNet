@@ -1,6 +1,3 @@
-import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
-import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
-
 const rdAlimentacion1 = document.getElementById('tipoAlimentacion1');
 const rdAlimentacion2 = document.getElementById('tipoAlimentacion2');
 const rdAlimentacion3 = document.getElementById('tipoAlimentacion3');
