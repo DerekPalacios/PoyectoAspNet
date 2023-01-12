@@ -1,3 +1,6 @@
+import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
+import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
+
 const rdAlimentacion1 = document.getElementById('tipoAlimentacion1');
 const rdAlimentacion2 = document.getElementById('tipoAlimentacion2');
 const rdAlimentacion3 = document.getElementById('tipoAlimentacion3');
@@ -15,7 +18,13 @@ rdAlimentacion1.addEventListener('click', () =>{
 
         rdAlimentacion2.classList.remove('squer-active');
         rdAlimentacion3.classList.remove('squer-active');
+        ddlLinea.value = 0;
         ddlLinea.disabled = true;
+
+        await cargarDLPreinicio();
+        await cargarDLInicio();
+        await cargarDLDesarrollo();
+        await cargarDLFinalizacion();
     }
 });
 
@@ -27,6 +36,11 @@ rdAlimentacion2.addEventListener('click', () =>{
         rdAlimentacion3.classList.remove('squer-active');
         ddlLinea.value = 0;
         ddlLinea.disabled = true;
+
+        await cargarDLPreinicioEtapa();
+        await cargarDLInicioEtapa();
+        await cargarDLDesarrolloEtapa();
+        await cargarDLFinalizacionEtapa();
     }
 });
 
