@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="buttons">
-                        <input class="Secondary-Button" type="submit" value="Cancelar" id="btnGuardarGalera" style="width: 45%">
+                        <input class="Secondary-Button" type="submit" value="Cancelar" id="btnCancelarGalera" style="width: 45%">
                         <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarGalera" style="width: 45%">
                     </div>
                 </form>
@@ -93,6 +93,10 @@
             cargarTdGalera();
         }
 
+        btnCancelarGalera.onclick = async () => {
+            limpiarForm();
+        }
+
     }
 
     const cargarTdGalera = async () => {
@@ -120,11 +124,6 @@
         UbiLat.value = "";
         UbiLon.value = "";
         CapMax.value = "";
-
-
-
     }
-
-
 
 </script>
