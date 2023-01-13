@@ -9,7 +9,7 @@
         <div class="container">
             <h3 class="datatable-header">Especies</h3>
             <div class="box scrollable table-medium">
-                <table class="datatable">
+                <table class="datatable" id="tblEspecie">
                     <thead>
                     </thead>
                     <tbody>
@@ -21,7 +21,7 @@
 
     <div class="box">
         <div class="formContainer">
-            <div class="formTitle">Nuevo Marca</div>
+            <div class="formTitle">Nuevo Especie</div>
             <form action="#">
                 <div class="box-detail">
                     <div hidden>
@@ -57,3 +57,46 @@
         </div>
     </div>
 </div>
+
+<script type="module">
+    import CreateTable from "../js/ComponentesJs/TableComponent.js";
+    import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
+    import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
+
+    window.onload = async () => {
+
+        await cargarTdGalera();
+
+        btnGuardarGalera.onclick = async () => {
+            let url = '../api/EspeciePollo/SaveEspeciePollo';
+            const EspecieObj = {
+                idEspecie: null,
+                //Nombre: txtEspecieName.value,
+                descripccion: txtEspecieDesc.value,
+                paisOrigen: txtEspecieCountry.value,
+                precioUnit: txtEspeciePrice.value,
+                semanasProduccion: txtEspecieWeek.value
+            }
+
+            SaveObjectData(url, EspecieObj);
+            cargarTdGalera();
+        }
+
+    }
+
+    const cargarTdGalera = async () => {
+        let galeraData = await GetObjectData("../api/Galera/GetGalera");
+
+        CreateTable(galeraData, GaleraTd, (item) => { editGal(item); });
+    }
+
+    const editGal = (item) => {
+        especieId.value = item.idEspecie;
+        txtEspecieDesc.value = item.descripccion;
+        txtEspecieCountry.value = item.paisOrigen;
+        txtEspeciePrice.value = item.precioUnit;
+        txtEspecieWeek.value = item.semanasProduccion;
+        
+    }
+
+</script>

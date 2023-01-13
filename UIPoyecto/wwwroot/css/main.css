@@ -924,15 +924,15 @@ header .slider-btn {
     top: -18px;
 }
 
-#tab-1:checked~.box .slider .row1 {
+#tab-1:checked ~.box .slider .row1 {
     margin-left: 0%;
 }
 
-#tab-2:checked~.box .slider .row1 {
-    margin-left: -100%;
+#tab-2:checked ~.box .slider .row1 {
+    margin-left: -100.5%;
 }
 
-#tab-3:checked~.box .slider .row1 {
+#tab-3:checked ~.box .slider .row1 {
     margin-left: -200.5%;
 }
 
@@ -992,7 +992,7 @@ form .box-detail .margin-top {
 }
 
     /*------------------------------------------------*/
-    /*-----------------Tabs-Variables-----------------*/
+    /*----------------------Tabs----------------------*/
     /*------------------------------------------------*/
 
 .tab-content {

@@ -317,8 +317,8 @@
 <script type="module">
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
-    import GetDataByFilter from "../js/ComponentesJs/GetDatosByApiUrlFiltering.js";
     import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
+    import GetObjectDataByFilter from "../js/ComponentesJs/GetDatoByApiUrlFiltering.js";
 
     window.onload = async () => {
 
@@ -387,72 +387,132 @@
     const cargarDLPreinicio = async () => {
         let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoAllDropdown');
 
+        document.getElementById("preinicio").innerHTML = "";
+        const options = document.createElement("option");
+    options.innerText = "-Seleccione-";
+    options.value = 0;
+        document.getElementById("preinicio").append(options);
         CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
     };
 
     const cargarDLInicio = async () => {
         let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoAllDropdown');
-
+        
+        document.getElementById("inicio").innerHTML = "";
+        const options = document.createElement("option");
+    options.innerText = "-Seleccione-";
+    options.value = 0;
+        document.getElementById("inicio").append(options);
         CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
     };
 
     const cargarDLDesarrollo = async () => {
         let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoAllDropdown');
 
+        document.getElementById("desarrollo").innerHTML = "";
+        const options = document.createElement("option");
+    options.innerText = "-Seleccione-";
+    options.value = 0;
+        document.getElementById("desarrollo").append(options);
         CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
     };
 
     const cargarDLFinalizacion = async () => {
         let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoAllDropdown');
 
+        document.getElementById("finalizacion").innerHTML = "";
+        const options = document.createElement("option");
+    options.innerText = "-Seleccione-";
+    options.value = 0;
+        document.getElementById("finalizacion").append(options);
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
 
     const cargarDLPreinicioEtapa = async () => {
         let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoPreInicioDropdown');
 
+        document.getElementById("preinicio").innerHTML = "";
+        const options = document.createElement("option");
+    options.innerText = "-Seleccione-";
+    options.value = 0;
+        document.getElementById("preinicio").append(options);
         CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
     };
 
     const cargarDLInicioEtapa = async () => {
         let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoInicioDropdown');
 
+        document.getElementById("inicio").innerHTML = "";
+        const options = document.createElement("option");
+    options.innerText = "-Seleccione-";
+    options.value = 0;
+        document.getElementById("inicio").append(options);
         CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
     };
 
     const cargarDLDesarrolloEtapa = async () => {
         let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoDesarrolloDropdown');
 
+        document.getElementById("desarrollo").innerHTML = "";
+        const options = document.createElement("option");
+    options.innerText = "-Seleccione-";
+    options.value = 0;
+        document.getElementById("desarrollo").append(options);
         CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
     };
 
     const cargarDLFinalizacionEtapa = async () => {
-        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoFinalizacioDropdown');
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoFinalizacionDropdown');
 
+        document.getElementById("finalizacion").innerHTML = "";
+        const options = document.createElement("option");
+    options.innerText = "-Seleccione-";
+    options.value = 0;
+        document.getElementById("finalizacion").append(options);
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
 
     const cargarDLPreinicioLinea = async (id) => {
-        let alimentoData = await GetDataByFilter('../api/Alimento/GetAlimentoPreInicioDropdownByIdLinea', "IdLinea", id);
+        let alimentoData = await GetObjectDataByFilter('../api/Alimento/GetAlimentoPreInicioDropdownByIdLinea', "IdLinea", id);
 
+        document.getElementById("preinicio").innerHTML = "";
+        const options = document.createElement("option");
+    options.innerText = "-Seleccione-";
+    options.value = 0;
+        document.getElementById("preinicio").append(options);
         CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
     };
 
     const cargarDLInicioLinea = async (id) => {
-        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoInicioDropdownByIdLinea', "IdLinea", id);
+        let alimentoData = await GetObjectDataByFilter('../api/Alimento/GetAlimentoInicioDropdownByIdLinea', "IdLinea", id);
 
+        document.getElementById("inicio").innerHTML = "";
+        const options = document.createElement("option");
+    options.innerText = "-Seleccione-";
+    options.value = 0;
+        document.getElementById("inicio").append(options);
         CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
     };
 
     const cargarDLDesarrolloLinea = async (id) => {
-        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoDesarrolloDropdownByIdLinea', "IdLinea", id);
+        let alimentoData = await GetObjectDataByFilter('../api/Alimento/GetAlimentoDesarrolloDropdownByIdLinea', "IdLinea", id);
 
+        document.getElementById("desarrollo").innerHTML = "";
+        const options = document.createElement("option");
+    options.innerText = "-Seleccione-";
+    options.value = 0;
+        document.getElementById("desarrollo").append(options);
         CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
     };
 
     const cargarDLFinalizacionLinea = async (id) => {
-        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoFinalizacioDropdownByIdLinea', "IdLinea", id);
+        let alimentoData = await GetObjectDataByFilter('../api/Alimento/GetAlimentoFinalizacionDropdownByIdLinea', "IdLinea", id);
 
+        document.getElementById("finalizacion").innerHTML = "";
+        const options = document.createElement("option");
+    options.innerText = "-Seleccione-";
+    options.value = 0;
+        document.getElementById("finalizacion").append(options);
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
 
