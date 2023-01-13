@@ -294,7 +294,7 @@
         };
 
         btnGuardarLinealimento.onclick = async () => {
-            let url = '../api/Alimento/SaveAlimento';
+            let url = '../api/Alimento/SaveLineaAlimento';
             const Alimento = {
                 idLineaAlimento: lineaId.value,
                 nombreLinea: lineaName.value,
@@ -303,7 +303,7 @@
             }
 
             await SaveObjectData(url, Alimento);
-            await cargarTdAlimento();
+            await cargarTdLinea();
             await cargarDropdownMarca();
             await cargarDropdownLinea();
             await cargarDropdownEtapa();

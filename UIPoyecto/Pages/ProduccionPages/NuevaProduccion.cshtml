@@ -66,7 +66,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Tamaño del Lote</span>
-                            <input type="number" step="1" placeholder="Ingrese el Tamaño del Lote"id="txtTamanioLote" required>
+                            <input type="number" step="1" placeholder="Ingrese el Tamaño del Lote" id="txtTamanioLote" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Galera</span>
@@ -333,12 +333,44 @@
         await cargarDLViaAdm();
         await cargarDLTratamiento();
 
-        dpFechaInicio.onchange = () => {
-            var fechaInicio = new Date(FechaProd.value);
-            fechaInicio.setDate(fechaInicio.getDate() + (txtSemanasProd.value * 7));
+        dpFechaInicio.value = formatear(new Date());
+        dpFechaFin.value = formatear(new Date());
+        document.querySelector("#dpFechaInicio").addEventListener("change", function () {
 
-            dpFechaFin.value = formatear(fechaInicio);
+            actualizarFecha();
+
+        });
+
+        const actualizarFecha = () => {
+            let fechaInicio = new Date(dpFechaInicio.value);
+            if (txtSemanasProd.value != '') {
+                fechaInicio.setDate(fechaInicio.getDate() + (txtSemanasProd.value * 7))
+                dpFechaFin.value = formatear(fechaInicio);
+
+
+            } else {
+                dpFechaFin.value = formatear(new Date());
+            }
+
         }
+        
+        document.querySelector("#txtSemanasProd").addEventListener("change", async function () {
+
+            actualizarFecha();
+
+
+        });
+
+
+        document.querySelector("#especie").addEventListener("change", async function () {
+            let especie = await GetObjectDataByFilter("../api/EspeciePollo/GetEspecieByIdEspecie", "IdEspecie", this.value);
+            txtSemanasProd.value = especie.semanasProduccion;
+            txtPrecioUnitario.value = especie.precioUnit;
+            actualizarFecha();
+        });
+
+
+
     };
 
     const formatear = f => {
@@ -389,19 +421,19 @@
 
         document.getElementById("preinicio").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("preinicio").append(options);
         CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
     };
 
     const cargarDLInicio = async () => {
         let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoAllDropdown');
-        
+
         document.getElementById("inicio").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("inicio").append(options);
         CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
     };
@@ -411,8 +443,8 @@
 
         document.getElementById("desarrollo").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("desarrollo").append(options);
         CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
     };
@@ -422,8 +454,8 @@
 
         document.getElementById("finalizacion").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("finalizacion").append(options);
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
@@ -433,8 +465,8 @@
 
         document.getElementById("preinicio").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("preinicio").append(options);
         CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
     };
@@ -444,8 +476,8 @@
 
         document.getElementById("inicio").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("inicio").append(options);
         CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
     };
@@ -455,8 +487,8 @@
 
         document.getElementById("desarrollo").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("desarrollo").append(options);
         CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
     };
@@ -466,8 +498,8 @@
 
         document.getElementById("finalizacion").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("finalizacion").append(options);
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
@@ -477,8 +509,8 @@
 
         document.getElementById("preinicio").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("preinicio").append(options);
         CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
     };
@@ -488,8 +520,8 @@
 
         document.getElementById("inicio").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("inicio").append(options);
         CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
     };
@@ -499,8 +531,8 @@
 
         document.getElementById("desarrollo").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("desarrollo").append(options);
         CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
     };
@@ -510,8 +542,8 @@
 
         document.getElementById("finalizacion").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("finalizacion").append(options);
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
@@ -559,7 +591,7 @@
         }
     });
 
-    rdAlimentacion3.addEventListener('click',  () => {
+    rdAlimentacion3.addEventListener('click', () => {
         if (!rdAlimentacion3.classList.contains('squer-active')) {
             rdAlimentacion3.classList.toggle('squer-active');
 
@@ -612,4 +644,12 @@
         await cargarDLDesarrolloLinea(property);
         await cargarDLFinalizacionLinea(property);
     }
+
+
+
+
+
+
+
+
 </script>

@@ -97,5 +97,17 @@ namespace UIPoyecto.Controllers
         }
 
 
+
+
+
+        [HttpGet]
+        public object GetEspecieByIdEspecie(int IdEspecie)
+        {
+            var obj = new EspeciePollo().Get<EspeciePollo>("IdEspecie = " + IdEspecie).First();
+            return obj;
+        }
+
+
+
     }
 }
