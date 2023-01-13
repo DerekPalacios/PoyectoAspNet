@@ -9,7 +9,7 @@
         for (var prop in item) {
             if (index == 0) {
                 const th = document.createElement("th");
-                th.innerText = prop;
+                th.innerText = prop[0].toUpperCase() + prop.substr(1);
                 thead.append(th);
             }
             const td = document.createElement("td");
