@@ -247,6 +247,7 @@
     import CreateTable from "../js/ComponentesJs/TableComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
     import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
+    import GetObjectDataByFilter from "../js/ComponentesJs/GetDatoByApiUrlFiltering.js";
 
     window.onload = async () => {
 
@@ -335,7 +336,7 @@
     }
 
     const cargarDropdownLinea = async () => {
-        let MarcaData = await GetObjectData("../api/Alimento/GetLineaAlimento");
+        let MarcaData = await GetObjectData("../api/Alimento/GetLineaAlimentoSimple");
 
         CreateDropdown(MarcaData, alimLinea, "nombre", "idLinea");
     }
@@ -352,19 +353,30 @@
         marcaDesc.value = item.descripcionMarca;
     };
 
-    const editAlim = (item) => {
+    const editAlim = async (item) => {
         alimId.value = item.idAlimento;
         alimName.value = item.nombre;
-        alimLinea.Selectedvalue = item.idLineaAlimentoRecomendado;
+        //alimLinea.Selectedvalue = item.idLineaAlimentoRecomendado;
         alimdesc.value = item.descripcion;
-        alimEtapa.value = item.idEtapaAlimentoRecomendado; 
+        //alimEtapa.value = item.idEtapaAlimentoRecomendado; 
+
+        let IdLinea = await GetObjectDataByFilter("../api/Alimento/GetIdLineaAlimentoByIdAlimento", "IdAlimento", item.idAlimento);
+        document.getElementById("alimLinea").querySelector("option[value='" + IdLinea + "']").selected = true;
+
+        let IdEtapa = await GetObjectDataByFilter("../api/Alimento/GetIdEtapaAlimentoByIdAlimento", "IdAlimento", item.idAlimento);
+        document.getElementById("alimEtapa").querySelector("option[value='" + IdEtapa + "']").selected = true;
+
     }
 
-    const editLinea = (item) => {
-        lineaId.value = item.idLineaAlimento;
-        lineaName.value = item.nombreLinea;
-        lineaDesc.value = item.descripcionLinea;
-        alimMarca.value = item.idMarcaLinea;
+    const editLinea = async (item) => {
+        lineaId.value = item.idLinea;
+        lineaName.value = item.nombre;
+        lineaDesc.value = item.descripcion;
+        let idMarca = await GetObjectDataByFilter("../api/Alimento/GetIdMarcaLineaAlimentoByIdLineaAlimento", "IdLineaAlimento", item.idLinea);
+
+        document.getElementById("alimMarca").querySelector("option[value='" + idMarca + "']").selected=true;
+
+
     }
 
     const limpiar = () => {
