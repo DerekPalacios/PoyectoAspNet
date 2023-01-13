@@ -27,10 +27,10 @@ namespace CAPA_DATOS
         {
             return SqlADOConexion.SQLM.InsertObject(this);
         }
-        public bool Update(string Id)
+        public object Update(string Id)
         {
             SqlADOConexion.SQLM.UpdateObject(this, Id);
-            return true;
+            return 1;
         }
         public bool Update(string[] Id)
         {
