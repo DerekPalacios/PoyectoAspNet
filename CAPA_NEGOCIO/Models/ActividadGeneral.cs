@@ -27,7 +27,7 @@ namespace CAPA_NEGOCIO.Models
         public object ActualizarActividad(ActividadGeneral act)
         {
             act.ActividadHabilitada = false;
-            act.Update("IdActividad");
+            act.Update("IdActividad");// se le pasan todos  ls parametros y actualiza antes de insertar uno nuevo
             act.ActividadHabilitada = true;
             act.IdActividadBase = (int)act.IdActividad;
             act.IdActividad = null;

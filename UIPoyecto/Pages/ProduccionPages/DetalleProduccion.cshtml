@@ -9,18 +9,16 @@
         <div class="cardDetail">
             <div class="row">
                 <div class="NumProd Center">
-                    <div class="squer squer-active left"></div>
-                    <span>758</span>
+                    <a class="left" href="~/ProduccionPages/Index"><ion-icon name="arrow-undo-circle"></ion-icon></a>
+                    <h3>Lote</h3><span>758</span>
                 </div>
-                <div class="box colum5050">
-                    <ul class="details">
+                <div class="box">
+                    <ul class="details colum5050">
                         <li class="border-left"><span>Fecha Inicio: 15/06/22</span></li>
                         <li class="border-left"><span>Fecha Fin: 16/09/22</span></li>
                         <li class="border-left"><span>Estado: En Produccion</span></li>
                         <li class="border-left"><span>Pollos Ingresados: 100</span></li>
                         <li class="border-left"><span>Galera: Galera 3</span></li>
-                    </ul>
-                    <ul class="details">
                         <li><span>Tasa de Mortalidad/Decesos: 6%/6</span></li>
                         <li><span>Tratamientos: <a class="link" href="#">Ver Detalle...</a></span></li>
                         <li><span>Alimentos: Purina, Purina2</span></li>
@@ -37,15 +35,62 @@
             <div id="tab2" class="tab">
                 <a href="#tab2">Actividades Tratamiento</a>
                 <div class="tab-content">
-                    <h2>Titulo 2</h2>
-                    <p>Lorem ipsum ...</p>
+                    <section class="colum2">
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </section>
                 </div>
             </div>
             <div id="tab1" class="tab">
                 <a href="#tab1">Actividades Produccion</a>
                 <div class="tab-content">
-                    <h2>Titulo 1</h2>
-                    <p>Lorem ipsum ...</p>
+                    <section class="colum2">
+                        <div class="box">
+                            <h2>Lista de Actividades</h2>
+                            <ul class="datalist" id="dlActividades"></ul>
+                        </div>
+                        <div class="box">
+                            <div class="formContainer">
+                                <div class="formTitle">Detalle Actividad</div>
+                                <form action="#">
+                                    <div class="box-detail">
+                                        <div hidden>
+                                            <input type="number" id="IdGal" />
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="detail">Nombre Galera</span>
+                                            <input type="text" placeholder="Ingrese el Nombre de la Galera" id="NombreGal" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="detail">Largo Galera</span>
+                                            <input type="number" placeholder="Ingrese el Largo de la Galera" id="DimL" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="detail">Ancho Galera</span>
+                                            <input type="number" placeholder="Ingrese el Ancho de la Galera" id="DimA" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="detail">Capacidad Maxima</span>
+                                            <input type="number" placeholder="Ingrese Capacidad de la Galera" id="CapMax" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="detail">Latitud</span>
+                                            <input type="text" placeholder="Ingrese la Latitud" id="UbiLat" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="detail">Longuitud</span>
+                                            <input type="text" placeholder="Ingrese la Longuitud" id="UbiLon" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="buttons">
+                                        <input class="Secondary-Button" type="submit" value="Cancelar" id="btnCancelarGalera" style="width: 45%">
+                                        <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarGalera" style="width: 45%">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
