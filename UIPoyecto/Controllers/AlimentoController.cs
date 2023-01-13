@@ -411,7 +411,42 @@ namespace UIPoyecto.Controllers
                           NombreMarca = Linea.cargarNombreMarcaAlimento()
                       };
             return obj;
+        }
 
+        [HttpGet]
+        public object GetIdLineaAlimentoByIdAlimento(int IdAlimento)
+        {
+            var obj = new Alimento().Get<Alimento>("IdAlimento = " + IdAlimento).First();
+            return obj.IdLineaAlimentoRecomendado;
+        }
+
+        [HttpGet]
+        public object GetIdEtapaAlimentoByIdAlimento(int IdAlimento)
+        {
+            var obj = new Alimento().Get<Alimento>("IdAlimento = " + IdAlimento).First();
+            return obj.IdEtapaAlimentoRecomendado;
+        }
+
+        [HttpGet]
+        public object GetIdMarcaLineaAlimentoByIdLineaAlimento(int IdLineaAlimento)
+        {
+            var obj = new LineaAlimento().Get<LineaAlimento>("IdLineaAlimento = " + IdLineaAlimento).First();
+            return obj.IdMarcaLinea;
+        }
+
+
+        [HttpGet]
+        public object GetLineaAlimentoSimple()
+        {
+            var obj = from Linea in new LineaAlimento().Get<LineaAlimento>()
+                      select new
+                      {
+                          idLinea = Linea.IdLineaAlimento,
+                          Nombre = Linea.NombreLinea,
+                          Descripcion = Linea.DescripcionLinea,
+                          idMarca = Linea.IdMarcaLinea
+                      };
+            return obj;
         }
 
         ///<summary>
