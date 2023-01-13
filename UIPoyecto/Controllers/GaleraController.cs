@@ -47,12 +47,12 @@ namespace UIPoyecto.Controllers
             var obj = from Galera in new Galera().Get<Galera>()
                       select new
                       {
-                          nombre = Galera.Nombre,
-                          ancho = Galera.DimensionA,
-                          largo = Galera.DimensionL,
-                          latitud = Galera.Latitud,
-                          longitud = Galera.Longitud,
-                          capmax = Galera.CapMProduccion
+                          Nombre = Galera.Nombre,
+                          Ancho = Galera.DimensionA,
+                          Largo = Galera.DimensionL,
+                          Latitud = Galera.Latitud,
+                          Longitud = Galera.Longitud,
+                          CapMax = Galera.CapMProduccion
                       };
 
             return obj;
