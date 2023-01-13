@@ -89,6 +89,7 @@
             }
 
             console.log( await SaveObjectData(url, GaleraObj));
+            limpiarForm();
             cargarTdGalera();
         }
 
@@ -108,7 +109,22 @@
         UbiLat.value = item.latitud;
         UbiLon.value = item.longitud;
         CapMax.value = item.capMax;
-        console.log(item);
     }
+
+
+    const limpiarForm = () => {
+        IdGal.value = 0;
+        NombreGal.value = "";
+        DimL.value = "";
+        DimA.value = "";
+        UbiLat.value = "";
+        UbiLon.value = "";
+        CapMax.value = "";
+
+
+
+    }
+
+
 
 </script>
