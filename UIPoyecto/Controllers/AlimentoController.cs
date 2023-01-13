@@ -4,6 +4,8 @@ using CAPA_NEGOCIO.Models;
 using System.Collections.Generic;
 using CAPA_NEGOCIO.Security;
 using System.Linq;
+using System.Diagnostics;
+using static Humanizer.In;
 
 namespace UIPoyecto.Controllers
 {
@@ -28,19 +30,38 @@ namespace UIPoyecto.Controllers
         [HttpPost]
         public object SaveAlimento(Alimento NewAl)
         {
+            if (NewAl.IdAlimento != 0)
+            {
+                return updateAlimento(NewAl);
+            }
             return NewAl.IdAlimento = (int)NewAl.Save();
+        }
+        [HttpPost]
+        public object updateAlimento(Alimento linea)
+        {
+            return linea.Update("IdAlimento");
         }
 
         ///<summary>
         ///Guarda Linea basico basico
         ///</summary>
         ///<returns></returns>
-
         [HttpPost]
         public object SaveLineaAlimento(LineaAlimento linea)
         {
+            if(linea.IdLineaAlimento!= 0)
+            {
+                return UpdateLineaAlimento(linea);
+            }
             return linea.IdLineaAlimento = (int)linea.Save();
         }
+
+        [HttpPost]
+        public object UpdateLineaAlimento(LineaAlimento linea)
+        {
+            return linea.Update("IdLineaAlimento");
+        }
+
 
         ///<summary>
         ///Guarda Marca Linea Alimento basico
@@ -50,7 +71,17 @@ namespace UIPoyecto.Controllers
         [HttpPost]
         public object SaveMarcaLineaAlimento(MarcaLineaAlimento marca)
         {
+            if (marca.IdMarca != 0)
+            {
+                return updateMarca(marca);
+            }
             return marca.IdMarca = (int)marca.Save();
+        }
+
+        [HttpPost]
+        public object updateMarca(MarcaLineaAlimento linea)
+        {
+            return linea.Update("IdMarca");
         }
 
         ///<summary>
@@ -61,8 +92,21 @@ namespace UIPoyecto.Controllers
         [HttpPost]
         public object SaveEtapaAlimento (EtapaAlimentoProduccion etapa)
         {
+            if (etapa.IdEtapaAlimento != 0)
+            {
+                return updateEtapa(etapa);
+            }
             return etapa.IdEtapaAlimento = (int)etapa.Save();
         }
+
+        [HttpPost]
+        public object updateEtapa(EtapaAlimentoProduccion linea)
+        {
+            return linea.Update("IdEtapaAlimento");
+        }
+
+
+
 
         ///<summary>
         ///Guarda Detalle de Alimento Aplicado por Etapa en produccion
