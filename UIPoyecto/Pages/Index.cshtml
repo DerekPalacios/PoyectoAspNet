@@ -1,9 +1,106 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="container Center" style="width: 90%; height:90%">
-    <div class="squer squer-active"></div>
-</div>
+<section class="colum5050">
+    <div class="box container">
+        <canvas id="DoughnutChart"></canvas>
+    </div>
+    <div class="box container">
+        <canvas id="barChart"></canvas>
+    </div>
+</section>
+<section class="colum5050">
+    <div class="box container">
+        <canvas id="lineChart"></canvas>
+    </div>
+</section>
+
+<script type="module">
+    var chrtDoughnut = document.getElementById("DoughnutChart").getContext("2d");
+    var chrtBar = document.getElementById("barChart").getContext("2d");
+    var chrtBar = document.getElementById("lineChart").getContext("2d");
+
+    var myChart = new Chart(chrtDoughnut, {
+        type: "doughnut",
+        data: {
+            labels: ['Especie1', 'Especie2', 'Especie3'],
+            datasets: [{
+                label: 'Num datos',
+                data: [10, 9, 15],
+                backgroundColor: [
+                    'rgb(66, 134, 244,0.5)',
+                    'rgb(74, 135, 72,0.5)',
+                    'rgb(229, 89, 50,0.5)'
+                ]
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var myChart1 = new Chart(chrtBar, {
+        type: "bar",
+        data: {
+            labels: ['Galera1', 'Galera2', 'Galera3', 'Galera4', 'Galera5', 'Galera6'],
+            datasets: [{
+                label: 'Galeras',
+                data: [10, 9, 15, 19, 9, 90],
+                backgroundColor: [
+                    'rgb(66, 134, 244,0.5)',
+                    'rgb(74, 135, 72,0.5)',
+                    'rgb(229, 89, 50,0.5)',
+                    'rgb(66, 134, 244,0.5)',
+                    'rgb(74, 135, 72,0.5)',
+                    'rgb(229, 89, 50,0.5)'
+                ]
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var myChart2 = new Chart(chrtLine, {
+        type: "line",
+        data: {
+            labels: ['Galera1', 'Galera2', 'Galera3', 'Galera4', 'Galera5', 'Galera6'],
+            datasets: [{
+                label: 'Galeras',
+                data: [10, 9, 15, 19, 9, 90],
+                backgroundColor: [
+                    'rgb(66, 134, 244,0.5)',
+                    'rgb(74, 135, 72,0.5)',
+                    'rgb(229, 89, 50,0.5)',
+                    'rgb(66, 134, 244,0.5)',
+                    'rgb(74, 135, 72,0.5)',
+                    'rgb(229, 89, 50,0.5)'
+                ]
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
