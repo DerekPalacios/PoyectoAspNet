@@ -78,7 +78,7 @@
         btnGuardarGalera.onclick = async () => {
             let url = '../api/Galera/SaveGalera';
             const GaleraObj = {
-                IdGalera: null,
+                IdGalera: IdGal.value,
                 Nombre: NombreGal.value,
                 DimensionL: DimL.value,
                 DimensionA: DimA.value,
@@ -87,7 +87,7 @@
                 CapMproduccion: CapMax.value
             }
 
-            SaveObjectData(url, GaleraObj);
+            console.log( await SaveObjectData(url, GaleraObj));
             cargarTdGalera();
         }
 
@@ -100,13 +100,14 @@
     }
 
     const editGal = (item) => {
-        IdGal.value = item.idGalera;
+        IdGal.value = item.id;
         NombreGal.value = item.nombre;
         DimL.value = item.largo;
         DimA.value = item.ancho;
         UbiLat.value = item.latitud;
         UbiLon.value = item.longitud;
-        CapMax.value = item.capmax;
+        CapMax.value = item.capMax;
+        console.log(item);
     }
 
 </script>

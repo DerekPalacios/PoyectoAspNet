@@ -16,10 +16,40 @@ namespace UIPoyecto.Controllers
             AuthNetCore.loginIN("x", "y");
         }
 
+        ///<summary>
+        ///Guarda informacion de galera basico
+        ///</summary>
+        ///<remarks>
+        ///guardado simple de informacion de galera
+        ///</remarks>
+        ///<returns></returns>
+        ///
         [HttpPost]
         public object SaveGalera(Galera NewGal)
         {
+
+            if(NewGal.IdGalera != 0) 
+            {
+                return UpdateGalera(NewGal);
+            }
+
+
             return NewGal.IdGalera = (int)NewGal.Save();
+        }
+
+
+        ///<summary>
+        ///Actualiza informacion de galera basico
+        ///</summary>
+        ///<remarks>
+        ///Actualizacion de informacion de galera basico
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpPost]
+        public object UpdateGalera(Galera updGalera)
+        {
+            return  (int)updGalera.Update("IdGalera");
         }
 
         [HttpGet]
@@ -47,6 +77,7 @@ namespace UIPoyecto.Controllers
             var obj = from Galera in new Galera().Get<Galera>()
                       select new
                       {
+                          Id = Galera.IdGalera,
                           Nombre = Galera.Nombre,
                           Ancho = Galera.DimensionA,
                           Largo = Galera.DimensionL,
