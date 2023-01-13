@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="buttons">
-                        <input class="Secondary-Button" type="submit" value="Cancelar" id="btnGuardarGalera" style="width: 45%">
+                        <input class="Secondary-Button" type="submit" value="Cancelar" id="btnCancelarGalera" style="width: 45%">
                         <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarGalera" style="width: 45%">
                     </div>
                 </form>
@@ -89,7 +89,12 @@
             }
 
             console.log( await SaveObjectData(url, GaleraObj));
+            limpiarForm();
             cargarTdGalera();
+        }
+
+        btnCancelarGalera.onclick = async () => {
+            limpiarForm();
         }
 
     }
@@ -108,7 +113,17 @@
         UbiLat.value = item.latitud;
         UbiLon.value = item.longitud;
         CapMax.value = item.capMax;
-        console.log(item);
+    }
+
+
+    const limpiarForm = () => {
+        IdGal.value = 0;
+        NombreGal.value = "";
+        DimL.value = "";
+        DimA.value = "";
+        UbiLat.value = "";
+        UbiLon.value = "";
+        CapMax.value = "";
     }
 
 </script>
