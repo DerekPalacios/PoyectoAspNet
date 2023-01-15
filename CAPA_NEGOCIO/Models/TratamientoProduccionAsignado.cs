@@ -95,9 +95,9 @@ namespace CAPA_NEGOCIO.Models
                     .Save();
 
 
-                    this.ultimaFechaAplicacion.AddDays((int)this.PeriodicidadVar.DiasSalto);
+                    this.ultimaFechaAplicacion= this.ultimaFechaAplicacion.AddDays((int)this.PeriodicidadVar.DiasSalto);
                 }
-                FechaRecorridoActual.AddDays(1);
+                FechaRecorridoActual= FechaRecorridoActual.AddDays(1);
 
             }
 
