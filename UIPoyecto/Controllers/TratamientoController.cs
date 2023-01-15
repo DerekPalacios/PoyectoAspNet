@@ -75,6 +75,33 @@ namespace UIPoyecto.Controllers
         }
 
 
+        ///<summary>
+        ///Extrae un modelo de tratamiento para asignar un tratamiento existente a una nueva produccion
+        ///</summary>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetTratamientoByIdTratamiento(int IdTratamiento)
+        {
+            var obj = from tratamientiAsignado in new TratamientoAsignacionNuevaProduccion().Get<TratamientoAsignacionNuevaProduccion>("IdTratamiento = " + IdTratamiento)
+                      select new
+                      {
+                          id = tratamientiAsignado.IdTratamiento,
+                          nombreTratamiento = tratamientiAsignado.Nombre,
+                          marca = tratamientiAsignado.Marca,
+                          dosisRecomendada = tratamientiAsignado.DosisDiariaRecomendada,
+                          lote=tratamientiAsignado.LoteAdministracionRecomendada,
+                          idVia = tratamientiAsignado.IdViaAdministracionRecomendada,
+                          descripcion = tratamientiAsignado.Descripcion,
+                          descripcionDosis = tratamientiAsignado.DescripcionDosisdiaria,
+                          dosisTotales = tratamientiAsignado.DosisTotalesRecomendadas,
+                          nombrePeridiocidad = tratamientiAsignado.NombrePeriodicidad,
+                          idPeridiocidad = tratamientiAsignado.IdPeriodicidad,
+                          administracion = tratamientiAsignado.TipoAdministracion
+                      };
+            return obj.First();
+
+        }
 
 
 
