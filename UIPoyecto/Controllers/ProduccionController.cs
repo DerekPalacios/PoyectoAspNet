@@ -134,8 +134,9 @@ namespace UIPoyecto.Controllers
         [HttpPost]
         public object SaveProD(Produccion newPro)
         {
-            return newPro.GuardarProduccionCompleta(newPro);
-
+            var res = newPro.GuardarProduccionCompleta(newPro);
+            return res;
+            //return 1;
         }
 
     }

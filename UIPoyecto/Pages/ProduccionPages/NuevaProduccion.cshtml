@@ -187,7 +187,7 @@
                             <span class="detail">Desarrollo</span>
                         </div>
                         <div class="input-box">
-                            <span class="detail">Especie De Pollo</span>
+                            <span class="detail">Seleccione Alimento</span>
                             <select class="input" id="finalizacion">
                                 <option value="0">
                                     --Seleccione--
@@ -304,21 +304,21 @@
 
                         <div class="hiden input-box" id="ddlBox">
                             <div class="input-box">
-                            <span class="detail">Peridiocidad Recomendado</span>
-                            <select class="input" id="ddlPeridiocidadRecom">
-                                <option value="0">
-                                    --Seleccione--
-                                </option>
-                            </select>
+                                <span class="detail">Peridiocidad Recomendado</span>
+                                <select class="input" id="ddlPeridiocidadRecom">
+                                    <option value="0">
+                                        --Seleccione--
+                                    </option>
+                                </select>
                             </div>
-                        <div class="input-box">
-                            <span class="detail">Via Recomendada</span>
-                            <select class="input" id="ddlViaRecom">
-                                <option value="0">
-                                    --Seleccione--
-                                </option>
-                            </select>
-                        </div>
+                            <div class="input-box">
+                                <span class="detail">Via Recomendada</span>
+                                <select class="input" id="ddlViaRecom">
+                                    <option value="0">
+                                        --Seleccione--
+                                    </option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="input-box colum5050" id="txtBox">
@@ -352,8 +352,65 @@
     import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
     import GetObjectDataByFilter from "../js/ComponentesJs/GetDatoByApiUrlFiltering.js";
 
-    let IdTratamientoAsignado;
 
+
+    let IdTratamientoAsignado;
+    let bandTratamientoaSanitizacion = true;
+    let bandTratamientoNuevo = false;
+
+    //objetos para nueva produccion
+
+    let listaDetalleAlimentoProduccion = [];
+
+    let newPro = {
+        fechaDeIngreso: new Date(),
+        idProduccion: 0,
+        lote: 0,
+        costoUnitLote: 0,
+        idEspecie: 0,
+        quintUtil: 0,
+        fechaSalida: new Date(),
+        idGalera: 0,
+        idUsuarioRegistro: 0,
+        estadoProduccion: false
+    }
+
+
+    let nuevoTratamiento = {
+
+                idTratamiento: 0,
+        descripcion: "string",
+        nombre: "string",
+        marca: "string",
+        dosisDiariaRecomendada: 0,
+        idPeridiocidadRecomendada: 0,
+        idUsuarioRegistro: 0,
+        fechaRegistro: "",
+        idViaAdministracionRecomendada: 0,
+        loteAdministracionRecomendada: 0,
+        dosisTotalesRecomendadas: 0,
+        descripcionDosisdiaria: "",
+    }
+
+    let nuevoTratamientoAsignadoProduccion = {
+        idTratamientoProduccion: 0,
+        idProduccion: 0,
+        idTratamiento: 0,
+        dosisTotalesAplicada: 0,
+        idPeridiocidadTratamiento: 0,
+        dosisDiaria: 0,
+        idViaAdministracionAplicacada: 0,
+        costoTratamiento: 0,
+        fechaAsignacion: new Date(),
+        idUsuarioAsigna: 0,
+        estadoAplicacion: 0,
+        estadoCompletado: 0,
+        cambioEstadoPermitidoTratamientoProduccion: 0,
+        idUsuarioRegistro: 0,
+        progresoAplicacion: 0,
+        descripcionDosisdiaria: "string",
+        tratamientoSanitario: 0
+    }
 
     window.onload = async () => {
 
@@ -375,68 +432,96 @@
         });
 
         btnGuardarProduccion.onclick = async () => {
-            const totalQuintales = (quintPreInicio.value + quintInicio.value + quintDesarrollo.value + quintFinalizacion.value);
+            const totalQuintales = (parseInt(quintPreInicio.value) + parseInt(quintInicio.value) + parseInt(quintDesarrollo.value) +  parseInt(quintFinalizacion.value));
             let idTratamiento = 0;
-            //let url = '../api/Produccion/SaveProD';
-            const produccionGeneral =
-            {
-                fechaDeIngreso: dpFechaInicio.value,
-                idProduccion: 0,
-                lote: txtTamanioLote.value,
-                costoUnitLote: txtPrecioUnitario.value,
-                idEspecie: especie.value,
-                quintUtil: totalQuintales,
-                fechaSalida: dpFechaFin.value,
-                idGalera: galera.value,
-                idUsuarioRegistro: 0,
-                estadoProduccion: true
-            };
-            await SaveObjectData('../api/Produccion/SaveProD', produccionGeneral);
+            let idProduccionNueva = 0;
+            //asignacion de produccion
 
-            if (document.getElementById('tipoTratamiento2').classList.contains("squer-active")) {
-                const nuevoTratamiento =
+            newPro.lote = parseInt(txtTamanioLote.value);
+            newPro.costoUnitLote = parseInt(txtPrecioUnitario.value);
+            newPro.idEspecie =  parseInt(especie.value);
+            newPro.quintUtil = totalQuintales; //hacer cuando tenga las etapas
+            newPro.idGalera = parseInt(galera.value);
+            newPro.idUsuarioRegistro = 0; //cambiar cuando haya login
+            newPro.estadoProduccion = true; //siempre es false
+            let url = '../api/Produccion/SaveProD';
+            idProduccionNueva = await SaveObjectData(url, newPro);
+
+            //asignacion de alimentos a produccion
+            listaDetalleAlimentoProduccion.push(
                 {
-                    idTratamiento: 0,
-                    descripcion: txtDosisDesc.value,
-                    nombre: txtNombreTrat.value,
-                    marca: txtMarcaTrat.value,
-                    dosisDiariaRecomendada: txtDosisTrat.value,
-                    idPeridiocidadRecomendada: txtPeridiocidadRecom.value,
-                    idUsuarioRegistro: 0,
-                    fechaRegistro: dpFechaInicio.value,
-                    idViaAdministracionRecomendada: ddlViaAdministracion.value,
-                    loteAdministracionRecomendada: txtTamaño.value,
-                    dosisTotalesRecomendadas: txtDosisTotal.value,
-                    dosisDiariaAplicada: txtDosis.value,
-                    dosisTotales: txtDosisTotales.value,
-                    descripcionDosisdiaria: txtDosisDesc.value
+                    idAlimentoProduccion: parseInt(preinicio.value),
+                    quintalesAlimento: parseInt(quintPreInicio.value),
+                    idEtapaAlimentoProduccion: 1,
+                    idProduccionDetalleAlimento: parseInt(idProduccionNueva)  //asignada al guardar la produccion de arriba
+                },
+                {
+                    idAlimentoProduccion: parseInt(inicio.value),
+                    quintalesAlimento: parseInt(quintInicio.value),
+                    IdEtapaAlimentoProduccion: 2,
+                    idProduccionDetalleAlimento: parseInt(idProduccionNueva)  //asignada al guardar la produccion de arriba
+                },
+                {
+                    idAlimentoProduccion: parseInt(desarrollo.value),
+                    quintalesAlimento: parseInt(quintDesarrollo.value),
+                    idEtapaAlimentoProduccion: 3,
+                    idProduccionDetalleAlimento: parseInt(idProduccionNueva)  //asignada al guardar la produccion de arriba
+                },
+                {
+                    idAlimentoProduccion:  parseInt(finalizacion.value),
+                    quintalesAlimento: parseInt(quintFinalizacion.value),
+                    idEtapaAlimentoProduccion: 4,
+                    idProduccionDetalleAlimento: parseInt(idProduccionNueva)  //asignada al guardar la produccion de arriba
                 }
-                idTratamiento = await SaveObjectData('../api/Tratamiento/SaveTratamiento', nuevoTratamiento);
-            };
+            );
+            url = '../api/Alimento/SaveListaDetalleAlimentoProduccion';
+            await SaveObjectData(url, listaDetalleAlimentoProduccion);
 
-            const tratamientoProduccion =
-            {
+            //asignacion de tratamiento
+            let nuevaAsignacionTratamiento = {
                 idTratamientoProduccion: 0,
-                idProduccion: 0,
-                idTratamiento: idTratamiento.value,
-                dosisTotalesAplicada: txtDosisTotales.value,
-                idPeridiocidadTratamiento: ddlPeridiocidad.value,
-                dosisDiaria: txtDosis.value,
-                idViaAdministracionAplicacada: ddlViaAdministracion.value,
-                costoTratamiento: txtCosto.value,
-                fechaAsignacion: dpFechaInicio.value,
+                idProduccion: idProduccionNueva,
+                idTratamiento: parseInt(ddlTratamientoSelect.value),
+                dosisTotalesAplicada: parseInt(txtDosisTotal.value),
+                idPeridiocidadTratamiento: parseInt(txtDosis.value),
+                dosisDiariaAplicada: parseInt(txtDosis.value),
+                idViaAdministracionAplicacada: parseInt(ddlViaAdministracion.value),
+                costoTratamiento: parseInt(txtCosto.value),
+                fechaAsignacion: "2023-01-15",
                 idUsuarioAsigna: 0,
-                estadoAplicacion: 0,
-                estadoCompletado: 0,
-                cambioEstadoPermitidoTratamientoProduccion: 1,
+                estadoAplicacion: false,
+                estadoCompletado: false,
+                cambioEstadoPermitidoTratamientoProduccion: true,
                 idUsuarioRegistro: 0,
                 progresoAplicacion: 0,
-                descripcionDosisdiaria: txtDosisDesc.value,
-                tratamientoSanitario: 0
-            };
+                descripcionDosisdiaria: "se aplica asi",
+                tratamientoSanitario: true
+            }
 
 
-            await SaveObjectData('../api/Tratamiento/SaveTratamiendoProduccionAsignado', tratamientoProduccion);
+            if (bandTratamientoNuevo) {
+                nuevoTratamiento.descripcion = txtDescTrat.value;
+                nuevoTratamiento.descripcionDosisdiaria = txtDescDosis.value;
+                nuevoTratamiento.dosisDiariaRecomendada = parseInt(txtDosisTrat.value);
+                nuevoTratamiento.dosisTotalesRecomendadas = parseInt(txtDosisTotales.value);
+                nuevoTratamiento.nombre = txtNombreTrat.value;
+                nuevoTratamiento.marca = txtMarcaTrat.value;
+                nuevoTratamiento.idPeridiocidadRecomendada = parseInt(ddlPeridiocidadRecom.value);
+                nuevoTratamiento.idViaAdministracionRecomendada = parseInt(ddlViaRecom.value);
+                nuevoTratamiento.loteAdministracionRecomendada = parseInt(txtTamaño.value);
+
+
+
+                url = '../api/Tratamiento/SaveTratamiento';
+                idTratamiento = await SaveObjectData(url, nuevoTratamiento);
+                nuevaAsignacionTratamiento.idTratamiento = idTratamiento;
+
+            } 
+
+            url = '../api/Tratamiento/SaveTratamiendoProduccionAsignado';
+            await SaveObjectData(url, nuevaAsignacionTratamiento);
+
+           
 
         };
 
@@ -458,22 +543,33 @@
 
 
     };
-
-    const actualizarFecha = () => {
-        let fechaInicio = new Date(dpFechaInicio.value);
-        if (txtSemanasProd.value != '') {
-            fechaInicio.setDate(fechaInicio.getDate() + (txtSemanasProd.value * 7))
-            dpFechaFin.value = formatear(fechaInicio);
-        } else {
-            dpFechaFin.value = formatear(new Date());
-        }
-    }
     const formatear = f => {
         const año = f.getFullYear();
         const mes = ("0" + (f.getMonth() + 1)).substr(-2);
         const dia = ("0" + f.getDate()).substr(-2);
         return `${año}-${mes}-${dia}`
     };
+    const actualizarFecha = () => {
+        let fechaInicio = new Date(dpFechaInicio.value);
+
+        newPro.fechaDeIngreso = formatear(fechaInicio);
+
+        if (txtSemanasProd.value != '') {
+            fechaInicio.setDate(fechaInicio.getDate() + (txtSemanasProd.value * 7))
+            dpFechaFin.value = formatear(fechaInicio);
+
+            newPro.fechaSalida = formatear(fechaInicio);
+            nuevoTratamiento.fechaRegistro = formatear(fechaInicio);
+
+        } else {
+            dpFechaFin.value = formatear(new Date());
+
+            newPro.fechaSalida = formatear(new Date());
+            nuevoTratamiento.fechaRegistro = formatear(new Date());
+
+
+        }
+    }
 
 
     const selectDDLTratamientoAsignado = async (id) => {
@@ -503,7 +599,7 @@
             document.getElementById("ddlPeridiocidad").querySelector("option[value='" + trat.idPeridiocidad + "']").selected = true;
             document.getElementById("ddlViaAdministracion").querySelector("option[value='" + trat.idVia + "']").selected = true;
             document.getElementById("txtCosto").focus();
-        }else{
+        } else {
             limpiar();
         }
 
@@ -562,6 +658,8 @@
         let dosisData = await GetObjectData('../api/Catalogos/GetPeridiocidadDropdown');
 
         CreateDropdown(dosisData, ddlPeridiocidad, 'nombre', 'idPeriodicidad');
+        CreateDropdown(dosisData, ddlPeridiocidadRecom, 'nombre', 'idPeriodicidad');
+
     };
 
     const cargarDLViaAdmRecom = async () => {
@@ -659,6 +757,17 @@
         CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
     };
 
+    const cargarDLDesarrolloEtapaFinalizacion = async () => {
+        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoDesarrolloDropdown');
+
+        document.getElementById("finalizacion").innerHTML = "";
+        const options = document.createElement("option");
+        options.innerText = "-Seleccione-";
+        options.value = 0;
+        document.getElementById("finalizacion").append(options);
+        CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
+    };
+
     const cargarDLFinalizacionEtapa = async () => {
         let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoFinalizacionDropdown');
 
@@ -705,6 +814,17 @@
 
     const cargarDLFinalizacionLinea = async (id) => {
         let alimentoData = await GetObjectDataByFilter('../api/Alimento/GetAlimentoFinalizacionDropdownByIdLinea', "IdLinea", id);
+
+        document.getElementById("finalizacion").innerHTML = "";
+        const options = document.createElement("option");
+        options.innerText = "-Seleccione-";
+        options.value = 0;
+        document.getElementById("finalizacion").append(options);
+        CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
+    };
+
+    const cargarDLDesarrolloLineaFinalizacion = async (id) => {
+        let alimentoData = await GetObjectDataByFilter('../api/Alimento/GetAlimentoDesarrolloDropdownByIdLinea', "IdLinea", id);
 
         document.getElementById("finalizacion").innerHTML = "";
         const options = document.createElement("option");
@@ -770,17 +890,31 @@
         }
     });
 
-    rdFinalizacion1.addEventListener('click', () => {
+    rdFinalizacion1.addEventListener('click', async () => {
         if (!rdFinalizacion1.classList.contains('squer-active')) {
             rdFinalizacion1.classList.toggle('squer-active');
             rdFinalizacion2.classList.toggle('squer-active');
+
+
+            if (rdAlimentacion2.classList.contains("squer-active")) {
+                await cargarDLFinalizacionEtapa();
+            } else if (rdAlimentacion3.classList.contains("squer-active")) {
+                await cargarDLFinalizacionLinea(ddlLinea.value);
+            }
+
         }
     });
 
-    rdFinalizacion2.addEventListener('click', () => {
+    rdFinalizacion2.addEventListener('click', async () => {
         if (!rdFinalizacion2.classList.contains('squer-active')) {
             rdFinalizacion1.classList.toggle('squer-active');
             rdFinalizacion2.classList.toggle('squer-active');
+
+            if (rdAlimentacion2.classList.contains("squer-active")) {
+                await cargarDLDesarrolloEtapaFinalizacion();
+            } else if (rdAlimentacion3.classList.contains("squer-active")) {
+                await cargarDLDesarrolloLineaFinalizacion(ddlLinea.value);
+            }
         }
     });
 
@@ -796,6 +930,17 @@
             ddlBox.classList.remove('colum5050');
             ddlBox.classList.add('hiden');
             limpiar();
+            bandTratamientoNuevo = false;
+
+            document.getElementById('txtDescTrat').disabled =   true;
+            document.getElementById('txtDescDosis').disabled =  true;
+            document.getElementById('txtMarcaTrat').disabled =  true;
+            document.getElementById('txtDosisTrat').disabled =  true;
+            document.getElementById('txtTamaño').disabled =     true;
+            document.getElementById('txtDosisTotales').disabled = true;
+
+
+
 
         }
     });
@@ -817,11 +962,27 @@
             await cargarDLViaAdmRecom();
 
             limpiar();
+            bandTratamientoNuevo = true;
+
+            document.getElementById('txtDescTrat').disabled =   false;
+            document.getElementById('txtDescDosis').disabled =  false;
+            document.getElementById('txtMarcaTrat').disabled =  false;
+            document.getElementById('txtDosisTrat').disabled =  false;
+            document.getElementById('txtTamaño').disabled =     false;
+            document.getElementById('txtDosisTotales').disabled = false;
+
+
+            txtTamaño.value = txtTamanioLote.value;
         }
     });
 
     rdTratamiento3.addEventListener('click', () => {
         rdTratamiento3.classList.toggle('squer-active');
+        if (rdTratamiento3.classList.contains('squer-active')) {
+            bandTratamientoaSanitizacion = true;
+        } else {
+            bandTratamientoaSanitizacion = false;
+        }
     });
 
     document.querySelector('#ddlLinea').onchange = async e => {
