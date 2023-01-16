@@ -322,6 +322,10 @@ main {
     margin-top: 4rem;
 }
 
+.max-H-300 {
+    max-height: 300px;
+}
+
 main .date {
     display: inline-block;
     background: var(--color-light);
@@ -333,6 +337,10 @@ main .date {
 main .date input[type="date"] {
     background: transparent;
     color: var(--color-dark);
+}
+
+.margin-top {
+    margin-top: 1.2rem;
 }
 
 .row8515 {
@@ -420,7 +428,7 @@ main .date input[type="date"] {
 .container {
     background-color: var(--color-white);
     border-radius: var(--border-radius-1);
-    width: 90%;
+    width: 96%;
     margin: 1rem auto;
     font-size: 12px;
     box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.33);

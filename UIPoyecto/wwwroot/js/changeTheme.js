@@ -24,4 +24,15 @@ btn_Theme.addEventListener('click', () => {
     ChangeTheme();
     toggleButton();
     localStorage.setItem("theme", JSON.stringify(document.body.classList.toString()));
+
+    let themeMode = localStorage.getItem('theme');
+
+    if (themeMode == '"dark-theme-variables"') {
+        Chart.defaults.color = '#fff';
+        Chart.defaults.borderColor = '#fff';
+    }
+    else {
+        Chart.defaults.color = '#000';
+        Chart.defaults.borderColor = '#000';
+    };
 });
