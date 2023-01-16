@@ -54,13 +54,36 @@ namespace UIPoyecto.Controllers
         [HttpGet]
         public object GetActividadProduccionActiva(int id)
         {
-
             return  new ActividadProduccion().Get<ActividadProduccion>("IdActividadProduccion + " + id );
 
+        }
 
-            
+
+        ///<summary>
+        ///Extraer datos de actividades por id de produccion
+        ///</summary>
+        ///<remarks>
+        ///jala los datos de las aactividades por produccion,esten activas o no, las jala todas
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetActividadesByIdProduccion(int IdProduccion)
+        {
+
+            var resp = from activicidades in new ActividadProduccion().Get<ActividadProduccion>("IdProduccion + " + IdProduccion)
+                       select new
+                       {
+                           estado = activicidades.Estado,
+                           id = activicidades.IdActividad,
+                           fechaAsignacion = activicidades.FechaAsignacionActividad.ToShortDateString()
+                       };
+
+
+            return resp;
 
         }
+
+
 
 
     }
