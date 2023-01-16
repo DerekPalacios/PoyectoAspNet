@@ -164,7 +164,7 @@ namespace UIPoyecto.Controllers
                       select new
                       {
                           id = tratamientiAsignado.IdViaAdministracionAplicacada,
-                          dosis = tratamientiAsignado.DosisDiaria,
+                          dosis = tratamientiAsignado.DosisDiariaAplicada,
                           asignacion = tratamientiAsignado.FechaAsignacion,
                           progreso = tratamientiAsignado.ProgresoAplicacion
                       };
@@ -177,7 +177,7 @@ namespace UIPoyecto.Controllers
                       select new
                       {
                           id = tratamientiAsignado.IdViaAdministracionAplicacada,
-                          dosis = tratamientiAsignado.DosisDiaria,
+                          dosis = tratamientiAsignado.DosisDiariaAplicada,
                           asignacion = tratamientiAsignado.FechaAsignacion,
                           progreso = tratamientiAsignado.ProgresoAplicacion
                       };
@@ -200,7 +200,7 @@ namespace UIPoyecto.Controllers
                           Periodicidad = Tratamiento.PeriodicidadVar,
                           IdUsuario = Tratamiento.IdUsuarioRegistro,
                           FechaRegsitro = Tratamiento.FechaRegistro,
-                          Dosis = Tratamiento.DosisTotales
+                          Dosis = Tratamiento.DosisTotalesRecomendadas
                       };
             return obj;
 
