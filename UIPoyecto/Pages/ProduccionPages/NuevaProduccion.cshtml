@@ -503,6 +503,8 @@
             document.getElementById("ddlPeridiocidad").querySelector("option[value='" + trat.idPeridiocidad + "']").selected = true;
             document.getElementById("ddlViaAdministracion").querySelector("option[value='" + trat.idVia + "']").selected = true;
             document.getElementById("txtCosto").focus();
+        }else{
+            limpiar();
         }
 
     }
@@ -516,7 +518,13 @@
         txtDescDosis.value = '';
         txtMarcaTrat.value = '';
         txtDosisTotales.value = '';
+        txtPeridiocidadRecom.value = '';
+        txtViaRecomendada.value = '';
         document.getElementById("ddlTratamientoSelect").querySelector("option[value='" + 0 + "']").selected = true;
+        document.getElementById("ddlPeridiocidadRecom").querySelector("option[value='" + 0 + "']").selected = true;
+        document.getElementById("ddlViaRecom").querySelector("option[value='" + 0 + "']").selected = true;
+
+
     }
 
 
