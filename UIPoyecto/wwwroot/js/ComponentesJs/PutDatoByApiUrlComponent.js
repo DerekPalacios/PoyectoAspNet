@@ -8,6 +8,7 @@ export default async function SaveObjectData(url,objData){
         },
         body: JSON.stringify(objData)
     });
-
+    response = await response.json();
     return response;
+
 };
