@@ -6,101 +6,165 @@
 
 <section class="colum5050">
     <div class="box container">
-        <canvas id="DoughnutChart"></canvas>
+        <canvas class="max-H-300" id="modelsChart"></canvas>
     </div>
     <div class="box container">
-        <canvas id="barChart"></canvas>
+        <canvas class="max-H-300" id="yearsChart1"></canvas>
     </div>
 </section>
-<section class="colum5050">
+<section class="colum2 margin-top">
     <div class="box container">
-        <canvas id="lineChart"></canvas>
+        <canvas class="max-H-300" id="yearsChart"></canvas>
     </div>
+    <div class="box container">
+    <h3>
+        Comparativa de características:
+        <select class="input" id="featuresOptions" style="width: 25%; height: 1.8rem; cursor: pointer; margin-left: .8rem">
+            <option value="height">Altura (m)</option>
+            <option value="length">Longitud (m)</option>
+            <option value="speed">Velocidad (km/h)</option>
+        </select>
+    </h3>
+    <canvas class="max-H-300" id="featuresChart"></canvas>
+</div>
 </section>
 
 <script type="module">
-    var chrtDoughnut = document.getElementById("DoughnutChart").getContext("2d");
-    var chrtBar = document.getElementById("barChart").getContext("2d");
-    var chrtBar = document.getElementById("lineChart").getContext("2d");
+    Chart.defaults.color = '#fff'
+    Chart.defaults.borderColor = '#fff'
 
-    var myChart = new Chart(chrtDoughnut, {
-        type: "doughnut",
-        data: {
-            labels: ['Especie1', 'Especie2', 'Especie3'],
+
+
+    const printCharts = () => {
+
+        fetchCoastersData('https://localhost:5001/api/EspeciePollo/GetEspeciesNombreCompuesto')
+            .then(([allCoasters]) => {
+
+                renderModelsChart(allCoasters)
+                renderFeaturesChart(allCoasters)
+                renderYearsChart(allCoasters)
+                enableEventHandlers(allCoasters)
+            })
+
+    }
+
+
+
+    const renderModelsChart = coasters => {
+
+        const data = {
+            labels: coasters.map(x => x.descripccion),
             datasets: [{
-                label: 'Num datos',
-                data: [10, 9, 15],
-                backgroundColor: [
-                    'rgb(66, 134, 244,0.5)',
-                    'rgb(74, 135, 72,0.5)',
-                    'rgb(229, 89, 50,0.5)'
-                ]
+                data: coasters.map(x => x.precioUnit),
+                borderColor: getDataColors(),
+                backgroundColor: getDataColors(90)
             }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
+        }
+
+        const options = {
+            plugins: {
+                legend: { position: 'left' }
             }
         }
-    });
 
-    var myChart1 = new Chart(chrtBar, {
-        type: "bar",
-        data: {
-            labels: ['Galera1', 'Galera2', 'Galera3', 'Galera4', 'Galera5', 'Galera6'],
+        new Chart('modelsChart', { type: 'doughnut', data, options })
+    }
+
+
+
+
+    const renderFeaturesChart = coasters => {
+
+        const data = {
+            labels: coasters.map(coaster => coaster.name),
             datasets: [{
-                label: 'Galeras',
-                data: [10, 9, 15, 19, 9, 90],
-                backgroundColor: [
-                    'rgb(66, 134, 244,0.5)',
-                    'rgb(74, 135, 72,0.5)',
-                    'rgb(229, 89, 50,0.5)',
-                    'rgb(66, 134, 244,0.5)',
-                    'rgb(74, 135, 72,0.5)',
-                    'rgb(229, 89, 50,0.5)'
-                ]
+                label: 'Altura (m)',
+                data: coasters.map(coaster => coaster.height),
+                borderColor: getDataColors()[0],
+                backgroundColor: getDataColors(20)[0]
             }]
-        },
-        options: {
+        }
+
+        const options = {
+            plugins: {
+                legend: { display: false }
+            },
             scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
+                r: {
+                    ticks: { display: false }
+                }
             }
         }
-    });
 
-    var myChart2 = new Chart(chrtLine, {
-        type: "line",
-        data: {
-            labels: ['Galera1', 'Galera2', 'Galera3', 'Galera4', 'Galera5', 'Galera6'],
+        new Chart('featuresChart', { type: 'radar', data, options })
+    }
+
+
+
+
+    const renderYearsChart = coasters => {
+
+        const years = ['1998-2000', '2001-2003', '2004-2006', '2007-2009', '2013-2015', '2016-2018', '2019-2021']
+
+        const data = {
+            labels: years,
             datasets: [{
-                label: 'Galeras',
-                data: [10, 9, 15, 19, 9, 90],
-                backgroundColor: [
-                    'rgb(66, 134, 244,0.5)',
-                    'rgb(74, 135, 72,0.5)',
-                    'rgb(229, 89, 50,0.5)',
-                    'rgb(66, 134, 244,0.5)',
-                    'rgb(74, 135, 72,0.5)',
-                    'rgb(229, 89, 50,0.5)'
-                ]
+                data: getCoastersByYear(coasters, years),
+                tension: .5,
+                borderColor: getDataColors()[1],
+                backgroundColor: getDataColors(20)[1],
+                fill: true,
+                pointBorderWidth: 5
             }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
+        }
+
+        const options = {
+            plugins: {
+                legend: { display: false }
             }
         }
-    });
+
+        new Chart('yearsChart', { type: 'line', data, options })
+    }
+
+    const enableEventHandlers = coasters => {
+
+        document.querySelector('#featuresOptions').onchange = e => {
+
+            const { value: property, text: label } = e.target.selectedOptions[0]
+
+            const newData = coasters.map(coaster => coaster[property])
+
+            updateChartData('featuresChart', newData, label)
+        }
+    }
+
+    const fetchCoastersData = (...urls) => {
+        const promises = urls.map(url => fetch(url).then(response => response.json()))
+        return Promise.all(promises)
+    }
+
+    const getDataColors = opacity => {
+        const colors = ['#7448c2', '#21c0d7', '#d99e2b', '#cd3a81', '#9c99cc', '#e14eca', '#ffffff', '#ff0000', '#d6ff00', '#0038ff', '#a40b54', '#5e9fa3', '#660860', '#9380b7']
+        return colors.map(color => opacity ? `${color + opacity}` : color)
+    }
+
+    const getCoastersByYear = (coasters, years) => {
+        const coastersByYear = years.map(yearsRange => {
+            const [from, to] = yearsRange.split('-')
+            return coasters.filter(eachCoaster => eachCoaster.year >= from && eachCoaster.year <= to).length
+        })
+        return coastersByYear
+    }
+
+    const updateChartData = (chartId, data, label) => {
+        const chart = Chart.getChart(chartId)
+        chart.data.datasets[0].data = data
+        chart.data.datasets[0].label = label
+        chart.update()
+    }
+
+
+
+    printCharts();
 </script>
