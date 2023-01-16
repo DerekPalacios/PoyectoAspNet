@@ -33,7 +33,7 @@ namespace CAPA_NEGOCIO.Models
         public int IdTratamiento { get; set; }
         public int DosisTotalesAplicada { get; set; }
         public int IdPeridiocidadTratamiento { get; set; }
-        public int DosisDiaria { get; set; }//quitar
+        public int DosisDiariaAplicada { get; set; }//quitar
         public int? IdViaAdministracionAplicacada { get; set; }
 
         public decimal? CostoTratamiento { get; set; }
@@ -70,7 +70,7 @@ namespace CAPA_NEGOCIO.Models
             Produccion produccionAplicado = new Produccion().Get<Produccion>("IdProduccion = " + this.IdProduccion).First();
 
             DateTime FechaRecorridoActual = produccionAplicado.FechaDeIngreso;
-            int aplicaciones = this.DosisTotalesAplicada / this.DosisDiaria;
+            int aplicaciones = this.DosisTotalesAplicada / this.DosisDiariaAplicada;
             if (DateTime.Today > FechaRecorridoActual)
             {
                 FechaRecorridoActual = DateTime.Today;

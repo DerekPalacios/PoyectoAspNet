@@ -24,7 +24,7 @@ namespace CAPA_NEGOCIO.Models
         public string Descripcion { get; set; } = null!;
         public string Nombre { get; set; } = null!;
         public string Marca { get; set; } = null!;
-        public string DosisDiariaRecomendada { get; set; } = null!;
+        public int DosisDiariaRecomendada { get; set; } 
         public int? IdPeridiocidadRecomendada { get; set; }
         public int? IdUsuarioRegistro { get; set; }
         public DateTime? FechaRegistro { get; set; }
@@ -33,8 +33,6 @@ namespace CAPA_NEGOCIO.Models
         public int? LoteAdministracionRecomendada { get; set; }
 
         public int DosisTotalesRecomendadas { get; set; }
-        public int DosisDiariaAplicada { get; set; }
-        public int? DosisTotales { get; set; }
         public string DescripcionDosisdiaria { get; set; }
         public Periodicidad PeriodicidadVar;
         public void CargarPeriodicidad()
