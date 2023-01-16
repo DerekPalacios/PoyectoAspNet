@@ -6,6 +6,8 @@ using CAPA_NEGOCIO.Security;
 using System.Linq;
 using System.Diagnostics;
 using static Humanizer.In;
+using System.Security.Cryptography;
+using CAPA_NEGOCIO.Models.SubModel;
 
 namespace UIPoyecto.Controllers
 {
@@ -489,6 +491,20 @@ namespace UIPoyecto.Controllers
 
 
 
+
+        ///<summary>
+        ///Regresa lista de alimentos asignados por produccion
+        ///</summary>
+        ///<returns></returns>
+
+        [HttpGet]
+        public object GetAlimentoByIdProduccion(int IdProduccion)
+        {
+            var obj = from Alimento in new AlimentoProduccionForDetailView().Get<AlimentoProduccionForDetailView>("IdProduccion = " + IdProduccion)
+                      select Alimento;
+            return obj;
+
+        }
 
 
 

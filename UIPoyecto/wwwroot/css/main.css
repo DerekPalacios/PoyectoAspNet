@@ -380,7 +380,7 @@ main .date input[type="date"] {
 
 .colum6 {
     display: grid;
-    grid-template-columns: 15% 10% 25% 20% 20% 10%;
+    grid-template-columns: 5% 8% 20% 25% 20% 20%;
 }
 
 .colum7 {
@@ -390,7 +390,7 @@ main .date input[type="date"] {
 
 .colum9 {
     display: grid;
-    grid-template-columns: 5% 15% 10% 10% 5% 15% 15% 10% 15%;
+    grid-template-columns: 5% 10% 13% 12% 13% 10% 12% 10% 15%;
 }
 
 .box {
@@ -676,6 +676,12 @@ li div a {
 
 li div a:hover {
     color: var(--color-danger);
+}
+
+.scrollable .dl-main-header {
+    position: sticky;
+    top: 0;
+    height: 48px;
 }
 
 /*----====Task list====----*/

@@ -10,21 +10,10 @@
             <div class="row">
                 <div class="NumProd Center">
                     <a class="left" href="~/ProduccionPages/Index"><ion-icon name="arrow-undo-circle"></ion-icon></a>
-                    <h3>Lote</h3><span>758</span>
+                    <h3>Lote</h3><span id="numProd"></span>
                 </div>
                 <div class="box">
-                    <ul class="details colum5050">
-                        <li class="border-left"><span>Fecha Inicio: 15/06/22</span></li>
-                        <li class="border-left"><span>Fecha Fin: 16/09/22</span></li>
-                        <li class="border-left"><span>Estado: En Produccion</span></li>
-                        <li class="border-left"><span>Pollos Ingresados: 100</span></li>
-                        <li class="border-left"><span>Galera: Galera 3</span></li>
-                        <li><span>Tasa de Mortalidad/Decesos: 6%/6</span></li>
-                        <li><span>Tratamientos: <a class="link" href="#">Ver Detalle...</a></span></li>
-                        <li><span>Alimentos: Purina, Purina2</span></li>
-                        <li><span>Cant. Alimentos: 300lbs</span></li>
-                        <li><span>Estado: En Produccion</span></li>
-                    </ul>
+                    <ul class="details colum5050" id="detailBox"></ul>
                 </div>
             </div>
         </div>
@@ -47,7 +36,7 @@
                     <section class="colum2">
                         <div class="box">
                             <h2>Lista de Actividades</h2>
-                            <ul class="datalist" id="dlActividades"></ul>
+                            <ul class="datalist scrollable table-medium" id="dlActividades"></ul>
                         </div>
                         <div class="box">
                             <div class="formContainer">
@@ -96,3 +85,38 @@
         </div>
     </div>
 </div>
+
+<script type="module">
+    let urlParams = new URLSearchParams(window.location.search);
+    let id = urlParams.get("id");
+    console.log(id);
+
+    import CreateDataList from "../js/ComponentesJs/StatusListComponent.js";
+    import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
+    import GetObjectDataByFilter from "../js/ComponentesJs/GetDatoByApiUrlFiltering.js";
+    import CreateDetailCard from "../js/ComponentesJs/CardDetailComponent.js";
+
+    window.onload = async () => {
+        
+        await cargarDLActividadesProduccion();
+        await CreateDetailCardProduccion();
+    };
+
+    const cargarDLActividadesProduccion = async () => {
+        let actividadProduccion = await GetObjectDataByFilter("../api/Actividades/GetActividadesByIdProduccionFecha", ["IdProduccion", "Fecha"], [id, "'2023-01-12'"]);
+
+        //let prodData = await GetObjectData("../api/Produccion/GetVistaListaProduccionSimpleCalculada");
+        //let prodDataActive = await GetObjectData("../api/Produccion/GetVistaListaProduccionSimpleCalculadaActiva");
+
+        //response = await response.json();
+        CreateDataList(actividadProduccion, dlActividades, (item) => { editAlim(item); }, 'colum7', 'DetalleProduccion');
+        //CreateDataList(prodData, histDl, (item) => { editAlim(item); }, 'colum9');
+    };
+
+    const CreateDetailCardProduccion = async () => {
+        let detalleProduccion = await GetObjectDataByFilter("../api/Produccion/GetDetalleProduccionByIdProduccion", "IdProduccion", id);
+
+        CreateDetailCard(detalleProduccion, detailBox, numProd, id);
+    }
+    
+</script>
