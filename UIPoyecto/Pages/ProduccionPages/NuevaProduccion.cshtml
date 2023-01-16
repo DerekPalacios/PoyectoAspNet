@@ -30,11 +30,13 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Costo Unitario del Lote</span>
-                            <input type="number" step="1" placeholder="Ingrese el Costo" id="txtPrecioUnitario" required>
+                            <input type="number" min="0" step="1" placeholder="Ingrese el Costo" id="txtPrecioUnitario" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Semanas de Produccion</span>
+
                             <input type="number" step="1" min="1" max="9" placeholder="Selecione una Especie" id="txtSemanasProd" required>
+
                         </div>
                         <div class="input-box">
                             <span class="detail">Especie De Pollo</span>
@@ -69,7 +71,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Tamaño del Lote</span>
-                            <input type="number" step="1" placeholder="Ingrese el Tamaño del Lote"id="txtTamanioLote" required>
+                            <input type="number" min="0" step="1" placeholder="Ingrese el Tamaño del Lote" id="txtTamanioLote" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Galera</span>
@@ -141,7 +143,7 @@
                         </div>
                         <div class="input-box margin-top">
                             <span class="detail">Quintales Dispuestos</span>
-                            <input type="number" step="1" placeholder="Ingrese el Nombre de la Galera" required>
+                            <input type="number" min="0" id="quintPreInicio" step="1" placeholder="Ingrese el Nombre de la Galera" required>
                         </div>
                     </div>
                     <div class="box-detail">
@@ -156,7 +158,7 @@
                         </div>
                         <div class="input-box margin-top">
                             <span class="detail">Quintales Dispuestos</span>
-                            <input type="number" step="1" width="20%" placeholder="Ingrese el Nombre de la Galera" required>
+                            <input type="number" min="0" id="quintInicio" step="1" width="20%" placeholder="Ingrese el Nombre de la Galera" required>
                         </div>
                     </div>
                     <div class="box-detail">
@@ -171,7 +173,7 @@
                         </div>
                         <div class="input-box margin-top">
                             <span class="detail">Quintales Dispuestos</span>
-                            <input type="number" step="1" width="20%" placeholder="Ingrese el Nombre de la Galera" required>
+                            <input type="number" min="0" id="quintDesarrollo" step="1" width="20%" placeholder="Ingrese el Nombre de la Galera" required>
                         </div>
                     </div>
                     <div class="box-detail">
@@ -194,7 +196,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Quintales Dispuestos</span>
-                            <input type="number" step="1" placeholder="Ingrese los Quintales" required>
+                            <input type="number" min="0" id="quintFinalizacion" step="1" placeholder="Ingrese los Quintales" required>
                         </div>
                     </div>
                 </form>
@@ -209,22 +211,22 @@
                         <h3>Tratamiento a Aplicar</h3>
                         <div class="input-box colum5050">
                             <div class="input-box colum1580">
-                                <div class="squer squer-active" id="tipoTratamiento4"></div>
+                                <div class="squer squer-active" id="tipoTratamiento3"></div>
                                 <span class="detail">Sanitización</span>
                             </div>
                             <div></div>
                         </div>
                         <div class="input-box">
                             <span class="detail">Dosis a Aplicar</span>
-                            <input type="number" id="txtDosis" required>
+                            <input type="number" min="0" id="txtDosis" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Dosis Totales a Aplicar</span>
-                            <input type="number" id="txtDosisTotal" required>
+                            <input type="number" min="0" id="txtDosisTotal" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Descripcion Dosis</span>
-                            <input type="number" id="txtDosisDesc" required>
+                            <input type="text" id="txtDosisDesc" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Aplicar Cada(dias)</span>
@@ -244,7 +246,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Costo Tratamiento</span>
-                            <input type="number" id="txtCosto" required>
+                            <input type="number" min="0" id="txtCosto" required>
                         </div>
                     </div>
                     <div class="box-detail">
@@ -273,47 +275,67 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Descripcion Tratamiento</span>
-                            <input type="text" placeholder="Ingrese descripcion" id="txtDescTrat" required>
+                            <input type="text" placeholder="Ingrese descripcion" id="txtDescTrat" required disabled>
                         </div>
                         <div class="input-box">
                             <span class="detail">Descripcion Dosis</span>
-                            <input type="text" placeholder="Ingrese descripcion" id="txtDescDosis" required>
+                            <input type="text" placeholder="Ingrese descripcion" id="txtDescDosis" required disabled>
                         </div>
                         <div class="input-box colum5050">
                             <div class="input-box">
                                 <span class="detail">Marca</span>
-                                <input type="text" placeholder="Ingrese Marca" id="txtMarcaTrat" required>
+                                <input type="text" placeholder="Ingrese Marca" id="txtMarcaTrat" required disabled>
                             </div>
                             <div class="input-box">
                                 <span class="detail">Dosis Recomendada</span>
-                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTrat" required>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTrat" required disabled>
                             </div>
                         </div>
                         <div class="input-box colum5050">
                             <div class="input-box">
                                 <span class="detail">Lote Recomendado</span>
-                                <input type="text" placeholder="Ingrese el Tamaño del Lote" id="txtTamaño" required>
+                                <input type="text" placeholder="Ingrese el Tamaño del Lote" id="txtTamaño" required disabled>
                             </div>
                             <div class="input-box">
                                 <span class="detail">Dosis Totales</span>
-                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTotales" required>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTotales" required disabled>
                             </div>
                         </div>
-                        <div class="input-box colum5050">
+
+                        <div class="hiden input-box" id="ddlBox">
+                            <div class="input-box">
+                            <span class="detail">Peridiocidad Recomendado</span>
+                            <select class="input" id="ddlPeridiocidadRecom">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                            </div>
+                        <div class="input-box">
+                            <span class="detail">Via Recomendada</span>
+                            <select class="input" id="ddlViaRecom">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                        </div>
+                        </div>
+
+                        <div class="input-box colum5050" id="txtBox">
                             <div class="input-box">
                                 <span class="detail">Peridiocidad Recomendado</span>
-                                <input type="text" placeholder="Ingrese la Peridiosidad" id="txtPeridiocidadRecom" required>
+                                <input type="text" placeholder="Ingrese la Peridiosidad" id="txtPeridiocidadRecom" required disabled>
                             </div>
                             <div class="input-box">
                                 <span class="detail">Via Recomendada</span>
-                                <input type="text" placeholder="Ingrese Dosis" id="txtViaRecomendada" required>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtViaRecomendada" required disabled>
                             </div>
                         </div>
                     </div>
                 </form>
                 <div class="formfooter colum5050 box-detail">
                     <label for="tab-2" class="tab-2 Secondary-Button">Anterior</label>
-                    <label class="Primary-Button">Registrar</label>
+                    <label class="Primary-Button" id="btnGuardarProduccion">Registrar</label>
                 </div>
             </div>
         </div>
@@ -330,6 +352,9 @@
     import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
     import GetObjectDataByFilter from "../js/ComponentesJs/GetDatoByApiUrlFiltering.js";
 
+    let IdTratamientoAsignado;
+
+
     window.onload = async () => {
 
         await cargarDLEspecie();
@@ -339,24 +364,167 @@
         await cargarDLInicio();
         await cargarDLDesarrollo();
         await cargarDLFinalizacion();
-        await cargarDLDosis();
+        await cargarDLPeridiosidad();
         await cargarDLViaAdm();
         await cargarDLTratamiento();
 
-        dpFechaInicio.onchange = () => {
-            var fechaInicio = new Date(FechaProd.value);
-            fechaInicio.setDate(fechaInicio.getDate() + (txtSemanasProd.value * 7));
+        dpFechaInicio.value = formatear(new Date());
+        dpFechaFin.value = formatear(new Date());
+        document.querySelector("#dpFechaInicio").addEventListener("change", function () {
+            actualizarFecha();
+        });
 
-            dpFechaFin.value = formatear(fechaInicio);
-        }
+        btnGuardarProduccion.onclick = async () => {
+            const totalQuintales = (quintPreInicio.value + quintInicio.value + quintDesarrollo.value + quintFinalizacion.value);
+            let idTratamiento = 0;
+            //let url = '../api/Produccion/SaveProD';
+            const produccionGeneral =
+            {
+                fechaDeIngreso: dpFechaInicio.value,
+                idProduccion: 0,
+                lote: txtTamanioLote.value,
+                costoUnitLote: txtPrecioUnitario.value,
+                idEspecie: especie.value,
+                quintUtil: totalQuintales,
+                fechaSalida: dpFechaFin.value,
+                idGalera: galera.value,
+                idUsuarioRegistro: 0,
+                estadoProduccion: true
+            };
+            await SaveObjectData('../api/Produccion/SaveProD', produccionGeneral);
+
+            if (document.getElementById('tipoTratamiento2').classList.contains("squer-active")) {
+                const nuevoTratamiento =
+                {
+                    idTratamiento: 0,
+                    descripcion: txtDosisDesc.value,
+                    nombre: txtNombreTrat.value,
+                    marca: txtMarcaTrat.value,
+                    dosisDiariaRecomendada: txtDosisTrat.value,
+                    idPeridiocidadRecomendada: txtPeridiocidadRecom.value,
+                    idUsuarioRegistro: 0,
+                    fechaRegistro: dpFechaInicio.value,
+                    idViaAdministracionRecomendada: ddlViaAdministracion.value,
+                    loteAdministracionRecomendada: txtTamaño.value,
+                    dosisTotalesRecomendadas: txtDosisTotal.value,
+                    dosisDiariaAplicada: txtDosis.value,
+                    dosisTotales: txtDosisTotales.value,
+                    descripcionDosisdiaria: txtDosisDesc.value
+                }
+                idTratamiento = await SaveObjectData('../api/Tratamiento/SaveTratamiento', nuevoTratamiento);
+            };
+
+            const tratamientoProduccion =
+            {
+                idTratamientoProduccion: 0,
+                idProduccion: 0,
+                idTratamiento: idTratamiento.value,
+                dosisTotalesAplicada: txtDosisTotales.value,
+                idPeridiocidadTratamiento: ddlPeridiocidad.value,
+                dosisDiaria: txtDosis.value,
+                idViaAdministracionAplicacada: ddlViaAdministracion.value,
+                costoTratamiento: txtCosto.value,
+                fechaAsignacion: dpFechaInicio.value,
+                idUsuarioAsigna: 0,
+                estadoAplicacion: 0,
+                estadoCompletado: 0,
+                cambioEstadoPermitidoTratamientoProduccion: 1,
+                idUsuarioRegistro: 0,
+                progresoAplicacion: 0,
+                descripcionDosisdiaria: txtDosisDesc.value,
+                tratamientoSanitario: 0
+            };
+
+
+            await SaveObjectData('../api/Tratamiento/SaveTratamiendoProduccionAsignado', tratamientoProduccion);
+
+        };
+
+
+        document.querySelector("#txtSemanasProd").addEventListener("change", async function () {
+            actualizarFecha();
+        });
+
+        document.querySelector("#especie").addEventListener("change", async function () {
+            let especie = await GetObjectDataByFilter("../api/EspeciePollo/GetEspecieByIdEspecie", "IdEspecie", this.value);
+            txtSemanasProd.value = especie.semanasProduccion;
+            txtPrecioUnitario.value = especie.precioUnit;
+            actualizarFecha();
+        });
+
+        document.querySelector("#ddlTratamientoSelect").addEventListener("change", async function () {
+            selectDDLTratamientoAsignado(this.value);
+        });
+
+
     };
 
+    const actualizarFecha = () => {
+        let fechaInicio = new Date(dpFechaInicio.value);
+        if (txtSemanasProd.value != '') {
+            fechaInicio.setDate(fechaInicio.getDate() + (txtSemanasProd.value * 7))
+            dpFechaFin.value = formatear(fechaInicio);
+        } else {
+            dpFechaFin.value = formatear(new Date());
+        }
+    }
     const formatear = f => {
         const año = f.getFullYear();
         const mes = ("0" + (f.getMonth() + 1)).substr(-2);
         const dia = ("0" + f.getDate()).substr(-2);
         return `${año}-${mes}-${dia}`
     };
+
+
+    const selectDDLTratamientoAsignado = async (id) => {
+        if (id != 0) {
+
+            let trat = await GetObjectDataByFilter("../api/Tratamiento/GetTratamientoByIdTratamiento", "IdTratamiento", id);
+
+
+            IdTratamientoAsignado = trat.id;
+            txtNombreTrat.value = trat.nombreTratamiento;
+            txtMarcaTrat.value = trat.marca;
+            txtDosis.value = trat.dosisRecomendada;
+            txtDosisTrat.value = trat.dosisRecomendada;
+            txtTamaño.value = trat.lote;
+
+            txtDescTrat.value = trat.descripcion;
+            txtDescDosis.value = trat.descripcionDosis;
+            txtDosisDesc.value = trat.descripcionDosis;
+            console.log(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(trat.dosisTotales));
+            txtDosisTotal.value = trat.dosisTotales;
+            txtDosisTotales.value = trat.dosisTotales;
+
+            txtPeridiocidadRecom.value = trat.nombrePeridiocidad;
+
+            txtViaRecomendada.value = trat.administracion;
+
+            document.getElementById("ddlPeridiocidad").querySelector("option[value='" + trat.idPeridiocidad + "']").selected = true;
+            document.getElementById("ddlViaAdministracion").querySelector("option[value='" + trat.idVia + "']").selected = true;
+            document.getElementById("txtCosto").focus();
+        }
+
+    }
+
+
+    const limpiar = () => {
+        txtNombreTrat.value = '';
+        txtDosisTrat.value = '';
+        txtTamaño.value = '';
+        txtDescTrat.value = '';
+        txtDescDosis.value = '';
+        txtMarcaTrat.value = '';
+        txtDosisTotales.value = '';
+        document.getElementById("ddlTratamientoSelect").querySelector("option[value='" + 0 + "']").selected = true;
+    }
+
+
+
+
+
+
+
 
     const cargarDLEspecie = async () => {
         let especieData = await GetObjectData('../api/EspeciePollo/GetEspeciesNombreCompuesto');
@@ -382,10 +550,22 @@
         CreateDropdown(ViaAdmData, ddlViaAdministracion, 'tipoAdministracion', 'idViaAdministracion');
     };
 
-    const cargarDLDosis = async () => {
+    const cargarDLPeridiosidad = async () => {
         let dosisData = await GetObjectData('../api/Catalogos/GetPeridiocidadDropdown');
 
-        CreateDropdown(dosisData, ddlPeridiocidad, 'nombre', 'idPeridiosidad');
+        CreateDropdown(dosisData, ddlPeridiocidad, 'nombre', 'idPeriodicidad');
+    };
+
+    const cargarDLViaAdmRecom = async () => {
+        let ViaAdmData = await GetObjectData('../api/Tratamiento/GetViaAdministracionBasico');
+
+        CreateDropdown(ViaAdmData, ddlViaRecom, 'tipoAdministracion', 'idViaAdministracion');
+    };
+
+    const cargarDLDosisRecom = async () => {
+        let dosisData = await GetObjectData('../api/Catalogos/GetPeridiocidadDropdown');
+
+        CreateDropdown(dosisData, ddlPeridiocidadRecom, 'nombre', 'idPeridiosidad');
     };
 
     const cargarDLTratamiento = async () => {
@@ -399,19 +579,19 @@
 
         document.getElementById("preinicio").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("preinicio").append(options);
         CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
     };
 
     const cargarDLInicio = async () => {
         let alimentoData = await GetObjectData('../api/Alimento/GetAlimentoAllDropdown');
-        
+
         document.getElementById("inicio").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("inicio").append(options);
         CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
     };
@@ -421,8 +601,8 @@
 
         document.getElementById("desarrollo").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("desarrollo").append(options);
         CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
     };
@@ -432,8 +612,8 @@
 
         document.getElementById("finalizacion").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("finalizacion").append(options);
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
@@ -443,8 +623,8 @@
 
         document.getElementById("preinicio").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("preinicio").append(options);
         CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
     };
@@ -454,8 +634,8 @@
 
         document.getElementById("inicio").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("inicio").append(options);
         CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
     };
@@ -465,8 +645,8 @@
 
         document.getElementById("desarrollo").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("desarrollo").append(options);
         CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
     };
@@ -476,8 +656,8 @@
 
         document.getElementById("finalizacion").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("finalizacion").append(options);
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
@@ -487,8 +667,8 @@
 
         document.getElementById("preinicio").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("preinicio").append(options);
         CreateDropdown(alimentoData, preinicio, 'nombre', 'idAlimento');
     };
@@ -498,8 +678,8 @@
 
         document.getElementById("inicio").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("inicio").append(options);
         CreateDropdown(alimentoData, inicio, 'nombre', 'idAlimento');
     };
@@ -509,8 +689,8 @@
 
         document.getElementById("desarrollo").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("desarrollo").append(options);
         CreateDropdown(alimentoData, desarrollo, 'nombre', 'idAlimento');
     };
@@ -520,8 +700,8 @@
 
         document.getElementById("finalizacion").innerHTML = "";
         const options = document.createElement("option");
-    options.innerText = "-Seleccione-";
-    options.value = 0;
+        options.innerText = "-Seleccione-";
+        options.value = 0;
         document.getElementById("finalizacion").append(options);
         CreateDropdown(alimentoData, finalizacion, 'nombre', 'idAlimento');
     };
@@ -529,14 +709,16 @@
     const rdAlimentacion1 = document.getElementById('tipoAlimentacion1');
     const rdAlimentacion2 = document.getElementById('tipoAlimentacion2');
     const rdAlimentacion3 = document.getElementById('tipoAlimentacion3');
-    const rdAlimentacion4 = document.getElementById('tipoAlimentacion4');
     const rdFinalizacion1 = document.getElementById('finalizacion1');
     const rdFinalizacion2 = document.getElementById('finalizacion2');
     const rdTratamiento1 = document.getElementById('tipoTratamiento1');
     const rdTratamiento2 = document.getElementById('tipoTratamiento2');
+    const rdTratamiento3 = document.getElementById('tipoTratamiento3');
     const ddlLinea = document.getElementById('ddlLinea');
     const ddlTratamiento = document.getElementById('ddlTratamiento');
     const txtTratamiento = document.getElementById('txtTratamiento');
+    const ddlBox = document.getElementById('ddlBox');
+    const txtBox = document.getElementById('txtBox');
 
     rdAlimentacion1.addEventListener('click', async () => {
         if (!rdAlimentacion1.classList.contains('squer-active')) {
@@ -570,7 +752,7 @@
         }
     });
 
-    rdAlimentacion3.addEventListener('click',  () => {
+    rdAlimentacion3.addEventListener('click', () => {
         if (!rdAlimentacion3.classList.contains('squer-active')) {
             rdAlimentacion3.classList.toggle('squer-active');
 
@@ -578,10 +760,6 @@
             rdAlimentacion2.classList.remove('squer-active');
             ddlLinea.disabled = false;
         }
-    });
-
-    rdAlimentacion4.addEventListener('click', () => {
-        rdAlimentacion4.classList.toggle('squer-active');
     });
 
     rdFinalizacion1.addEventListener('click', () => {
@@ -605,17 +783,37 @@
 
             ddlTratamiento.classList.toggle('hiden');
             txtTratamiento.classList.toggle('hiden');
+
+            txtBox.classList.add('colum5050');
+            ddlBox.classList.remove('colum5050');
+            ddlBox.classList.add('hiden');
+            limpiar();
+
         }
     });
 
-    rdTratamiento2.addEventListener('click', () => {
+    rdTratamiento2.addEventListener('click', async () => {
         if (!rdTratamiento2.classList.contains('squer-active')) {
+            //if false
             rdTratamiento1.classList.toggle('squer-active');
             rdTratamiento2.classList.toggle('squer-active');
 
             ddlTratamiento.classList.toggle('hiden');
             txtTratamiento.classList.toggle('hiden');
+
+            ddlBox.classList.add('colum5050');
+            txtBox.classList.remove('colum5050');
+            txtBox.classList.add('hiden');
+
+            await cargarDLDosisRecom();
+            await cargarDLViaAdmRecom();
+
+            limpiar();
         }
+    });
+
+    rdTratamiento3.addEventListener('click', () => {
+        rdTratamiento3.classList.toggle('squer-active');
     });
 
     document.querySelector('#ddlLinea').onchange = async e => {
@@ -627,4 +825,12 @@
         await cargarDLDesarrolloLinea(property);
         await cargarDLFinalizacionLinea(property);
     }
+
+
+
+
+
+
+
+
 </script>
