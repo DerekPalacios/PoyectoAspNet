@@ -8,10 +8,10 @@
     <div class="colum2">
         <div class="box">
             <h3 class="dl-header">Producciones Activas</h3>
-            <ul class="datalist" id="prodDl"></ul>
+            <ul class="datalist" id="prodDl">
+            </ul>
 
             <h3 class="dl-header">Historial de Produccion</h3>
-
             <ul class="datalist" id="histDl"></ul>
         </div>
 
@@ -57,8 +57,10 @@
 
     const cargarDLProduccion = async () => {
         let prodData = await GetObjectData("../api/Produccion/GetVistaListaProduccionSimpleCalculada");
+        let prodDataActive = await GetObjectData("../api/Produccion/GetVistaListaProduccionSimpleCalculadaActiva");
+
         //response = await response.json();
-        CreateDataList(prodData, prodDl, (item) => { editAlim(item); }, 'colum9');
+        CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum9', 'DetalleProduccion');
         CreateDataList(prodData, histDl, (item) => { editAlim(item); }, 'colum9');
     };
 

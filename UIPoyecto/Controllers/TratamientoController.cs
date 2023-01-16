@@ -75,6 +75,33 @@ namespace UIPoyecto.Controllers
         }
 
 
+        ///<summary>
+        ///Extrae un modelo de tratamiento para asignar un tratamiento existente a una nueva produccion
+        ///</summary>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetTratamientoByIdTratamiento(int IdTratamiento)
+        {
+            var obj = from tratamientiAsignado in new TratamientoAsignacionNuevaProduccion().Get<TratamientoAsignacionNuevaProduccion>("IdTratamiento = " + IdTratamiento)
+                      select new
+                      {
+                          id = tratamientiAsignado.IdTratamiento,
+                          nombreTratamiento = tratamientiAsignado.Nombre,
+                          marca = tratamientiAsignado.Marca,
+                          dosisRecomendada = tratamientiAsignado.DosisDiariaRecomendada,
+                          lote=tratamientiAsignado.LoteAdministracionRecomendada,
+                          idVia = tratamientiAsignado.IdViaAdministracionRecomendada,
+                          descripcion = tratamientiAsignado.Descripcion,
+                          descripcionDosis = tratamientiAsignado.DescripcionDosisdiaria,
+                          dosisTotales = tratamientiAsignado.DosisTotalesRecomendadas,
+                          nombrePeridiocidad = tratamientiAsignado.NombrePeriodicidad,
+                          idPeridiocidad = tratamientiAsignado.IdPeriodicidad,
+                          administracion = tratamientiAsignado.TipoAdministracion
+                      };
+            return obj.First();
+
+        }
 
 
 
@@ -101,21 +128,61 @@ namespace UIPoyecto.Controllers
             return tratamientosProd;
         }
 
+
         [HttpGet]
-        public object GetTratamientoDiarioaByIdTratamientoProduccion(int idTraProd)
+        public object GetDetalleActividadDiariaTratamientoByIdProduccion(int IdProduccion)
         {
-            List<AplicacionTratamientoDiario> AplicacionDiaria = (List<AplicacionTratamientoDiario>)new AplicacionTratamientoDiario()
-                .Get<AplicacionTratamientoDiario>("IdTratamientoProduccion = " + idTraProd);
-            return AplicacionDiaria;
-        }
-        [HttpGet]
-        public object GetTratamientoDiarioaByFechaAplicacion(DateTime fechaFiltro)
-        {
-            List<AplicacionTratamientoDiario> AplicacionDiaria = (List<AplicacionTratamientoDiario>)new AplicacionTratamientoDiario()
-                .Get<AplicacionTratamientoDiario>("FechaAplicacion = " + fechaFiltro);
-            return AplicacionDiaria;
+            var obj = from detalleTratamiento in new DetallesTratamientoDiario().Get<DetallesTratamientoDiario>("IdProduccion = " + IdProduccion)
+                      select new
+                      {
+                          id = detalleTratamiento.IdActividadTratamiento,
+                          aplicacion = detalleTratamiento.FechaAplicacion,
+                          sanitario = detalleTratamiento.TratamientoSanitario,
+                          administracion = detalleTratamiento.TipoAdministracion
+                      };
+            return obj;
         }
 
+        [HttpGet]
+        public object GetDetalleActividadDiariaTratamientoByIdTratamientoProduccion(int IdTratamientoProduccion)
+        {
+            var obj = from detalleTratamiento in new DetallesTratamientoDiario().Get<DetallesTratamientoDiario>("IdProduccion = " + IdTratamientoProduccion)
+                      select new
+                      {
+                          id = detalleTratamiento.IdActividadTratamiento,
+                          aplicacion = detalleTratamiento.FechaAplicacion,
+                          sanitario = detalleTratamiento.TratamientoSanitario,
+                          administracion = detalleTratamiento.TipoAdministracion
+                      };
+            return obj;
+        }
+
+        [HttpGet]
+        public object GetTratamientoProduccionAsignado()
+        {
+            var obj = from tratamientiAsignado in new TratamientoProduccionAsignado().Get<TratamientoProduccionAsignado>()
+                      select new
+                      {
+                          id = tratamientiAsignado.IdViaAdministracionAplicacada,
+                          dosis = tratamientiAsignado.DosisDiaria,
+                          asignacion = tratamientiAsignado.FechaAsignacion,
+                          progreso = tratamientiAsignado.ProgresoAplicacion
+                      };
+            return obj;
+        }
+        [HttpGet]
+        public object GetTratamientoProduccionAsignadoByIdProduccion(int IdProduccion)
+        {
+            var obj = from tratamientiAsignado in new TratamientoProduccionAsignado().Get<TratamientoProduccionAsignado>("IdProduccion = " + IdProduccion)
+                      select new
+                      {
+                          id = tratamientiAsignado.IdViaAdministracionAplicacada,
+                          dosis = tratamientiAsignado.DosisDiaria,
+                          asignacion = tratamientiAsignado.FechaAsignacion,
+                          progreso = tratamientiAsignado.ProgresoAplicacion
+                      };
+            return obj;
+        }
 
         [HttpGet]
         public object GetTratamientoConPeridiocidad()

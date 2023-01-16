@@ -62,15 +62,63 @@ namespace UIPoyecto.Controllers
 
 
 
-
+        ///<summary>
+        ///Extrae los datos de produccion con una vista smple calculada
+        ///</summary>
+        ///<remarks>
+        ///datos traidos dede una sola vista
+        ///</remarks>
+        ///<returns></returns>
+        ///
         [HttpGet]
         public object GetVistaListaProduccionSimpleCalculada()
         {
-            var listaProduccionSimple = new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>();
+            var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>()
+                                        select new
+                                        {
+                                            estado = detallepro.Estado,
+                                            id = detallepro.IdProduccion,
+                                            galera = detallepro.NombreGalera,
+                                            tam = detallepro.Tamaño,
+                                            Consumo = detallepro.ConsumoAlimento,
+                                            Decesos = detallepro.MuertesTotales,
+                                            Lote = detallepro.LoteActual,
+                                            peso = detallepro.PesoPromedioSemanal,
+                                        };
 
             return listaProduccionSimple;
 
         }
+
+        ///<summary>
+        ///Extrae los datos de produccion con una vista smple calculada
+        ///</summary>
+        ///<remarks>
+        ///datos traidos dede una sola vista
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetVistaListaProduccionSimpleCalculadaActiva()
+        {
+            var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>(" Estado = 1 ")
+                                        select new
+                                        {
+                                            estado = detallepro.Estado,
+                                            id = detallepro.IdProduccion,
+                                            galera = detallepro.NombreGalera,
+                                            tam = detallepro.Tamaño,
+                                            Consumo = detallepro.ConsumoAlimento,
+                                            Decesos = detallepro.MuertesTotales,
+                                            Lote = detallepro.LoteActual,
+                                            peso = detallepro.PesoPromedioSemanal,
+                                        };
+
+            return listaProduccionSimple;
+
+        }
+
+
 
         [HttpGet]
         public object GetVistaDetalleProduiccionCardProduccion()

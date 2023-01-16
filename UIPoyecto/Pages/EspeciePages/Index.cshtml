@@ -28,30 +28,26 @@
                         <input type="number" id="especieId" />
                     </div>
                     <div class="input-box">
-                        <span class="detail">Nombre Especie</span>
-                        <input type="text" placeholder="Ingrese el Nombre" id="txtEspecieName" required>
-                    </div>
-                    <div class="input-box">
                         <span class="detail">Descripcion</span>
-                        <input type="number" placeholder="Ingrese una Descripcion" id="txtEspecieDesc" required>
+                        <input type="text" placeholder="Ingrese una Descripcion" id="txtEspecieDesc" required>
                     </div>
                     <div class="input-box">
                         <span class="detail">Pais de Origen</span>
-                        <input type="number" placeholder="Ingrese el Pais" id="txtEspecieCountry" required>
+                        <input type="text" placeholder="Ingrese el Pais" id="txtEspecieCountry" required>
                     </div>
                     <div class="input-box">
                         <span class="detail">Precio Unitario</span>
-                        <input type="number" placeholder="Ingrese Precio Unitario" id="txtEspeciePrice" required>
+                        <input type="number" min="0" placeholder="Ingrese Precio Unitario" id="txtEspeciePrice" required>
                     </div>
                     <div class="input-box">
                         <span class="detail">Semanas de Produccion</span>
-                        <input type="text" placeholder="Ingrese la Semanas" id="txtEspecieWeek" required>
+                        <input type="number" min="0" max="9" placeholder="Ingrese la Semanas" id="txtEspecieWeek" required>
                     </div>
                 </div>
 
                 <div class="buttons">
-                    <input class="Primary-Button" type="submit" value="Registrar">
-                    <input class="Secondary-Button" type="submit" value="Cancelar">
+                    <input class="Secondary-Button" type="submit" value="Cancelar" id="btnCancelarEspecie">
+                    <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarEspecie">
                 </div>
             </form>
         </div>
@@ -65,37 +61,49 @@
 
     window.onload = async () => {
 
-        await cargarTdGalera();
+        await cargarTdEspecie();
 
-        btnGuardarGalera.onclick = async () => {
+        btnGuardarEspecie.onclick = async () => {
             let url = '../api/EspeciePollo/SaveEspeciePollo';
             const EspecieObj = {
-                idEspecie: null,
-                //Nombre: txtEspecieName.value,
+                idEspecie: especieId.value,
                 descripccion: txtEspecieDesc.value,
                 paisOrigen: txtEspecieCountry.value,
                 precioUnit: txtEspeciePrice.value,
                 semanasProduccion: txtEspecieWeek.value
             }
 
-            SaveObjectData(url, EspecieObj);
-            cargarTdGalera();
+            await SaveObjectData(url, EspecieObj);
+            await cargarTdEspecie();
+        }
+
+        btnCancelarEspecie.onclick = async () => {
+            limpiar();
         }
 
     }
 
-    const cargarTdGalera = async () => {
-        let galeraData = await GetObjectData("../api/Galera/GetGalera");
+    const cargarTdEspecie = async () => {
+        let especieData = await GetObjectData("../api/EspeciePollo/GetEspeciesBasico");
 
-        CreateTable(galeraData, GaleraTd, (item) => { editGal(item); });
+        CreateTable(especieData , tblEspecie, (item) => { editEspecie(item); });
     }
 
-    const editGal = (item) => {
-        especieId.value = item.idEspecie;
+    const editEspecie = (item) => {
+        especieId.value = item.id;
         txtEspecieDesc.value = item.descripccion;
-        txtEspecieCountry.value = item.paisOrigen;
-        txtEspeciePrice.value = item.precioUnit;
-        txtEspecieWeek.value = item.semanasProduccion;
+        txtEspecieCountry.value = item.origen;
+        txtEspeciePrice.value = item.precio;
+        txtEspecieWeek.value = item.semanas;
+        
+    }
+
+    const limpiar = () => {
+        especieId.value = 0;
+        txtEspecieDesc.value = "";
+        txtEspecieCountry.value = "";
+        txtEspeciePrice.value = "";
+        txtEspecieWeek.value = "";
         
     }
 

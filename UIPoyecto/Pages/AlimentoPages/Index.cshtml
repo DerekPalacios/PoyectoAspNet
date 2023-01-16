@@ -151,15 +151,15 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Nombre de la Linea</span>
-                            <input type="text" placeholder="Ingrese el Nombre de la Linea" required>
+                            <input type="text" placeholder="Ingrese el Nombre de la Linea" id="lineaName" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Descripcion de la Linea</span>
-                            <input type="text" placeholder="Ingrese el Descripcion" required>
+                            <input type="text" placeholder="Ingrese el Descripcion" id="lineaDesc" required>
                         </div>
                         <div class="input-box">
                             <span class="detail">Marca</span>
-                            <select class="input" id="lineaMarca">
+                            <select class="input" id="alimMarca">
                                 <option value="0">
                                     -Seleccione-
                                 </option>
@@ -168,8 +168,8 @@
                     </div>
 
                     <div class="buttons">
-                        <input class="Primary-Button" type="submit" value="Registrar" onclick="openPopup()">
-                        <input class="Secondary-Button" type="submit" value="Cancelar">
+                        <input class="Secondary-Button" type="submit" value="Cancelar" id="cancelar">
+                        <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarLinealimento">
                     </div>
                 </form>
             </div>
@@ -191,8 +191,8 @@
                     </div>
 
                     <div class="buttons">
+                        <input class="Secondary-Button" type="submit" value="Cancelar" id="cancelar">
                         <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarMarcaAlimento">
-                        <input class="Secondary-Button" type="submit" value="Cancelar">
                     </div>
                 </form>
             </div>
@@ -206,14 +206,6 @@
                         <div class="input-box">
                             <span class="detail">Nombre Alimento</span>
                             <input type="text" placeholder="Ingrese el Nombre" id="alimName" required>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Marca</span>
-                            <select class="input" id="alimMarca">
-                                <option value="0">
-                                    -Seleccione-
-                                </option>
-                            </select>
                         </div>
                         <div class="input-box">
                             <span class="detail">Linea</span>
@@ -238,8 +230,8 @@
                     </div>
 
                     <div class="buttons">
-                        <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarAlimento">
-                        <input class="Secondary-Button" type="submit" value="Cancelar">
+                        <input class="Secondary-Button" type="submit" value="Cancelar" id="cancelar">
+                        <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarAlimento">                        
                     </div>
                 </form>
             </div>
@@ -255,6 +247,7 @@
     import CreateTable from "../js/ComponentesJs/TableComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
     import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
+    import GetObjectDataByFilter from "../js/ComponentesJs/GetDatoByApiUrlFiltering.js";
 
     window.onload = async () => {
 
@@ -269,33 +262,52 @@
 
             let url = '../api/Alimento/SaveMarcaLineaAlimento';
             const MarcaAlim = {
-                idMarca: null,
+                idMarca: marcaId.value,
                 nombre: marcaName.value,
                 descripcionMarca: marcaDesc.value
             }
 
-            SaveObjectData(url, MarcaAlim);
-            cargarTdMarca();
-            cargarDropdownMarca();
-            cargarDropdownLinea();
-            cargarDropdownEtapa();
+            await SaveObjectData(url, MarcaAlim);
+            await cargarTdMarca();
+            await cargarDropdownMarca();
+            await cargarDropdownLinea();
+            await cargarDropdownEtapa();
+            limpiar();
         };
 
         btnGuardarAlimento.onclick = async () => {
             let url = '../api/Alimento/SaveAlimento';
             const Alimento = {
-                idAlimento: null,
+                idAlimento: alimId.value,
                 nombre: alimName.value,
                 idLineaAlimentoRecomendado: alimLinea.value,
                 descripcion: alimdesc.value,
                 idEtapaAlimentoRecomendado: alimEtapa.value
             }
 
-            SaveObjectData(url, Alimento);
-            cargarTdAlimento();
-            cargarDropdownMarca();
-            cargarDropdownLinea();
-            cargarDropdownEtapa();
+            await SaveObjectData(url, Alimento);
+            await cargarTdAlimento();
+            await cargarDropdownMarca();
+            await cargarDropdownLinea();
+            await cargarDropdownEtapa();
+            limpiar();
+        };
+
+        btnGuardarLinealimento.onclick = async () => {
+            let url = '../api/Alimento/SaveLineaAlimento';
+            const Alimento = {
+                idLineaAlimento: lineaId.value,
+                nombreLinea: lineaName.value,
+                descripcionLinea: lineaDesc.value,
+                idMarcaLinea: alimMarca.value
+            }
+
+            await SaveObjectData(url, Alimento);
+            await cargarTdLinea();
+            await cargarDropdownMarca();
+            await cargarDropdownLinea();
+            await cargarDropdownEtapa();
+            limpiar();
         };
     }
 
@@ -314,7 +326,7 @@
     const cargarTdLinea = async () => {
         let marcaData = await GetObjectData("../api/Alimento/GetLineaAlimento");
 
-        CreateTable(marcaData, AlimLineaTd, (item) => { editMarca(item); });
+        CreateTable(marcaData, AlimLineaTd, (item) => { editLinea(item); });
     }
 
     const cargarDropdownMarca = async () => {
@@ -324,7 +336,7 @@
     }
 
     const cargarDropdownLinea = async () => {
-        let MarcaData = await GetObjectData("../api/Alimento/GetLineaAlimento");
+        let MarcaData = await GetObjectData("../api/Alimento/GetLineaAlimentoSimple");
 
         CreateDropdown(MarcaData, alimLinea, "nombre", "idLinea");
     }
@@ -341,12 +353,45 @@
         marcaDesc.value = item.descripcionMarca;
     };
 
-    const editAlim = (item) => {
+    const editAlim = async (item) => {
         alimId.value = item.idAlimento;
         alimName.value = item.nombre;
-        alimLinea.value = item.idLineaAlimentoRecomendado;
+        //alimLinea.Selectedvalue = item.idLineaAlimentoRecomendado;
         alimdesc.value = item.descripcion;
-        alimEtapa.value = item.idEtapaAlimentoRecomendado; 
+        //alimEtapa.value = item.idEtapaAlimentoRecomendado; 
+
+        let IdLinea = await GetObjectDataByFilter("../api/Alimento/GetIdLineaAlimentoByIdAlimento", "IdAlimento", item.idAlimento);
+        document.getElementById("alimLinea").querySelector("option[value='" + IdLinea + "']").selected = true;
+
+        let IdEtapa = await GetObjectDataByFilter("../api/Alimento/GetIdEtapaAlimentoByIdAlimento", "IdAlimento", item.idAlimento);
+        document.getElementById("alimEtapa").querySelector("option[value='" + IdEtapa + "']").selected = true;
+
+    }
+
+    const editLinea = async (item) => {
+        lineaId.value = item.idLinea;
+        lineaName.value = item.nombre;
+        lineaDesc.value = item.descripcion;
+        let idMarca = await GetObjectDataByFilter("../api/Alimento/GetIdMarcaLineaAlimentoByIdLineaAlimento", "IdLineaAlimento", item.idLinea);
+
+        document.getElementById("alimMarca").querySelector("option[value='" + idMarca + "']").selected=true;
+
+
+    }
+
+    const limpiar = () => {
+        alimId.value = 0;
+        marcaId.value = 0;
+        lineaId.value = 0;
+        alimName.value = "";
+        alimLinea.value = "";
+        alimdesc.value = "";
+        alimEtapa.value = "";
+        marcaName.value = "";
+        marcaDesc.value = "";
+        lineaName.value = "";
+        lineaDesc.value = "";
+        alimMarca.Selectedvalue = "";
     }
 </script>
 
