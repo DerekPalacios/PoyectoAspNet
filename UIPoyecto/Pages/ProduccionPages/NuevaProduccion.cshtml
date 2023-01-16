@@ -211,7 +211,7 @@
                         <h3>Tratamiento a Aplicar</h3>
                         <div class="input-box colum5050">
                             <div class="input-box colum1580">
-                                <div class="squer squer-active" id="tipoTratamiento4"></div>
+                                <div class="squer squer-active" id="tipoTratamiento3"></div>
                                 <span class="detail">Sanitización</span>
                             </div>
                             <div></div>
@@ -275,40 +275,60 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Descripcion Tratamiento</span>
-                            <input type="text" placeholder="Ingrese descripcion" id="txtDescTrat" required>
+                            <input type="text" placeholder="Ingrese descripcion" id="txtDescTrat" required disabled>
                         </div>
                         <div class="input-box">
                             <span class="detail">Descripcion Dosis</span>
-                            <input type="text" placeholder="Ingrese descripcion" id="txtDescDosis" required>
+                            <input type="text" placeholder="Ingrese descripcion" id="txtDescDosis" required disabled>
                         </div>
                         <div class="input-box colum5050">
                             <div class="input-box">
                                 <span class="detail">Marca</span>
-                                <input type="text" placeholder="Ingrese Marca" id="txtMarcaTrat" required>
+                                <input type="text" placeholder="Ingrese Marca" id="txtMarcaTrat" required disabled>
                             </div>
                             <div class="input-box">
                                 <span class="detail">Dosis Recomendada</span>
-                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTrat" required>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTrat" required disabled>
                             </div>
                         </div>
                         <div class="input-box colum5050">
                             <div class="input-box">
                                 <span class="detail">Lote Recomendado</span>
-                                <input type="text" placeholder="Ingrese el Tamaño del Lote" id="txtTamaño" required>
+                                <input type="text" placeholder="Ingrese el Tamaño del Lote" id="txtTamaño" required disabled>
                             </div>
                             <div class="input-box">
                                 <span class="detail">Dosis Totales</span>
-                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTotales" required>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTotales" required disabled>
                             </div>
                         </div>
-                        <div class="input-box colum5050">
+
+                        <div class="hiden input-box" id="ddlBox">
+                            <div class="input-box">
+                            <span class="detail">Peridiocidad Recomendado</span>
+                            <select class="input" id="ddlPeridiocidadRecom">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                            </div>
+                        <div class="input-box">
+                            <span class="detail">Via Recomendada</span>
+                            <select class="input" id="ddlViaRecom">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                        </div>
+                        </div>
+
+                        <div class="input-box colum5050" id="txtBox">
                             <div class="input-box">
                                 <span class="detail">Peridiocidad Recomendado</span>
-                                <input type="text" placeholder="Ingrese la Peridiosidad" id="txtPeridiocidadRecom" required>
+                                <input type="text" placeholder="Ingrese la Peridiosidad" id="txtPeridiocidadRecom" required disabled>
                             </div>
                             <div class="input-box">
                                 <span class="detail">Via Recomendada</span>
-                                <input type="text" placeholder="Ingrese Dosis" id="txtViaRecomendada" required>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtViaRecomendada" required disabled>
                             </div>
                         </div>
                     </div>
@@ -483,6 +503,8 @@
             document.getElementById("ddlPeridiocidad").querySelector("option[value='" + trat.idPeridiocidad + "']").selected = true;
             document.getElementById("ddlViaAdministracion").querySelector("option[value='" + trat.idVia + "']").selected = true;
             document.getElementById("txtCosto").focus();
+        }else{
+            limpiar();
         }
 
     }
@@ -496,7 +518,13 @@
         txtDescDosis.value = '';
         txtMarcaTrat.value = '';
         txtDosisTotales.value = '';
+        txtPeridiocidadRecom.value = '';
+        txtViaRecomendada.value = '';
         document.getElementById("ddlTratamientoSelect").querySelector("option[value='" + 0 + "']").selected = true;
+        document.getElementById("ddlPeridiocidadRecom").querySelector("option[value='" + 0 + "']").selected = true;
+        document.getElementById("ddlViaRecom").querySelector("option[value='" + 0 + "']").selected = true;
+
+
     }
 
 
@@ -534,6 +562,18 @@
         let dosisData = await GetObjectData('../api/Catalogos/GetPeridiocidadDropdown');
 
         CreateDropdown(dosisData, ddlPeridiocidad, 'nombre', 'idPeriodicidad');
+    };
+
+    const cargarDLViaAdmRecom = async () => {
+        let ViaAdmData = await GetObjectData('../api/Tratamiento/GetViaAdministracionBasico');
+
+        CreateDropdown(ViaAdmData, ddlViaRecom, 'tipoAdministracion', 'idViaAdministracion');
+    };
+
+    const cargarDLDosisRecom = async () => {
+        let dosisData = await GetObjectData('../api/Catalogos/GetPeridiocidadDropdown');
+
+        CreateDropdown(dosisData, ddlPeridiocidadRecom, 'nombre', 'idPeridiosidad');
     };
 
     const cargarDLTratamiento = async () => {
@@ -677,14 +717,16 @@
     const rdAlimentacion1 = document.getElementById('tipoAlimentacion1');
     const rdAlimentacion2 = document.getElementById('tipoAlimentacion2');
     const rdAlimentacion3 = document.getElementById('tipoAlimentacion3');
-    const rdAlimentacion4 = document.getElementById('tipoAlimentacion4');
     const rdFinalizacion1 = document.getElementById('finalizacion1');
     const rdFinalizacion2 = document.getElementById('finalizacion2');
     const rdTratamiento1 = document.getElementById('tipoTratamiento1');
     const rdTratamiento2 = document.getElementById('tipoTratamiento2');
+    const rdTratamiento3 = document.getElementById('tipoTratamiento3');
     const ddlLinea = document.getElementById('ddlLinea');
     const ddlTratamiento = document.getElementById('ddlTratamiento');
     const txtTratamiento = document.getElementById('txtTratamiento');
+    const ddlBox = document.getElementById('ddlBox');
+    const txtBox = document.getElementById('txtBox');
 
     rdAlimentacion1.addEventListener('click', async () => {
         if (!rdAlimentacion1.classList.contains('squer-active')) {
@@ -728,10 +770,6 @@
         }
     });
 
-    rdAlimentacion4.addEventListener('click', () => {
-        rdAlimentacion4.classList.toggle('squer-active');
-    });
-
     rdFinalizacion1.addEventListener('click', () => {
         if (!rdFinalizacion1.classList.contains('squer-active')) {
             rdFinalizacion1.classList.toggle('squer-active');
@@ -753,11 +791,16 @@
 
             ddlTratamiento.classList.toggle('hiden');
             txtTratamiento.classList.toggle('hiden');
+
+            txtBox.classList.add('colum5050');
+            ddlBox.classList.remove('colum5050');
+            ddlBox.classList.add('hiden');
             limpiar();
+
         }
     });
 
-    rdTratamiento2.addEventListener('click', () => {
+    rdTratamiento2.addEventListener('click', async () => {
         if (!rdTratamiento2.classList.contains('squer-active')) {
             //if false
             rdTratamiento1.classList.toggle('squer-active');
@@ -765,8 +808,20 @@
 
             ddlTratamiento.classList.toggle('hiden');
             txtTratamiento.classList.toggle('hiden');
+
+            ddlBox.classList.add('colum5050');
+            txtBox.classList.remove('colum5050');
+            txtBox.classList.add('hiden');
+
+            await cargarDLDosisRecom();
+            await cargarDLViaAdmRecom();
+
             limpiar();
         }
+    });
+
+    rdTratamiento3.addEventListener('click', () => {
+        rdTratamiento3.classList.toggle('squer-active');
     });
 
     document.querySelector('#ddlLinea').onchange = async e => {
