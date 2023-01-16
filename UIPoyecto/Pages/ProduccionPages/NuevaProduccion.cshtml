@@ -299,7 +299,27 @@
                                 <input type="text" placeholder="Ingrese Dosis" id="txtDosisTotales" required>
                             </div>
                         </div>
-                        <div class="input-box colum5050">
+
+                        <div class="hiden input-box" id="ddlBox">
+                            <div class="input-box">
+                            <span class="detail">Peridiocidad Recomendado</span>
+                            <select class="input" id="ddlPeridiocidadRecom">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                            </div>
+                        <div class="input-box">
+                            <span class="detail">Via Recomendada</span>
+                            <select class="input" id="ddlViaRecom">
+                                <option value="0">
+                                    --Seleccione--
+                                </option>
+                            </select>
+                        </div>
+                        </div>
+
+                        <div class="input-box colum5050" id="txtBox">
                             <div class="input-box">
                                 <span class="detail">Peridiocidad Recomendado</span>
                                 <input type="text" placeholder="Ingrese la Peridiosidad" id="txtPeridiocidadRecom" required>
@@ -386,6 +406,18 @@
         let dosisData = await GetObjectData('../api/Catalogos/GetPeridiocidadDropdown');
 
         CreateDropdown(dosisData, ddlPeridiocidad, 'nombre', 'idPeridiosidad');
+    };
+
+    const cargarDLViaAdmRecom = async () => {
+        let ViaAdmData = await GetObjectData('../api/Tratamiento/GetViaAdministracionBasico');
+
+        CreateDropdown(ViaAdmData, ddlViaRecom, 'tipoAdministracion', 'idViaAdministracion');
+    };
+
+    const cargarDLDosisRecom = async () => {
+        let dosisData = await GetObjectData('../api/Catalogos/GetPeridiocidadDropdown');
+
+        CreateDropdown(dosisData, ddlPeridiocidadRecom, 'nombre', 'idPeridiosidad');
     };
 
     const cargarDLTratamiento = async () => {
@@ -537,6 +569,8 @@
     const ddlLinea = document.getElementById('ddlLinea');
     const ddlTratamiento = document.getElementById('ddlTratamiento');
     const txtTratamiento = document.getElementById('txtTratamiento');
+    const ddlBox = document.getElementById('ddlBox');
+    const txtBox = document.getElementById('txtBox');
 
     rdAlimentacion1.addEventListener('click', async () => {
         if (!rdAlimentacion1.classList.contains('squer-active')) {
@@ -601,16 +635,27 @@
 
             ddlTratamiento.classList.toggle('hiden');
             txtTratamiento.classList.toggle('hiden');
+
+            txtBox.classList.add('colum5050');
+            ddlBox.classList.remove('colum5050');
+            ddlBox.classList.add('hiden');
         }
     });
 
-    rdTratamiento2.addEventListener('click', () => {
+    rdTratamiento2.addEventListener('click', async () => {
         if (!rdTratamiento2.classList.contains('squer-active')) {
             rdTratamiento1.classList.toggle('squer-active');
             rdTratamiento2.classList.toggle('squer-active');
 
             ddlTratamiento.classList.toggle('hiden');
             txtTratamiento.classList.toggle('hiden');
+            
+            ddlBox.classList.add('colum5050');
+            txtBox.classList.remove('colum5050');
+            txtBox.classList.add('hiden');
+
+            await cargarDLDosisRecom();
+            await cargarDLViaAdmRecom();
         }
     });
 
