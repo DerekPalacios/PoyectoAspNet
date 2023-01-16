@@ -35,24 +35,13 @@
 </div>
 
 <script type="module">
-    import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
     import CreateDataList from "../js/ComponentesJs/StatusListComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
-    import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
 
     window.onload = async () => {
 
         await cargarDLProduccion();
-        await cargarDataGalera();
-        await cargarDDAlimento();
-        await cargarDataEspeciePollo();
-
-        FechaProd.onchange = () => {
-            var fechaInicio = new Date(FechaProd.value);
-            fechaInicio.setDate(fechaInicio.getDate() + 45);
-
-            FechaSalidaProd.value = formatear(fechaInicio);
-        }
+        
     };
 
     const cargarDLProduccion = async () => {
@@ -62,50 +51,6 @@
         //response = await response.json();
         CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum9', 'DetalleProduccion');
         CreateDataList(prodData, histDl, (item) => { editAlim(item); }, 'colum9');
-    };
-
-    const formatear = f => {
-        const año = f.getFullYear();
-        const mes = ("0" + (f.getMonth() + 1)).substr(-2);
-        const dia = ("0" + f.getDate()).substr(-2);
-        return `${año}-${mes}-${dia}`
-    };
-
-    btnGuardarProduccion.onclick = async () => {
-        let url = '../api/Produccion/SaveProD';
-        const prodObj = {
-            IdProduccion: IdProd.value,
-            Lote: LoteProd.value,
-            CostoUnitLote: CostoProd.value,
-            QuintDisp: QuinProd.value,
-            IdAlimento: AlimenProd.value,
-            IdEspecie: EspecieProd.value,
-            QuintUtil: CapMax.value,
-            FechaSalida: FechaSalidaProd.checked,
-            IdGalera: GaleraProd.value,
-            IdUsuarioRegistro: 1,
-            FechaDeIngreso: FechaProd.value
-        };
-
-        SaveObjectData(url, prodObj);
-    };
-
-    const cargarDDAlimento = async () => {
-        let alimentoData = await GetObjectData('../api/Alimento/GetAlimentos');
-
-        CreateDropdown(alimentoData, AlimenProd, 'nombre', 'idAlimento');
-    };
-
-    const cargarDataEspeciePollo = async () => {
-        let especieData = await GetObjectData("../api/EspeciePollo/GetEspeciesNombreCompuesto");
-
-        CreateDropdown(especieData, EspecieProd, "descripccion", "idEspecie");
-    };
-
-    const cargarDataGalera = async () => {
-        let galeraData = await GetObjectData("../api/Galera/GetGalera");
-
-        CreateDropdown(galeraData, GaleraProd, "nombre", "idGalera");
     };
 </script>
 

@@ -2,7 +2,9 @@
     UL.innerText = "";
     const frow = document.createElement("li");
     frow.classList.add("container");
-    frow.classList.add("colum9");
+    frow.classList.add("dl-main-header");
+    frow.classList.add(colums);
+    var URLId = "";
 
     UL.append(frow);
 
@@ -15,6 +17,7 @@
                 th.innerText = prop[0].toUpperCase() + prop.substr(1);
                 frow.append(th);
             }
+
             if (prop.toUpperCase() == "ESTADO") {
                     const bolita = document.createElement("div");
                 bolita.classList.add("squer");
@@ -29,12 +32,21 @@
                 ld.innerText = item[prop];
                 row.append(ld);
             }
+
+            if (prop.toUpperCase() == "ID") {
+                URLId = URL + "?id=" + item[prop];
+            }
+        }
+        if (index == 0) {
+            const th = document.createElement("div");
+            th.innerText = "Accion";
+            frow.append(th);
         }
 
         const tdAction = document.createElement("div");
         const btnTable = document.createElement("a");
         btnTable.className = "link";
-        btnTable.href = URL;
+        btnTable.href = URLId;
         btnTable.innerText = "Ver más...";
         btnTable.onclick = () => {
             TableFunction(item);

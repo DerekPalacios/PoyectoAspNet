@@ -60,6 +60,27 @@ namespace UIPoyecto.Controllers
             return new Produccion().Get<Produccion>("EstadoProduccion = 1");
         }
 
+        ///<summary>
+        ///Extrae una produccion segun el id para la vista de detalles de produccion
+        ///</summary>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetDetalleProduccionByIdProduccion(int IdProduccion)
+        {
+            var resp = from produccionDetalle in new ProduccionForDetailView().Get<ProduccionForDetailView>("IdProduccion = " + IdProduccion)
+                       select new
+                       {
+                           estado = produccionDetalle.EstadoProduccion,
+                           nombre = produccionDetalle.Nombre,
+                           Id = produccionDetalle.IdProduccion,
+                           lote = produccionDetalle.Lote,
+                           quintalesUtilizados = produccionDetalle.QuintUtil,
+                           fechaIngreso = produccionDetalle.FechaDeIngreso.ToShortDateString(),
+                           fechaSalida = produccionDetalle.FechaSalida.ToShortDateString(),
+                       };
+            return resp;
+        }
 
 
         ///<summary>
