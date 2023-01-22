@@ -87,7 +87,11 @@ namespace CAPA_NEGOCIO.Models
             }
         }
     
-
+        public object GetTratamientoEstatusByIdProduccion(int IdProduccion)
+        {
+            var data = new Produccion().GetExecuteQueryResult($"SELECT [dbo].[GetActividadTratamientoStatusByIdProduccion] ({IdProduccion})");
+            return data;
+        }
 
 
 

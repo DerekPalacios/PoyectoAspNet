@@ -100,11 +100,10 @@ namespace UIPoyecto.Controllers
                                             estado = detallepro.Estado,
                                             id = detallepro.IdProduccion,
                                             galera = detallepro.NombreGalera,
-                                            tam = detallepro.Tamaño,
-                                            Consumo = detallepro.ConsumoAlimento,
-                                            Decesos = detallepro.MuertesTotales,
                                             Lote = detallepro.LoteActual,
                                             peso = detallepro.PesoPromedioSemanal,
+                                            estadoTratamiento = new Produccion().GetTratamientoEstatusByIdProduccion((int)detallepro.IdProduccion)
+
                                         };
 
             return listaProduccionSimple;
@@ -128,11 +127,9 @@ namespace UIPoyecto.Controllers
                                             estado = detallepro.Estado,
                                             id = detallepro.IdProduccion,
                                             galera = detallepro.NombreGalera,
-                                            tam = detallepro.Tamaño,
-                                            Consumo = detallepro.ConsumoAlimento,
-                                            Decesos = detallepro.MuertesTotales,
                                             Lote = detallepro.LoteActual,
                                             peso = detallepro.PesoPromedioSemanal,
+                                            estadoTratamiento = new Produccion().GetTratamientoEstatusByIdProduccion((int)detallepro.IdProduccion)
                                         };
 
             return listaProduccionSimple;
