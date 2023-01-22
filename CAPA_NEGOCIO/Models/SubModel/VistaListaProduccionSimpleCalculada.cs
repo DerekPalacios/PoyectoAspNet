@@ -11,9 +11,6 @@ namespace CAPA_NEGOCIO.Models.SubModel
     {
         public int? IdProduccion { get; set; }
         public string NombreGalera { get; set; }
-        public decimal? Tamaño { get; set; }
-        public decimal? ConsumoAlimento { get; set; }
-        public int? MuertesTotales { get; set; }
         public int? LoteActual { get; set; }
         public decimal? PesoPromedioSemanal { get; set; }
         public bool Estado { get; set; }

@@ -46,6 +46,29 @@ namespace UIPoyecto.Controllers
 
 
 
+        ///<summary>
+        ///Extrae los datos de usuarios
+        ///</summary>
+        ///<remarks>
+        ///registros de usuarios 
+        ///</remarks>
+        ///<returns></returns>
+        ///
+        [HttpGet]
+        public object GetUsuariosActivos()
+        {
+            var obj = from Usuario in new TblUsuario().Get<TblUsuario>()
+                      select new
+                      {
+                          idUsuario = Usuario.IdUsuario,
+                          Nombre = Usuario.NombreUsuario,
+                          correo = Usuario.CorreoElecronico,
+                          telefono = Usuario.NumeroCelular
+                      };
+            return obj;
+
+        }
+
 
 
 
