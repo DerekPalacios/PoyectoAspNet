@@ -27,13 +27,18 @@ namespace CAPA_DATOS
         protected abstract string BuildDeleteQuery(object Inst);
         public object ExecuteSqlQuery(string strQuery)
         {
-            //SQLMCon.Open()
+            if (SQLMCon.State != ConnectionState.Open)
+            {
+                SQLMCon.Open();
+
+            }
             var con = ComandoSql(strQuery, SQLMCon);
             var scalar = con.ExecuteScalar();
             SQLMCon.Close();
             if (scalar == (object)DBNull.Value) return true;
-            else return Convert.ToInt32(scalar);
+            else return scalar;
         }
+
         public Object InsertObject(Object Inst)
         {
             try
