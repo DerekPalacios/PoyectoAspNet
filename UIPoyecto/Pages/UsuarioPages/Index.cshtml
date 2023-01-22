@@ -10,9 +10,45 @@
             <!--<h3 class="dl-header">Usuario Actual</h3>
     <ul class="datalist"></ul>-->
 
-            <h3 class="dl-header">Usuarios</h3>
+            @*<h3 class="dl-header">Usuarios</h3>
 
-            <ul class="datalist" id="usuariosDL"></ul>
+            <ul class="datalist" id="usuariosDL"></ul>*@
+
+            <div class="tabs box">
+                <div class="tab-container">
+                    <div id="tab2" class="tab">
+                        <a href="#tab2">Lista de Roles</a>
+                        <div class="tab-content">
+                            <div class="box">
+                                <div class="box table-small Center">
+                                    <table class="datatable" id="RolesTd">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab1" class="tab">
+                        <a href="#tab1">Lista de Usuarios</a>
+                        <div class="tab-content">
+                            <div class="box">
+                                <div class="box scrollable table-medium Center">
+                                    <table class="datatable" id="UsuariosTd">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="box">
@@ -82,11 +118,12 @@
 
 <script type="module">
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
+    import CreateTable from "../js/ComponentesJs/TableComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
     import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
 
     window.onload = async () => {
-        await cargarDLUsuarios();
+        await cargarTDUsuarios();
 
         btnGuardarUsuario.onclick = async () => {
 
@@ -101,7 +138,7 @@
             }
 
             SaveObjectData(url, usuarioOBJ);
-            cargarDLUsuarios();
+            cargarTDUsuarios();
             cargarDropdownCargo();
         };
 
@@ -113,14 +150,20 @@
             }
 
             SaveObjectData(url, Alimento);
-            cargarTdAlimento();
+            cargarTDUsuarios();
         };
     }
 
-    const cargarDLUsuarios = async () => {
+    const cargarTDUsuarios = async () => {
         let prodData = await GetObjectData("../api/Produccion/GetUsuarios");
         //response = await response.json();
-        CreateDataList(prodData, usuariosDL, (item) => { editAlim(item); }, 'colum9');
+        CreateTable(prodData, UsuariosTd, (item) => { editAlim(item); });
+    }
+
+    const cargarTDRoles = async () => {
+        let prodData = await GetObjectData("../api/Produccion/GetUsuarios");
+        //response = await response.json();
+        CreateTable(prodData, RolesTd, (item) => { editAlim(item); });
     }
 
     const cargarDropdownCargo = async () => {

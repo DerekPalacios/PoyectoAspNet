@@ -42,5 +42,11 @@ namespace CAPA_DATOS
             SqlADOConexion.SQLM.Delete(this);
             return true;
         }
+
+        public object GetExecuteQueryResult(string query)
+        {
+            var data = SqlADOConexion.SQLM.ExecuteSqlQuery(query);
+            return data;
+        }
     }
 }
