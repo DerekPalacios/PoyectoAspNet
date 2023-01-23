@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\AjustesPages\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.17" />
@@ -24,4 +28,13 @@
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<NoWarn>$(NoWarn);1591</NoWarn>
 </PropertyGroup>
+<ItemGroup>
+  <UpToDateCheckInput Remove="Pages\AjustesPages\Index.cshtml" />
+</ItemGroup>
+<ItemGroup>
+  <_ContentIncludedByDefault Remove="Pages\AjustesPages\Index.cshtml" />
+</ItemGroup>
+<ItemGroup>
+  <None Include="Pages\AjustesPages\Index.cshtml" />
+</ItemGroup>
 </Project>
