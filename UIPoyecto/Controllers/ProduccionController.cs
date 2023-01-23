@@ -102,7 +102,7 @@ namespace UIPoyecto.Controllers
                                             galera = detallepro.NombreGalera,
                                             Lote = detallepro.LoteActual,
                                             peso = detallepro.PesoPromedioSemanal,
-                                            estadoTratamiento = new Produccion().GetTratamientoEstatusByIdProduccion((int)detallepro.IdProduccion)
+                                            actividades = new Produccion().GetProgresoActividadDiaria((int)detallepro.IdProduccion)
 
                                         };
 
@@ -129,7 +129,7 @@ namespace UIPoyecto.Controllers
                                             galera = detallepro.NombreGalera,
                                             Lote = detallepro.LoteActual,
                                             peso = detallepro.PesoPromedioSemanal,
-                                            estadoTratamiento = new Produccion().GetTratamientoEstatusByIdProduccion((int)detallepro.IdProduccion)
+                                            Actividades = new Produccion().GetProgresoActividadDiaria((int)detallepro.IdProduccion)
                                         };
 
             return listaProduccionSimple;
