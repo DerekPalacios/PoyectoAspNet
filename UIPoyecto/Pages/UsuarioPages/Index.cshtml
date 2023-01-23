@@ -156,13 +156,13 @@
     }
 
     const cargarTDUsuarios = async () => {
-        let prodData = await GetObjectData("../api/Produccion/GetUsuarios");
+        let prodData = await GetObjectData("../api/Produccion/GetUsuariosActivos");
         //response = await response.json();
         CreateTable(prodData, UsuariosTd, (item) => { editAlim(item); });
     }
 
     const cargarTDRoles = async () => {
-        let prodData = await GetObjectData("../api/Produccion/GetUsuarios");
+        let prodData = await GetObjectData("../api/Produccion/GetUsuariosActivos");
         //response = await response.json();
         CreateTable(prodData, RolesTd, (item) => { editAlim(item); });
     }
