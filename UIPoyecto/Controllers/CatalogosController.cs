@@ -69,7 +69,18 @@ namespace UIPoyecto.Controllers
 
         }
 
+        [HttpGet]
+        public object GetRolesUsuarios()
+        {
+            var obj = from Usuario in new TblCargoUsuario().Get<TblCargoUsuario>()
+                      select new
+                      {
+                          iscargo = Usuario.IdCargo,
+                          descripcion = Usuario.DescripcionCargo
+                      };
+            return obj;
 
+        }
 
 
 
