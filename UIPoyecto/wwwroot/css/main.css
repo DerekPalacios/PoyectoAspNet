@@ -1044,6 +1044,30 @@ form .box-detail .margin-top {
     --tabs-position: 1;
 }
 
+#tab3 > a {
+    --tabs-position: 2;
+}
+
+#tab4 > a {
+    --tabs-position: 3;
+}
+
+#tab5 > a {
+    --tabs-position: 4;
+}
+
+#tab6 > a {
+    --tabs-position: 5;
+}
+
+#tab7 > a {
+    --tabs-position: 6;
+}
+
+#tab8 > a {
+    --tabs-position: 7;
+}
+
 .tab>a {
     text-align: center;
     position: absolute;
