@@ -178,7 +178,7 @@
                 <form action="#">
                     <div class="box-detail">
                         <div hidden>
-                            <input type="number" id="marcaId" />
+                            <input type="number" value="0" id="marcaId" />
                         </div>
                         <div class="input-box">
                             <span class="detail">Nombre de la Marca</span>
@@ -268,10 +268,12 @@
             }
 
             await SaveObjectData(url, MarcaAlim);
-            await cargarTdMarca();
             await cargarDropdownMarca();
             await cargarDropdownLinea();
             await cargarDropdownEtapa();
+            await cargarTdAlimento();
+            await cargarTdMarca();
+            await cargarTdLinea();
             limpiar();
         };
 
