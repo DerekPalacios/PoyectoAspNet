@@ -169,7 +169,7 @@
     }
 
     const cargarDropdownCargo = async () => {
-        let CargoData = await GetObjectData("../api/CargoUsuario/GetCargoUsuario");
+        let CargoData = await GetObjectData("../api/Catalogos/GetRolesUsuario");
 
         CreateDropdown(CargoData, cargoUsuario, "cargo", "idCargo");
     }
