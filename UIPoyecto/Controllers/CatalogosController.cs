@@ -57,13 +57,14 @@ namespace UIPoyecto.Controllers
         [HttpGet]
         public object GetUsuariosActivos()
         {
-            var obj = from Usuario in new TblUsuario().Get<TblUsuario>()
+            var obj = from Usuario in new UsuarioParaTabla().Get<UsuarioParaTabla>()
                       select new
                       {
                           idUsuario = Usuario.IdUsuario,
                           Nombre = Usuario.NombreUsuario,
                           correo = Usuario.CorreoElecronico,
-                          telefono = Usuario.NumeroCelular
+                          telefono = Usuario.NumeroCelular,
+                          cargo = Usuario.NombreCargo
                       };
             return obj;
 
@@ -76,13 +77,28 @@ namespace UIPoyecto.Controllers
                       select new
                       {
                           iscargo = Usuario.IdCargo,
+                          Cargo = Usuario.NombreCargo,
                           descripcion = Usuario.DescripcionCargo
                       };
             return obj;
 
         }
 
-
+        [HttpPost]
+        public object SaveCargoUsuario(TblCargoUsuario NewAl)
+        {
+            if (NewAl.IdCargo != 0)
+            {
+                return updateCargo(NewAl);
+            }
+            var x =NewAl.Save();
+            return x;
+        }
+        [HttpPost]
+        public object updateCargo(TblCargoUsuario linea)
+        {
+            return linea.Update("IdCargo");
+        }
 
 
 

@@ -51,7 +51,7 @@
                 <form action="#">
                     <div class="box-detail">
                         <div hidden>
-                            <input type="number" id="CargoId" />
+                            <input type="number" value="0" id="CargoId" />
                         </div>
                         <div class="input-box">
                             <span class="detail">Cargo</span>
@@ -144,18 +144,27 @@
         };
 
         btnGuardarCargo.onclick = async () => {
-            let url = '../api/CargoUsuario/SaveCargoUsuario';
+            let url = '../api/Catalogos/SaveCargoUsuario';
             const cargoOBJ = {
-                CargoId: null,
-                Cargo: Cargo.value,
-                Descripcion: CargoDescripcion.value
+                IdCargo: CargoId.value,
+                NombreCargo: Cargo.value,
+                DescripcionCargo: CargoDescripcion.value
             }
 
-            SaveObjectData(url, cargoOBJ);
-            cargarTDUsuarios();
-            cargarTDRoles();
+            await SaveObjectData(url, cargoOBJ);
+            await cargarTDUsuarios();
+            await cargarTDRoles();
+            limpiar();
         };
     }
+
+
+    const editCargo = cargoItem =>{
+        CargoId.value = cargoItem.iscargo;
+        Cargo.value = cargoItem.cargo;
+        CargoDescripcion.value = cargoItem.descripcion;
+    }
+
 
     const cargarTDUsuarios = async () => {
         let prodData = await GetObjectData("../api/Catalogos/GetUsuariosActivos");
@@ -166,7 +175,7 @@
     const cargarTDRoles = async () => {
         let prodData = await GetObjectData("../api/Catalogos/GetRolesUsuarios");
         //response = await response.json();
-        CreateTable(prodData, RolesTd, (item) => { editAlim(item); });
+        CreateTable(prodData, RolesTd, (item) => { editCargo(item); });
     }
 
     const cargarDropdownCargo = async () => {
@@ -174,4 +183,14 @@
 
         CreateDropdown(prodData, cargoUsuario, "descripcion", "iscargo");
     }
+
+
+    const limpiar =()=>{
+        CargoId.value = 0;
+        Cargo.value = '';
+        CargoDescripcion.value = '';
+
+
+    }
+
 </script>
