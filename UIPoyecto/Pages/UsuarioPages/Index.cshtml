@@ -7,17 +7,11 @@
 <div>
     <div class="colum2">
         <div class="box">
-            <!--<h3 class="dl-header">Usuario Actual</h3>
-    <ul class="datalist"></ul>-->
-
-            @*<h3 class="dl-header">Usuarios</h3>
-
-            <ul class="datalist" id="usuariosDL"></ul>*@
 
             <div class="tabs box">
                 <div class="tab-container">
                     <div id="tab2" class="tab">
-                        <a href="#tab2">Lista de Roles</a>
+                        <a href="#tab2"><h3>Lista de Roles</h3></a>
                         <div class="tab-content">
                             <div class="box">
                                 <div class="box table-small Center">
@@ -32,7 +26,7 @@
                         </div>
                     </div>
                     <div id="tab1" class="tab">
-                        <a href="#tab1">Lista de Usuarios</a>
+                        <a href="#tab1"><h3>Lista de Usuarios</h3></a>
                         <div class="tab-content">
                             <div class="box">
                                 <div class="box scrollable table-medium Center">
@@ -62,6 +56,10 @@
                         <div class="input-box">
                             <span class="detail">Cargo</span>
                             <input type="text" placeholder="Ingrese el Cargo" id="Cargo" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Descripcion</span>
+                            <input type="text" placeholder="Ingrese una Descripcion" id="CargoDescripcion" required>
                         </div>
                     </div>
 
@@ -146,10 +144,11 @@
             let url = '../api/CargoUsuario/SaveCargoUsuario';
             const cargoOBJ = {
                 CargoId: null,
-                Cargo: Cargo.value
+                Cargo: Cargo.value,
+                Descripcion: CargoDescripcion.value
             }
 
-            SaveObjectData(url, Alimento);
+            SaveObjectData(url, cargoOBJ);
             cargarTDUsuarios();
         };
     }
