@@ -81,7 +81,7 @@
                         </div>
                         <div class="input-box">
                             <span class="detail">Cargo</span>
-                            <select class="input" id="cargoUser" required>
+                            <select class="input" id="cargoUsuario" required>
                                 <option value="0">
                                     Seleccione
                                 </option>
@@ -124,7 +124,8 @@
 
     window.onload = async () => {
         await cargarTDUsuarios();
-
+        await cargarTDRoles();
+        await cargarDropdownCargo();
         btnGuardarUsuario.onclick = async () => {
 
             let url = '../api/Usuario/SaveUsuario';
@@ -163,14 +164,14 @@
     }
 
     const cargarTDRoles = async () => {
-        let prodData = await GetObjectData("../api/Catalogos/GetUsuariosActivos");
+        let prodData = await GetObjectData("../api/Catalogos/GetRolesUsuarios");
         //response = await response.json();
         CreateTable(prodData, RolesTd, (item) => { editAlim(item); });
     }
 
     const cargarDropdownCargo = async () => {
-        let CargoData = await GetObjectData("../api/Catalogos/GetRolesUsuarios");
+        let prodData = await GetObjectData("../api/Catalogos/GetRolesUsuarios");
 
-        CreateDropdown(CargoData, cargoUsuario, "cargo", "idCargo");
+        CreateDropdown(prodData, cargoUsuario, "descripcion", "iscargo");
     }
 </script>
