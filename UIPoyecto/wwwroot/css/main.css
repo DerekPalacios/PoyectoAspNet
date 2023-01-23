@@ -470,6 +470,7 @@ main .date input[type="date"] {
     margin: 1.8rem 0 0 1.8rem;
 }
 
+.tab-content .datatable,
 .container .datatable {
     border-collapse: collapse;
     width: 90%;
