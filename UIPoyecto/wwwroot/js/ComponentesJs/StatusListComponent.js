@@ -39,7 +39,7 @@
         }
         if (index == 0) {
             const th = document.createElement("div");
-            th.innerText = "Accion";
+            th.innerText = "Acción";
             frow.append(th);
         }
 
