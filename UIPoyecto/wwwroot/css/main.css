@@ -477,6 +477,7 @@ main .date input[type="date"] {
     margin: 0 4.5%;
 }
 
+.tab-content .datatable thead,
 .container .datatable thead {
     background-color: var(--color-white);
     position: sticky;
@@ -485,6 +486,10 @@ main .date input[type="date"] {
     color: var(--dt-text-color);
 }
 
+
+.tab-content .datatable,
+.tab-content .datatable th,
+.tab-content .datatable th,
 .container .datatable,
 .container .datatable th,
 .container .datatable td {
@@ -492,24 +497,29 @@ main .date input[type="date"] {
     color: var(--dt-text-color);
 }
 
+.tab-content .datatable th,
 .container .datatable th {
     font-weight: bolder;
     text-align: left;
     border-bottom: solid 1px var(--dt-border-color);
 }
 
+.tab-content .datatable td,
 .container .datatable td {
     border-bottom: solid 1px var(--dt-border-color);
 }
 
+.tab-content .datatable tbody tr:nth-child(even),
 .container .datatable tbody tr:nth-child(even) {
     background-color: var(--dt-even-row-color);
 }
 
+.tab-content .datatable tbody tr:hover,
 .container .datatable tbody tr:hover {
     background-color: var(--dt-hover-cell-color);
 }
 
+.tab-content .datatable tbody tr:hover .Link-Button,
 .container .datatable tbody tr:hover .Link-Button {
     color: var(--color-info-light);
     border-color: var(--color-info-light);
