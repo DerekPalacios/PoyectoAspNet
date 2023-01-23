@@ -13,6 +13,7 @@ namespace CAPA_NEGOCIO.Models
        
         public int IdCargo { get; set; }
         public string DescripcionCargo { get; set; } = null!;
+        public string NombreCargo { get; set; }
 
     }
 }
