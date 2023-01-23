@@ -93,7 +93,12 @@ namespace CAPA_NEGOCIO.Models
             return data;
         }
 
+        public object GetProgresoActividadDiaria(int produccion)
+        {
+            var data = new Produccion().GetExecuteQueryResult($"SELECT [dbo].GetProgresoActividadProduccionDiario({produccion})");
+            return data;
 
+        }
 
     } 
 
