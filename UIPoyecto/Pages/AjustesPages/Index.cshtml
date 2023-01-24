@@ -6,5 +6,102 @@
 }
 
 <section>
+    <div class="tabs box">
+        <div class="tab-container">
+            <div id="tab2" class="tab">
+                <a href="#tab2">Consumo Semanales</a>
+                <div class="tab-content">
+                    <section class="colum2">
+                        <div class="container">
+                            <h3 class="datatable-header">Consumo Semanal</h3>
+                            <div class="box scrollable table-medium Center">
+                                <table class="datatable" id="ConsumoSemanalTd">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="formContainer">
+                                <div class="formTitle">Consumo Semanal</div>
+                                <form action="#">
+                                    <div class="box-detail">
+                                        <div hidden>
+                                            <input type="number" id="IdGal" />
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="detail">Semana Número</span>
+                                            <input type="number" placeholder="Ingrese el Número" id="numSemana" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="detail">Peso Unitario</span>
+                                            <input type="number" placeholder="Ingrese el Peso (Lbs)" id="DimL" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="detail">Etapa Producción</span>
+                                            <select class="input" id="etapaProduccion" required>
+                                                <option value="0">
+                                                    --Seleccione--
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
 
+                                    <div class="buttons">
+                                        <input class="Secondary-Button" type="submit" value="Cancelar" id="btnCancelarGalera" style="width: 45%">
+                                        <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarGalera" style="width: 45%">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div id="tab1" class="tab">
+                <a href="#tab1">Consumo Diario</a>
+                <div class="tab-content">
+                    <section class="colum2">
+                        <div class="container">
+                            <h3 class="datatable-header">Consumo Diario</h3>
+                            <div class="box scrollable table-medium Center">
+                                <table class="datatable" id="ConsumoDiarioTd">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="formContainer">
+                                <div class="formTitle">Consumo Diario</div>
+                                <form action="#">
+                                    <div class="box-detail">
+                                        <div hidden>
+                                            <input type="number" id="IdGal" />
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="detail">Dia de Producción</span>
+                                            <input type="text" placeholder="Ingrese el Nombre de la Galera" id="NombreGal" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="detail">Consumo Diario</span>
+                                            <input type="number" placeholder="Ingrese el Largo de la Galera" id="DimL" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="buttons">
+                                        <input class="Secondary-Button" type="submit" value="Cancelar" id="btnCancelarGalera" style="width: 45%">
+                                        <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarGalera" style="width: 45%">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
