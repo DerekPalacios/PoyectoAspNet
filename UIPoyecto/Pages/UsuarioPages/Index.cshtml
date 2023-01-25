@@ -5,111 +5,111 @@
 }
 
 <div>
-    <div class="colum2">
+    <div class="colum1">
         <div class="box">
-
-            <div class="tabs box">
+            <div class="tabs">
                 <div class="tab-container">
                     <div id="tab2" class="tab">
                         <a href="#tab2"><h3>Lista de Roles</h3></a>
                         <div class="tab-content">
-                            <div class="container">
-                                <div class="box scrollable table-small Center">
-                                    <table class="datatable" id="RolesTd">
-                                        <thead>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
+                            <section class="colum2">
+                                <div class="container">
+                                    <div class="box scrollable table-small Center">
+                                        <table class="datatable" id="RolesTd">
+                                            <thead>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="formContainer">
+                                    <div class="formTitle">Nuevo Cargo</div>
+                                    <form action="#">
+                                        <div class="box-detail">
+                                            <div hidden>
+                                                <input type="number" value="0" id="CargoId" />
+                                            </div>
+                                            <div class="input-box">
+                                                <span class="detail">Cargo</span>
+                                                <input type="text" placeholder="Ingrese el Cargo" id="Cargo" required>
+                                            </div>
+                                            <div class="input-box">
+                                                <span class="detail">Descripci&oacute;n</span>
+                                                <input type="text" placeholder="Ingrese una Descripcion" id="CargoDescripcion" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="buttons">
+                                            <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarCargo" style="width: 100%">
+                                        </div>
+                                    </form>
+                                </div>
+                            </section>
                         </div>
                     </div>
                     <div id="tab1" class="tab">
                         <a href="#tab1"><h3>Lista de Usuarios</h3></a>
                         <div class="tab-content">
-                            <div class="container">
-                                <div class="box scrollable table-medium Center">
-                                    <table class="datatable" id="UsuariosTd">
-                                        <thead>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
+                            <section class="colum2">
+                                <div class="container">
+                                    <div class="box scrollable table-medium Center">
+                                        <table class="datatable" id="UsuariosTd">
+                                            <thead>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="formContainer">
+                                    <div class="formTitle">Nuevo Usuario</div>
+                                    <form action="#">
+                                        <div class="box-detail">
+                                            <div hidden>
+                                                <input type="number" id="UsuarioId" />
+                                            </div>
+                                            <div class="input-box">
+                                                <span class="detail">Nombre</span>
+                                                <input type="text" placeholder="Ingrese el Nombre del Usuario" id="nombreUsuario" required>
+                                            </div>
+                                            <div class="input-box">
+                                                <span class="detail">Cargo</span>
+                                                <select class="input" id="cargoUsuario" required>
+                                                    <option value="0">
+                                                        Seleccione
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="input-box">
+                                                <span class="detail">Correo</span>
+                                                <input type="email" placeholder="Ingrese el Correo" id="email" required>
+                                            </div>
+                                            <div class="input-box">
+                                                <span class="detail">Contraseña</span>
+                                                <input type="password" placeholder="Ingrese la Contraseña" id="password" required>
+                                            </div>
+                                            <div class="input-box">
+                                                <span class="detail">Verifique la Contraseña</span>
+                                                <input type="password" placeholder="Ingrese la Contraseña" required>
+                                            </div>
+                                            <div class="input-box">
+                                                <span class="detail">N&uacute;mero de Tel&eacute;fono</span>
+                                                <input type="tel" placeholder="Ingrese el Numero de Telefono" id="tel" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="buttons">
+                                            <input class="Primary-Button" type="submit" value="Registrar" style="width: 100%" id="btnGuardarUsuario">
+                                        </div>
+                                    </form>
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>
             </div>
 
-        </div>
-
-        <div class="box">
-            <div class="formContainer">
-                <div class="formTitle">Nuevo Cargo</div>
-                <form action="#">
-                    <div class="box-detail">
-                        <div hidden>
-                            <input type="number" value="0" id="CargoId" />
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Cargo</span>
-                            <input type="text" placeholder="Ingrese el Cargo" id="Cargo" required>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Descripci&oacute;n</span>
-                            <input type="text" placeholder="Ingrese una Descripcion" id="CargoDescripcion" required>
-                        </div>
-                    </div>
-
-                    <div class="buttons">
-                        <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarCargo" style="width: 100%">
-                    </div>
-                </form>
-            </div>
-            <div class="formContainer">
-                <div class="formTitle">Nuevo Usuario</div>
-                <form action="#">
-                    <div class="box-detail">
-                        <div hidden>
-                            <input type="number" id="UsuarioId" />
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Nombre</span>
-                            <input type="text" placeholder="Ingrese el Nombre del Usuario" id="nombreUsuario" required>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Cargo</span>
-                            <select class="input" id="cargoUsuario" required>
-                                <option value="0">
-                                    Seleccione
-                                </option>
-                            </select>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Correo</span>
-                            <input type="email" placeholder="Ingrese el Correo" id="email" required>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Contraseña</span>
-                            <input type="password" placeholder="Ingrese la Contraseña" id="password" required>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Verifique la Contraseña</span>
-                            <input type="password" placeholder="Ingrese la Contraseña" required>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">N&uacute;mero de Tel&eacute;fono</span>
-                            <input type="tel" placeholder="Ingrese el Numero de Telefono" id="tel" required>
-                        </div>
-                    </div>
-
-                    <div class="buttons">
-                        <input class="Primary-Button" type="submit" value="Registrar" style="width: 100%" id="btnGuardarUsuario">
-                    </div>
-                </form>
-            </div>
         </div>
     </div>
 </div>
