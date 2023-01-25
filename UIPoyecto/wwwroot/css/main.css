@@ -87,6 +87,17 @@ body {
     transition: all 1ms ease-in-out;
 }
 
+.background-img {
+    background-image: url(https://raw.githubusercontent.com/DerekPalacios/PoyectoAspNet/master/hens-in-the-poultry-farm.jpg);
+    background-image: no-repeat;
+    background-image: fixed;
+    background-image: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
     body::-webkit-scrollbar {
         width: 10px;
         background: var(--color-info-dark);
@@ -529,9 +540,9 @@ main .date {
     transform: translate(-50%, -80%);
 }
 
-    .Login-form .formContainer:hover {
-        box-shadow: 5px 15px 15px 5px rgba(0, 0, 0, 0.33);
-    }
+.Login-form .formContainer:hover {
+    box-shadow: 5px 25px 25px 5px rgba(0, 0, 0, 0.45);
+}
 
 .formContainer {
     height: calc(auto + 20px);
