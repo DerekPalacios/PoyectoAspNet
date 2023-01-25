@@ -7,12 +7,19 @@
 <div>
     <div class="colum2">
         <div class="box">
-            <h3 class="dl-header">Tratamientos Activas</h3>
-            <ul class="datalist" id="tratDl"></ul>
-
-            <h3 class="dl-header">Historial de Tratamientos</h3>
-
-            <ul class="datalist" id="histDl"></ul>
+            <div class="box">
+                <div class="container">
+                    <h3 class="datatable-header">Galeras</h3>
+                    <div class="box scrollable table-medium Center">
+                        <table class="datatable" id="tratamientoTd">
+                            <thead>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="box">
@@ -48,6 +55,7 @@
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
     import CreateDataList from "../js/ComponentesJs/StatusListComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
+    import CreateTable from "../js/ComponentesJs/TableComponent.js";
 
     window.onload = async () => {
         await cargarDLTratamiento();
@@ -56,8 +64,7 @@
     const cargarDLTratamiento = async () => {
         let tratData = await GetObjectData("../api/Tratamiento/GetTratamientosProduccion");
         //response = await response.json();
-        CreateDataList(tratData, tratDl, (item) => { editAlim(item); }, 'colum9');
-        CreateDataList(tratData, histDl, (item) => { editAlim(item); }, 'colum9');
+        CreateTable(tratamientoTd, tratData, (item) => { editAlim(item); });
     };
 
 </script>
