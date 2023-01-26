@@ -1,33 +1,36 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="~/css/main.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
+﻿@page
+@model LoginModel
+@{
+    Layout = null;
+}
 
 <body class="background-img">
     <section class="Login-form">
         <div class="formContainer">
             <div class="formTitle">Bienvenido</div>
-            <form action="#">
+            <form method="post" asp-page="Login" id="LoginForm" >
+                @{
+                    if(Model.Msg != null)
+                    {
+                        if(Model.Msg.Length > 0)
+                        {
+                            <p >@Model.Msg</p>
+                        }
+                    }
+                }
                 <div class="box-detail">
                     <div class="input-box">
                         <span class="detail">Correo</span>
-                        <input type="email" placeholder="Ingrese el Correo" required>
+                        <input type="text" id="UserName" placeholder="Ingrese el Usuario" required asp-for="@Model.Usuario_Personal">
                     </div>
                     <div class="input-box">
                         <span class="detail">Contraseña</span>
-                        <input type="password" placeholder="Ingrese su Contraseña" required>
+                        <input type="password" id="Psswrd" placeholder="Ingrese su Contraseña" required asp-for="@Model.Contrasena_Personal">
                     </div>
                 </div>
 
                 <div class="buttons">
-                    <a href="~/Index" class="Primary-Button" style="width: 100%;">Inciar Sesion</a>
+                    <button class="Primary-Button" style="width: 100%;" type="submit" id="btnSesion">Inciar Sesion</button>
                 </div>
             </form>
         </div>
@@ -36,4 +39,3 @@
     <script src="changeTheme.js"></script>
 </body>
 
-</html>
