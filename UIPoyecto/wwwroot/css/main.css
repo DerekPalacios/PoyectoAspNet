@@ -592,6 +592,13 @@ main .date {
     position: relative;
 }
 
+.loginTitle {
+    font-size: 1.8rem;
+    font-weight: bolder;
+    position: relative;
+}
+
+    .loginTitle::before,
     .formTitle::before {
         content: '';
         margin-top: 4px;
