@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,82 +10,84 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.1.2/dist/chart.umd.min.js"></script>
 </head>
 <body class="main-container">
-   @* <section >*@
+    @* <section >*@
 
-        <aside>
-            <section class="top">
-                <a href="~/Index">
-                    <div class="logo">
-                        <ion-icon name="egg" class="ico"></ion-icon>
-                        <h2>Poyecto</h2>
-                    </div>
-                    <div class="close" id="btn_Close">
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-                </a>
-            </section>
-
-            <section class="sidebar">
-                <a href="~/Index">
-                    <ion-icon name="stats-chart"></ion-icon>
-                    <h3>Dashboard</h3>
-                </a>
-                <a href="~/ProduccionPages/Index">
-                    <ion-icon name="clipboard"></ion-icon>
-                    <h3>Producci&oacute;n</h3>
-                </a>
-                <a href="~/GaleraPages/Index">
-                    <ion-icon name="storefront"></ion-icon>
-                    <h3>Galera</h3>
-                </a>
-                <a href="~/AlimentoPages/Index">
-                    <ion-icon name="bag"></ion-icon>
-                    <h3>Alimentos</h3>
-                </a>
-                <a href="~/EspeciePages/Index">
-                    <ion-icon name="egg"></ion-icon>
-                    <h3>Especie</h3>
-                </a>
-                <a href="#">
-                    <ion-icon name="file-tray-stacked"></ion-icon>
-                    <h3>Tareas</h3>
-                </a>
-                <a href="~/TratamientoPages/Index">
-                    <ion-icon name="medkit"></ion-icon>
-                    <h3>Tratamiento</h3>
-                </a>
-                <a href="~/AjustesPages/Index" id="btn_Usuarios">
-                    <ion-icon name="settings"></ion-icon>
-                    <h3>Ajustes</h3>
-                </a>
-                <a href="~/UsuarioPages/Index" id="btn_Usuarios">
-                    <ion-icon name="people"></ion-icon>
-                    <h3>Usuarios</h3>
-                </a>
-                <a href="~/Login">
-                    <ion-icon name="log-in"></ion-icon>
-                    <h3>Salir</h3>
-                </a>
-            </section>
-        </aside>
-
-        <main role="main" class="pb-3">
-            <div class="mainHeader">
-                <div class="Title">
-                    <h1>@ViewData["Title"]</h1>
+    <aside>
+        <section class="top">
+            <a href="~/Index">
+                <div class="logo">
+                    <ion-icon name="egg" class="ico"></ion-icon>
+                    <h2>Poyecto</h2>
                 </div>
-                <div class="themeChange" id="btn_Theme">
-                    <div class="active">
-                        <ion-icon name="sunny"></ion-icon>
-                    </div>
-                    <div>
-                        <ion-icon name="moon"></ion-icon>
-                    </div>
+                <div class="close" id="btn_Close">
+                    <ion-icon name="close-outline"></ion-icon>
+                </div>
+                <div style="float:right">
+                </div>
+            </a>
+        </section>
+
+        <section class="sidebar">
+            <a href="~/Index">
+                <ion-icon name="stats-chart"></ion-icon>
+                <h3>Dashboard</h3>
+            </a>
+            <a href="~/ProduccionPages/Index">
+                <ion-icon name="clipboard"></ion-icon>
+                <h3>Producci&oacute;n</h3>
+            </a>
+            <a href="~/GaleraPages/Index">
+                <ion-icon name="storefront"></ion-icon>
+                <h3>Galera</h3>
+            </a>
+            <a href="~/AlimentoPages/Index">
+                <ion-icon name="bag"></ion-icon>
+                <h3>Alimentos</h3>
+            </a>
+            <a href="~/EspeciePages/Index">
+                <ion-icon name="egg"></ion-icon>
+                <h3>Especie</h3>
+            </a>
+            <a href="#">
+                <ion-icon name="file-tray-stacked"></ion-icon>
+                <h3>Tareas</h3>
+            </a>
+            <a href="~/TratamientoPages/Index">
+                <ion-icon name="medkit"></ion-icon>
+                <h3>Tratamiento</h3>
+            </a>
+            <a href="~/AjustesPages/Index" id="btnAjustes">
+                <ion-icon name="settings"></ion-icon>
+                <h3>Ajustes</h3>
+            </a>
+            <a href="~/UsuarioPages/Index" id="btn_Usuarios">
+                <ion-icon name="people"></ion-icon>
+                <h3>Usuarios</h3>
+            </a>
+            <a href="~/Login">
+                <ion-icon name="log-in"></ion-icon>
+                <h3>Salir</h3>
+            </a>
+        </section>
+    </aside>
+
+    <main role="main" class="pb-3">
+        <div class="mainHeader">
+            <div class="Title">
+                <h1>@ViewData["Title"]</h1>
+            </div>
+            <div class="themeChange" id="btn_Theme">
+                <div class="active">
+                    <ion-icon name="sunny"></ion-icon>
+                </div>
+                <div>
+                    <ion-icon name="moon"></ion-icon>
                 </div>
             </div>
+        </div>
 
-            @RenderBody()
-        </main>
+        @RenderBody()
+    </main>
 
     @*</section>*@
 
@@ -97,6 +100,10 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+    <script type="module">
+        
+
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
