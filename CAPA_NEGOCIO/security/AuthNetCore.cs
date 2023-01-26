@@ -24,11 +24,18 @@ namespace CAPA_NEGOCIO.Security
         {
             try
             {
-                SqlADOConexion.IniciarConexion(user, password);
-                //User = new UserModel(
-                //    new TblUsuario() { NombreUsuario = user }.FindObject<TblUsuario>()
-                //);
-                return true;
+                if (SqlADOConexion.IniciarConexion(user, password))
+                {
+                    
+                    User = new UserModel(
+                        new TblUsuario().Get<TblUsuario>($" NombreUsuario = '{user}' and ContraseñaSesion = '{password}'").First()
+                    ) ;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception)
             {
@@ -43,11 +50,11 @@ namespace CAPA_NEGOCIO.Security
             this.user = usuario.NombreUsuario;
             this.success = true;
             this.UserId = usuario.IdUsuario;
-            this.Roles = new List<String> { "Admin", "Vendedor", "Comprador" };
+            this.Roles = usuario.IdCargo;
         }
         public string user { get; set; }
         public int? UserId { get; set; }
         public bool success { get; set; }
-        public List<String> Roles { get; set; }
+        public int Roles { get; set; }
     }
 }
