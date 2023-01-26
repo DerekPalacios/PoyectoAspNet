@@ -2,19 +2,21 @@
 @model LoginModel
 @{
     Layout = null;
+    ViewData["Title"] = "Login";
+    <link rel="stylesheet" href="~/css/main.css">
 }
 
 <body class="background-img">
     <section class="Login-form">
         <div class="formContainer">
             <div class="formTitle">Bienvenido</div>
-            <form method="post" asp-page="Login" id="LoginForm" >
+            <form method="post" asp-page="Login" id="LoginForm">
                 @{
-                    if(Model.Msg != null)
+                    if (Model.Msg != null)
                     {
-                        if(Model.Msg.Length > 0)
+                        if (Model.Msg.Length > 0)
                         {
-                            <p >@Model.Msg</p>
+                            <p>@Model.Msg</p>
                         }
                     }
                 }
