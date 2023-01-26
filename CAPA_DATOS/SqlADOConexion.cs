@@ -18,7 +18,11 @@ namespace CAPA_DATOS
                 UserSQLConexion = "Data Source=" + SQLServer +
                     "; Initial Catalog= " + DataBaseName + "; " + "Trusted_Connection = True;";
                 SQLM = new SqlServerGDatos(UserSQLConexion);
-                return true;
+                object var = SQLM.ExecuteSqlQuery($"SELECT [dbo].[CheckUserExists] ('{user}','{password}')");
+                if( var != null && (bool)var) {
+                    return true;
+                }
+                return false;
             }
             catch (Exception)
             {
