@@ -289,7 +289,8 @@ aside {
     width: 100%;
 }
 
-    .mainHeader .themeChange {
+    .mainHeader .themeChange,
+    .mainHeader .filterButon {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -307,6 +308,16 @@ aside {
             align-items: center;
             width: 50%;
             padding: 4px;
+        }
+
+        .mainHeader .filterButon div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            padding: 4px;
+            font-size: 24px;
+            color: var(--dt-text-color);
         }
 
         .mainHeader .themeChange ion-icon {
@@ -377,6 +388,11 @@ main .date {
 .colum2 {
     display: grid;
     grid-template-columns: 70% 30%;
+}
+
+.colum3 {
+    display: grid;
+    grid-template-columns: 25% 38% 36%;
 }
 
 .colum5 {
@@ -532,6 +548,16 @@ main .date {
 /*----------------------------------------------------------------------------------*/
 /*---------------------------------------Forms--------------------------------------*/
 /*----------------------------------------------------------------------------------*/
+.filter .box-detail .input-box input {
+    height: 24px;
+    width: 75%;
+    padding: 8px;
+}
+
+.filter .box-detail .input-box .inputMargin {
+    margin-left: 20px;
+}
+
 .Login-form {
     width: 50%;
     position: absolute;
