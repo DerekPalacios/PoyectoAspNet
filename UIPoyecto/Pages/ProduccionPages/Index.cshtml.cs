@@ -1,15 +1,23 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CAPA_NEGOCIO.Security;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace UIPoyecto.Pages.EspeciePages
+namespace UIPoyecto.Pages
 {
-    public class Index : PageModel
+    public class IndexProduccionModel : PageModel
     {
+        private readonly ILogger<IndexProduccionModel> _logger;
+
+        public IndexProduccionModel(ILogger<IndexProduccionModel> logger)
+        {
+            _logger = logger;
+        }
+
         public IActionResult OnGet()
         {
             if (AuthNetCore.VerifyAuthenticate())
