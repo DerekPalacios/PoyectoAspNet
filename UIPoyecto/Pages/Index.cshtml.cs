@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CAPA_NEGOCIO.Security;
 
 namespace UIPoyecto.Pages
 {
@@ -17,8 +18,16 @@ namespace UIPoyecto.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (AuthNetCore.VerifyAuthenticate())
+            {
+                return Page();
+            }
+            else
+            {
+                return RedirectToPage("Login");
+            }
 
         }
     }
