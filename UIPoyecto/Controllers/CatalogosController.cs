@@ -84,7 +84,15 @@ namespace UIPoyecto.Controllers
 
         }
 
-        [HttpPost]
+        [HttpGet]
+        public object GetLogUser()
+        {
+            var obj = AuthNetCore.User;
+            return obj;
+
+        }
+
+            [HttpPost]
         public object SaveCargoUsuario(TblCargoUsuario NewAl)
         {
             if (NewAl.IdCargo != 0)
