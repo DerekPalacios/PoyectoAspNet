@@ -566,14 +566,16 @@ main .date {
     transform: translate(-50%, -80%);
 }
 
-.Login-form .formContainer:hover {
-    box-shadow: 5px 25px 25px 5px rgba(0, 0, 0, 0.45);
-}
+    .Login-form .formContainer:hover {
+        box-shadow: 5px 25px 25px 5px rgba(0, 0, 0, 0.45);
+        border: solid .5px var(--color-primary);
+        background: rgba(255, 255, 255, 0.60);
+    }
 
 .formContainer {
     height: calc(auto + 20px);
     width: 100%;
-    background: var(--color-white);
+    background: rgba(255, 255, 255, 0.25);
     border-radius: var(--border-radius-1);
     padding: 15px 20px;
     top: 15%;
