@@ -17,7 +17,8 @@ namespace UIPoyecto.Controllers
     {
         public AlimentoController()
         {
-            AuthNetCore.loginIN("admin", "admin");
+            AuthNetCore.loginIN("MarioVado", "12345");
+            // AuthNetCore.loginIN("admin", "admin");
             //aca hay que insertar las validaciones de ussuarios 
         }
 

@@ -100,26 +100,36 @@
     import CreateDetailCard from "../js/ComponentesJs/CardDetailComponent.js";
 
     window.onload = async () => {
-        
+
         await cargarDLActividadesProduccion();
         await CreateDetailCardProduccion();
     };
+    const formatear = f => {
+        const año = f.getFullYear();
+        const mes = ("0" + (f.getMonth() + 1)).substr(-2);
+        const dia = ("0" + f.getDate()).substr(-2);
+        return `${año}-${mes}-${dia}`
+    };
 
     const cargarDLActividadesProduccion = async () => {
-        let actividadProduccion = await GetObjectDataByFilter("../api/Actividades/GetActividadesByIdProduccionFecha", ["IdProduccion", "Fecha"], [id, "'2023-01-12'"]);
+        let fecha =formatear(new Date());
+        //let actividadProduccion = await GetObjectDataByFilter("../api/Actividades/GetActividadesByIdProduccionFecha", ["IdProduccion", "Fecha"], [id, "'" +fecha+ "'"]);
+        let actividadProduccion = await GetObjectDataByFilter("../api/Actividades/GetActividadesByIdProduccion", "IdProduccion", id);
 
         //let prodData = await GetObjectData("../api/Produccion/GetVistaListaProduccionSimpleCalculada");
         //let prodDataActive = await GetObjectData("../api/Produccion/GetVistaListaProduccionSimpleCalculadaActiva");
 
         //response = await response.json();
         CreateDataList(actividadProduccion, dlActividades, (item) => { editAlim(item); }, 'colum7', 'DetalleProduccion');
-        //CreateDataList(prodData, histDl, (item) => { editAlim(item); }, 'colum9');
-    };
+        //CreateDataList(prodDa
+        //CreateDetailCardProduccion(ta, histDl, (item) => { editAlim(item); }, 'colum9');
+        //};
 
-    const CreateDetailCardProduccion = async () => {
         let detalleProduccion = await GetObjectDataByFilter("../api/Produccion/GetDetalleProduccionByIdProduccion", "IdProduccion", id);
 
         CreateDetailCard(detalleProduccion, detailBox, numProd, id);
     }
-    
+
+
+
 </script>

@@ -13,7 +13,8 @@ namespace UIPoyecto.Controllers
     {
         public GaleraController()
         {
-            AuthNetCore.loginIN("x", "y");
+            AuthNetCore.loginIN("MarioVado", "12345");
+            //AuthNetCore.loginIN("x", "y");
         }
 
         ///<summary>

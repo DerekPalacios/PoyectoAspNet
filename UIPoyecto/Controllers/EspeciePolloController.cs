@@ -16,7 +16,8 @@ namespace UIPoyecto.Controllers
     {
         public EspeciePolloController()
         {
-            AuthNetCore.loginIN("admin", "admin");
+            AuthNetCore.loginIN("MarioVado", "12345");
+            // AuthNetCore.loginIN("admin", "admin");
 
         }
 

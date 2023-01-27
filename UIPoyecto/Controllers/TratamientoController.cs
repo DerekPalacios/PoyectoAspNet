@@ -16,8 +16,8 @@ namespace UIPoyecto.Controllers
         public TratamientoController()
         {
             //aca hay que insertar las validaciones de ussuarios 
-
-            AuthNetCore.loginIN("admin", "admin");
+            AuthNetCore.loginIN("MarioVado", "12345");
+            // AuthNetCore.loginIN("admin", "admin");
         }
 
         [HttpPost]
@@ -54,6 +54,7 @@ namespace UIPoyecto.Controllers
         [HttpPost]
         public object SaveTratamiendoProduccionAsignado(TratamientoProduccionAsignado tratamientoProduccion)
         {
+            tratamientoProduccion.IdUsuarioAsigna =(int)AuthNetCore.User.UserId;
             //se aplican reglas de negocio por la generacion de actividades de tratamiento, asi que 
             //van cargados al modelo directamente
             return tratamientoProduccion.GuardarTratamientoProduccionCompleto(tratamientoProduccion);
@@ -132,13 +133,15 @@ namespace UIPoyecto.Controllers
         [HttpGet]
         public object GetDetalleActividadDiariaTratamientoByIdProduccion(int IdProduccion)
         {
-            var obj = from detalleTratamiento in new DetallesTratamientoDiario().Get<DetallesTratamientoDiario>("IdProduccion = " + IdProduccion)
+            var obj = from detalleTratamiento in new ActividadDiariaTratamiento().Get<ActividadDiariaTratamiento>("IdProduccion = " + IdProduccion)
                       select new
                       {
+                          estado = detalleTratamiento.EstadoAlplicacion,
                           id = detalleTratamiento.IdActividadTratamiento,
-                          aplicacion = detalleTratamiento.FechaAplicacion,
-                          sanitario = detalleTratamiento.TratamientoSanitario,
-                          administracion = detalleTratamiento.TipoAdministracion
+                          fechaAsignacion = detalleTratamiento.FechaAplicacion,
+                          sanitario = detalleTratamiento.CambioEstadoPermitidoActividadTratamiento,
+                          usuario = "N/C"
+
                       };
             return obj;
         }

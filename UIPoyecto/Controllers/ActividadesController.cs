@@ -17,8 +17,8 @@ namespace UIPoyecto.Controllers
         {
 
             //aca hay que insertar las validaciones de ussuarios 
-
-            AuthNetCore.loginIN("admin", "admin");
+            AuthNetCore.loginIN("MarioVado", "12345");
+            // AuthNetCore.loginIN("admin", "admin");
         }
 
         ///<summary>
@@ -70,13 +70,17 @@ namespace UIPoyecto.Controllers
         public object GetActividadesByIdProduccion(int IdProduccion)
         {
 
-            var resp = from activicidades in new ActividadProduccion().Get<ActividadProduccion>("IdProduccion = " + IdProduccion)
+            var resp = from activicidades in new ActividadesProduccion().Get<ActividadesProduccion>("IdProduccion = " + IdProduccion)
                        select new
                        {
                            estado = activicidades.Estado,
-                           id = activicidades.IdActividad,
-                           fechaAsignacion = activicidades.FechaAsignacionActividad.ToShortDateString()
+                           id = activicidades.IdActividadProduccion,
+                           fechaAsignacion = activicidades.FechaAsignacionActividad.ToShortDateString(),
+                           nombre = activicidades.NombreActividad,
+                           descripcion = activicidades.DescripcionActividad,
+                           usuario = activicidades.NombreUsuario == "null" ? activicidades.NombreUsuario : "N/C"
                        };
+
 
 
             return resp;

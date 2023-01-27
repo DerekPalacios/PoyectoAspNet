@@ -40,7 +40,8 @@ namespace CAPA_NEGOCIO.Models
         {
             try
             {
-                newPro.IdProduccion = (int)newPro.Save();
+               string res = newPro.Save().ToString();
+                newPro.IdProduccion =Convert.ToInt16(res);
                 newPro.GenerarActividadesDiarias();
                 return newPro.IdProduccion;
             }

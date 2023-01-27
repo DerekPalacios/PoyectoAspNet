@@ -35,6 +35,7 @@ namespace CAPA_DATOS
             var con = ComandoSql(strQuery, SQLMCon);
             var scalar = con.ExecuteScalar();
             SQLMCon.Close();
+           
             if (scalar == (object)DBNull.Value) return true;
             else return scalar;
         }

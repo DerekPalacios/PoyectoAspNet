@@ -13,7 +13,7 @@ namespace UIPoyecto.Controllers
     {
         public MarcaAlimentoController()
         {
-            AuthNetCore.loginIN("admin", "admin");
+            AuthNetCore.loginIN("MarioVado", "12345");
             //aca hay que insertar las validaciones de ussuarios 
         }
         [HttpGet]

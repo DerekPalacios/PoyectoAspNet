@@ -16,8 +16,8 @@ namespace UIPoyecto.Controllers
         public CatalogosController()
         {
             //aca hay que insertar las validaciones de ussuarios 
-
-            AuthNetCore.loginIN("admin", "admin");
+            AuthNetCore.loginIN("MarioVado", "12345");
+            //AuthNetCore.loginIN("admin", "admin");
         }
 
 

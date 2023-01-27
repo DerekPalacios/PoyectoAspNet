@@ -16,7 +16,7 @@ namespace UIPoyecto.Controllers
 
         public ProduccionController()
         {
-            AuthNetCore.loginIN("admin", "admin");
+            AuthNetCore.loginIN("MarioVado", "12345");
 
         }
 
@@ -153,6 +153,7 @@ namespace UIPoyecto.Controllers
         [HttpPost]
         public object SaveProD(Produccion newPro)
         {
+            newPro.IdUsuarioRegistro =(int)AuthNetCore.User.UserId;
             var res = newPro.GuardarProduccionCompleta(newPro);
             return res;
             //return 1;

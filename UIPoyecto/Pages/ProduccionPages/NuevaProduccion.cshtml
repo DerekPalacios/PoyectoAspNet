@@ -531,7 +531,9 @@
         document.querySelector("#txtSemanasProd").addEventListener("change", async function () {
             actualizarFecha();
         });
-
+        document.querySelector("#galera").addEventListener("change", async function () {
+            txtTamanioLote.value = 200;
+        });
         document.querySelector("#especie").addEventListener("change", async function () {
             let especie = await GetObjectDataByFilter("../api/EspeciePollo/GetEspecieByIdEspecie", "IdEspecie", this.value);
             txtSemanasProd.value = especie.semanasProduccion;
