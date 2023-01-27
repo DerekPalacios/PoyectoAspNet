@@ -6,43 +6,193 @@
 
 <section class="colum5050">
     <div class="box container">
-        <canvas class="max-H-300" id="modelsChart"></canvas>
+        <h2>Peso Promedio de Especies</h2>
+        <canvas class="max-H-300" id="pastelPesoEspecie"></canvas>
     </div>
     <div class="box container">
+
         <canvas class="max-H-300" id="yearsChart1"></canvas>
     </div>
 </section>
 <section class="colum2 margin-top">
     <div class="box container">
-        <canvas class="max-H-300" id="yearsChart"></canvas>
+        <h2>
+            Comparativa de características:
+            <select class="input" id="idGaleras" style="width: 25%; height: 1.8rem; cursor: pointer; margin-left: .8rem">
+                <option value="0">Galera 1</option>
+                <option value="1">Galera 2</option>
+                <option value="2">Galera 3</option>
+            </select>
+        </h2>
+        <canvas class="max-H-300" id="decesosDiariosId"></canvas>
     </div>
     <div class="box container">
-    <h3>
-        Comparativa de características:
-        <select class="input" id="featuresOptions" style="width: 25%; height: 1.8rem; cursor: pointer; margin-left: .8rem">
-            <option value="height">Altura (m)</option>
-            <option value="length">Longitud (m)</option>
-            <option value="speed">Velocidad (km/h)</option>
-        </select>
-    </h3>
-    <canvas class="max-H-300" id="featuresChart"></canvas>
-</div>
+        <h2>
+            Comparativa de características:
+            <select class="input" id="idEspecies" style="width: 25%; height: 1.8rem; cursor: pointer; margin-left: .8rem">
+                <option value="0">Danès</option>
+                <option value="1">NewCoaster</option>
+                <option value="2">Amarillos Pequeños</option>
+            </select>
+        </h2>
+        <canvas class="max-H-300" id="radarEspecie"></canvas>
+    </div>
 </section>
 
 <script type="module">
     Chart.defaults.color = '#9fa3a9'
     Chart.defaults.borderColor = '#9fa3a9'
 
+    const decesosByGalera = [];
+    const pesoPromedioByEspecie = [];
+    const especieDetalle = [
+        {
+            valor: 20,
+            propiedad: 'Costo'
+        },
+        {
+            valor: 6,
+            propiedad: 'SemanasProduccion'
+        }, {
+            valor: 2,
+            propiedad: 'ConsumoDiario'
+        }, {
+            valor: 5,
+            propiedad: 'PesoFinal'
+        },
 
+    ]
+
+
+    window.onload = () => {
+        document.querySelector("#idGaleras").addEventListener("change", function () {
+            //renderYearsChart(decesosByGalera[this.value]);
+            const chart = Chart.getChart(decesosDiariosId);
+            chart.data.datasets[0].data = decesosByGalera[this.value].map(x => x.decesos);
+            chart.update();
+        });
+    }
+
+    pesoPromedioByEspecie.push(
+        [
+            {
+                Peso: 10,
+                Especie: 'Danés'
+            }, {
+                Peso: 35,
+                Especie: 'NewCoaster'
+            }, {
+                Peso: 10,
+                Especie: 'AmarillosPequeños'
+            }, {
+                Peso: 12,
+                Especie: 'Gran Cabestia'
+            }, {
+                Peso: 40,
+                Especie: 'Hondureños'
+            }, {
+                Peso: 20,
+                Especie: 'CR'
+            },
+
+        ]
+
+    );
+
+    decesosByGalera.push(
+        [
+            {
+                decesos: 3,
+                dia: 'Lunes'
+            },
+            {
+                decesos: 1,
+                dia: 'Martes'
+            }, {
+                decesos: 2,
+                dia: 'Miercoes'
+            }, {
+                decesos: 0,
+                dia: 'Jueves'
+            }, {
+                decesos: 4,
+                dia: 'Viernes'
+            }, {
+                decesos: 1,
+                dia: 'Sabado'
+            }, {
+                decesos: 0,
+                dia: 'Domingo'
+            },
+
+        ]
+
+    );
+    decesosByGalera.push(
+        [
+            {
+                decesos: 1,
+                dia: 'Lunes'
+            },
+            {
+                decesos: 2,
+                dia: 'Martes'
+            }, {
+                decesos: 2,
+                dia: 'Miercoes'
+            }, {
+                decesos: 0,
+                dia: 'Jueves'
+            }, {
+                decesos: 0,
+                dia: 'Viernes'
+            }, {
+                decesos: 0,
+                dia: 'Sabado'
+            }, {
+                decesos: 0,
+                dia: 'Domingo'
+            },
+        ]
+    );
+    decesosByGalera.push(
+        [
+            {
+                decesos: 3,
+                dia: 'Lunes'
+            },
+            {
+                decesos: 1,
+                dia: 'Martes'
+            }, {
+                decesos: 0,
+                dia: 'Miercoes'
+            }, {
+                decesos: 0,
+                dia: 'Jueves'
+            }, {
+                decesos: 1,
+                dia: 'Viernes'
+            }, {
+                decesos: 10,
+                dia: 'Sabado'
+            }, {
+                decesos: 1,
+                dia: 'Domingo'
+            },
+
+        ]
+
+    );
 
     const printCharts = () => {
 
         fetchCoastersData('https://localhost:5001/api/EspeciePollo/GetEspeciesNombreCompuesto')
             .then(([allCoasters]) => {
 
-                renderModelsChart(allCoasters)
-                renderFeaturesChart(allCoasters)
-                renderYearsChart(allCoasters)
+                renderGraficoPastel(pesoPromedioByEspecie[0])
+                renderFeaturesChart(especieDetalle)
+                lineaDecesosdiarios(decesosByGalera[0])
                 enableEventHandlers(allCoasters)
             })
 
@@ -50,12 +200,12 @@
 
 
 
-    const renderModelsChart = coasters => {
+    const renderGraficoPastel = x => {
 
         const data = {
-            labels: coasters.map(x => x.descripccion),
+            labels: x.map(x => x.Especie),
             datasets: [{
-                data: coasters.map(x => x.precioUnit),
+                data: x.map(x => x.Peso),
                 borderColor: getDataColors(),
                 backgroundColor: getDataColors(90)
             }]
@@ -63,53 +213,40 @@
 
         const options = {
             plugins: {
-                legend: { position: 'left' }
+                legend: { position: 'top' }
             }
         }
 
-        new Chart('modelsChart', { type: 'doughnut', data, options })
+        new Chart('pastelPesoEspecie', { type: 'doughnut', data, options })
     }
 
 
-
-
-    const renderFeaturesChart = coasters => {
+    const renderFeaturesChart = x => {
 
         const data = {
-            labels: coasters.map(coaster => coaster.name),
+            labels: x.map(x => x.propiedad),
             datasets: [{
-                label: 'Altura (m)',
-                data: coasters.map(coaster => coaster.height),
+                label: 'Danes',
+                data: x.map(x => x.valor),
                 borderColor: getDataColors()[0],
                 backgroundColor: getDataColors(20)[0]
             }]
         }
 
-        const options = {
-            plugins: {
-                legend: { display: false }
-            },
-            scales: {
-                r: {
-                    ticks: { display: false }
-                }
-            }
-        }
-
-        new Chart('featuresChart', { type: 'radar', data, options })
+        new Chart('radarEspecie', { type: 'radar', data })
     }
 
 
 
+    //funmcionando
+    const lineaDecesosdiarios = x => {
 
-    const renderYearsChart = coasters => {
-
-        const years = ['1998-2000', '2001-2003', '2004-2006', '2007-2009', '2013-2015', '2016-2018', '2019-2021']
 
         const data = {
-            labels: years,
+            labels: x.map(x => x.dia),
             datasets: [{
-                data: getCoastersByYear(coasters, years),
+                data: x.map(x => x.decesos),
+                label: 'Decesos Diarios Por Galera',
                 tension: .5,
                 borderColor: getDataColors()[1],
                 backgroundColor: getDataColors(20)[1],
@@ -124,18 +261,20 @@
             }
         }
 
-        new Chart('yearsChart', { type: 'line', data, options })
+        new Chart('decesosDiariosId', { type: 'line', data })
     }
+
+
 
     const enableEventHandlers = coasters => {
 
-        document.querySelector('#featuresOptions').onchange = e => {
+        document.querySelector('#idGaleras').onchange = e => {
 
             const { value: property, text: label } = e.target.selectedOptions[0]
 
-            const newData = coasters.map(coaster => coaster[property])
+            const newData = decesosByGalera[this.value];
 
-            updateChartData('featuresChart', newData, label)
+            updateChartData('yearsChart', newData, label)
         }
     }
 
@@ -167,4 +306,10 @@
 
 
     printCharts();
+
+
+
+
+
+
 </script>
