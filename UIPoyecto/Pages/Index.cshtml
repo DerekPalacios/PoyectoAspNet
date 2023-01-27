@@ -10,8 +10,13 @@
         <canvas class="max-H-300" id="pastelPesoEspecie"></canvas>
     </div>
     <div class="box container">
-
-        <canvas class="max-H-300" id="yearsChart1"></canvas>
+        <h2>Consumo Promedio de Semana</h2>
+        <select class="input" id="isEspecie" style="width: 25%; height: 1.8rem; cursor: pointer; margin-left: .8rem">
+            <option value="0">Danes</option>
+            <option value="1">New Coaster</option>
+            <option value="2">Amarilos Pequeños</option>
+        </select>
+        <canvas class="max-H-300" id="barrasEspecie"></canvas>
     </div>
 </section>
 <section class="colum2 margin-top">
@@ -27,14 +32,15 @@
         <canvas class="max-H-300" id="decesosDiariosId"></canvas>
     </div>
     <div class="box container">
-        <h2>
-            Comparativa de características:
-            <select class="input" id="idEspecies" style="width: 25%; height: 1.8rem; cursor: pointer; margin-left: .8rem">
-                <option value="0">Danès</option>
-                <option value="1">NewCoaster</option>
-                <option value="2">Amarillos Pequeños</option>
-            </select>
-        </h2>
+        @* <h2>
+        Comparativa de características:
+        <select class="input" id="idEspecies" style="width: 25%; height: 1.8rem; cursor: pointer; margin-left: .8rem">
+        <option value="0">Danès</option>
+        <option value="1">NewCoaster</option>
+        <option value="2">Amarillos Pequeños</option>
+        </select>
+        </h2>*@
+        <h2>Detalles Generales de Especies</h2>
         <canvas class="max-H-300" id="radarEspecie"></canvas>
     </div>
 </section>
@@ -45,24 +51,8 @@
 
     const decesosByGalera = [];
     const pesoPromedioByEspecie = [];
-    const especieDetalle = [
-        {
-            valor: 20,
-            propiedad: 'Costo'
-        },
-        {
-            valor: 6,
-            propiedad: 'SemanasProduccion'
-        }, {
-            valor: 2,
-            propiedad: 'ConsumoDiario'
-        }, {
-            valor: 5,
-            propiedad: 'PesoFinal'
-        },
-
-    ]
-
+    const especieDetalle = [];
+    const especieCosnsumo = [];
 
     window.onload = () => {
         document.querySelector("#idGaleras").addEventListener("change", function () {
@@ -71,6 +61,14 @@
             chart.data.datasets[0].data = decesosByGalera[this.value].map(x => x.decesos);
             chart.update();
         });
+
+        document.querySelector("#isEspecie").addEventListener("change", function () {
+            //renderYearsChart(decesosByGalera[this.value]);
+            const chart = Chart.getChart(barrasEspecie);
+            chart.data.datasets[0].data = decesosByGalera[this.value].map(x => x.decesos);
+            chart.update();
+        });
+
     }
 
     pesoPromedioByEspecie.push(
@@ -185,18 +183,153 @@
 
     );
 
+    especieDetalle.push(
+        [
+            {
+                valor: 20,
+                propiedad: 'Costo'
+            },
+            {
+                valor: 6,
+                propiedad: 'SemanasProduccion'
+            }, {
+                valor: 2,
+                propiedad: 'ConsumoDiario'
+            }, {
+                valor: 5,
+                propiedad: 'PesoFinal'
+            },
+
+        ]
+    );
+    especieDetalle.push(
+        [
+            {
+                valor: 23,
+                propiedad: 'Costo'
+            },
+            {
+                valor: 6,
+                propiedad: 'SemanasProduccion'
+            }, {
+                valor: 2,
+                propiedad: 'ConsumoDiario'
+            }, {
+                valor: 4,
+                propiedad: 'PesoFinal'
+            },
+
+        ]
+    );
+    especieDetalle.push(
+        [
+            {
+                valor: 17,
+                propiedad: 'Costo'
+            },
+            {
+                valor: 4,
+                propiedad: 'SemanasProduccion'
+            }, {
+                valor: 2,
+                propiedad: 'ConsumoDiario'
+            }, {
+                valor: 3.4,
+                propiedad: 'PesoFinal'
+            },
+
+        ]
+    );
+
+    especieCosnsumo.push(
+        [
+            {
+                consumo: 1,
+                dia: 'Sem 1'
+            },
+            {
+                consumo: 1,
+                dia: 'Sem 2'
+            }, {
+                consumo: 2,
+                dia: 'Sem 3'
+            }, {
+                consumo: 2.6,
+                dia: 'Sem 4'
+            }, {
+                consumo: 3,
+                dia: 'Sem 5'
+            }, {
+                consumo: 2,
+                dia: 'Sem 6'
+            }
+
+        ]
+
+    );
+    especieCosnsumo.push(
+        [
+            {
+                consumo: 0.9,
+                dia: 'Sem 1'
+            },
+            {
+                consumo: 2,
+                dia: 'Sem 2'
+            }, {
+                consumo: 3,
+                dia: 'Sem 3'
+            }, {
+                consumo: 3,
+                dia: 'Sem 4'
+            }, {
+                consumo: 4,
+                dia: 'Sem 5'
+            }, {
+                consumo: 5,
+                dia: 'Sem 6'
+            }
+
+        ]
+
+    );
+    especieCosnsumo.push(
+        [
+            {
+                consumo: 2,
+                dia: 'Sem 1'
+            },
+            {
+                consumo: 2.4,
+                dia: 'Sem 2'
+            }, {
+                consumo: 3,
+                dia: 'Sem 3'
+            }, {
+                consumo: 3,
+                dia: 'Sem 4'
+            }, {
+                consumo: 5,
+                dia: 'Sem 5'
+            }, {
+                consumo: 6,
+                dia: 'Sem 6'
+            }
+
+        ]
+
+    );
     const printCharts = () => {
 
-        fetchCoastersData('https://localhost:5001/api/EspeciePollo/GetEspeciesNombreCompuesto')
-            .then(([allCoasters]) => {
 
-                renderGraficoPastel(pesoPromedioByEspecie[0])
-                renderFeaturesChart(especieDetalle)
-                lineaDecesosdiarios(decesosByGalera[0])
-                enableEventHandlers(allCoasters)
-            })
+        renderGraficoPastel(pesoPromedioByEspecie[0])
+        renderFeaturesChart(especieDetalle)
+        lineaDecesosdiarios(decesosByGalera[0])
+        renderGraficoBarras(especieCosnsumo[0])
+
 
     }
+
 
 
 
@@ -220,19 +353,51 @@
         new Chart('pastelPesoEspecie', { type: 'doughnut', data, options })
     }
 
-
-    const renderFeaturesChart = x => {
+    const renderGraficoBarras = x => {
 
         const data = {
-            labels: x.map(x => x.propiedad),
+            labels: x.map(x => x.dia),
             datasets: [{
-                label: 'Danes',
-                data: x.map(x => x.valor),
-                borderColor: getDataColors()[0],
-                backgroundColor: getDataColors(20)[0]
+                data: x.map(x => x.consumo),
             }]
         }
 
+        const options = {
+            plugins: {
+                legend: { display: false }
+            }
+        }
+
+        new Chart('barrasEspecie', { type: 'bar', data, options })
+    }
+
+    const renderFeaturesChart = t => {
+
+        //const data = {
+        //    labels: x.map(x => x.propiedad),
+        //    datasets: [{
+        //        label: 'Danes',
+        //        data: x.map(x => x.valor),
+        //        borderColor: getDataColors()[0],
+        //        backgroundColor: getDataColors(20)[0]
+        //    }]
+        //}
+        const data = {
+            labels: t[0].map(x => x.propiedad),
+            datasets: [{
+                label: 'Danes',
+                data: t[0].map(x => x.valor),
+                fill: true
+            }, {
+                label: 'New Coaster',
+                data: t[1].map(x => x.valor),
+                fill: true
+            }, {
+                label: 'Amarilos Pequeños',
+                data: t[2].map(x => x.valor),
+                fill: true
+            }]
+        };
         new Chart('radarEspecie', { type: 'radar', data })
     }
 
