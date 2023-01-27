@@ -129,8 +129,6 @@
         //CreateDetailCardProduccion(ta, histDl, (item) => { editAlim(item); }, 'colum9');
         //};
 
-<<<<<<< HEAD
-=======
     const cargarDLActividadesTratamientoProduccion = async () => {
         let actTratamientoProd = await GetObjectDataByFilter("../api/Tratamiento/GetDetalleActividadDiariaTratamientoByIdTratamientoProduccion", "IdProduccion", id);
 
@@ -138,7 +136,6 @@
     }
 
     const CreateDetailCardProduccion = async () => {
->>>>>>> 4cbf9a0d18c6d850e616c559ed575e26af0df6af
         let detalleProduccion = await GetObjectDataByFilter("../api/Produccion/GetDetalleProduccionByIdProduccion", "IdProduccion", id);
 
         CreateDetailCard(detalleProduccion, detailBox, numProd, id);
