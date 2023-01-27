@@ -26,7 +26,10 @@
                 <a href="#tab2">Actividades Tratamiento</a>
                 <div class="tab-content">
                     <section class="colum2">
-                        <div class="box"></div>
+                        <div class="box">
+                            <h2>Lista de Actividades Tratamiento</h2>
+                            <ul class="datalist scrollable table-medium" id="dlActividadesTrat"></ul>
+                        </div>
                         <div class="box"></div>
                     </section>
                 </div>
@@ -103,6 +106,7 @@
 
         await cargarDLActividadesProduccion();
         await CreateDetailCardProduccion();
+        await cargarDLActividadesTratamientoProduccion();
     };
     const formatear = f => {
         const año = f.getFullYear();
@@ -125,6 +129,16 @@
         //CreateDetailCardProduccion(ta, histDl, (item) => { editAlim(item); }, 'colum9');
         //};
 
+<<<<<<< HEAD
+=======
+    const cargarDLActividadesTratamientoProduccion = async () => {
+        let actTratamientoProd = await GetObjectDataByFilter("../api/Tratamiento/GetDetalleActividadDiariaTratamientoByIdTratamientoProduccion", "IdProduccion", id);
+
+        CreateDataList(actTratamientoProd, dlActividadesTrat, (item) => { editAlim(item); }, 'colum7', '#');
+    }
+
+    const CreateDetailCardProduccion = async () => {
+>>>>>>> 4cbf9a0d18c6d850e616c559ed575e26af0df6af
         let detalleProduccion = await GetObjectDataByFilter("../api/Produccion/GetDetalleProduccionByIdProduccion", "IdProduccion", id);
 
         CreateDetailCard(detalleProduccion, detailBox, numProd, id);
