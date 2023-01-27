@@ -133,7 +133,8 @@ namespace UIPoyecto.Controllers
         [HttpGet]
         public object GetDetalleActividadDiariaTratamientoByIdProduccion(int IdProduccion)
         {
-            var obj = from detalleTratamiento in new ActividadDiariaTratamiento().Get<ActividadDiariaTratamiento>("IdProduccion = " + IdProduccion)
+            TratamientoProduccionAsignado tp = new TratamientoProduccionAsignado().Get<TratamientoProduccionAsignado>("IdProduccion = " + IdProduccion).First();
+            var obj = from detalleTratamiento in new ActividadDiariaTratamiento().Get<ActividadDiariaTratamiento>("IdTratamientoProduccionAsignado = " + tp.IdTratamientoProduccion)
                       select new
                       {
                           estado = detalleTratamiento.EstadoAlplicacion,

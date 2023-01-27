@@ -112,7 +112,8 @@ namespace CAPA_NEGOCIO.Models
 
         public object GuardarTratamientoProduccionCompleto(TratamientoProduccionAsignado tratamientoProduccion)
         {
-            tratamientoProduccion.IdTratamientoProduccion = (int)tratamientoProduccion.Save();
+            string res = tratamientoProduccion.Save().ToString();
+            tratamientoProduccion.IdTratamientoProduccion = Convert.ToInt16(res);
             GenerarActividadesDiariasTratamiento();
 
             return tratamientoProduccion.IdTratamientoProduccion;

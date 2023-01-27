@@ -116,7 +116,7 @@
     };
 
     const cargarDLActividadesProduccion = async () => {
-        let fecha =formatear(new Date());
+        let fecha = formatear(new Date());
         //let actividadProduccion = await GetObjectDataByFilter("../api/Actividades/GetActividadesByIdProduccionFecha", ["IdProduccion", "Fecha"], [id, "'" +fecha+ "'"]);
         let actividadProduccion = await GetObjectDataByFilter("../api/Actividades/GetActividadesByIdProduccion", "IdProduccion", id);
 
@@ -127,15 +127,17 @@
         CreateDataList(actividadProduccion, dlActividades, (item) => { editAlim(item); }, 'colum7', 'DetalleProduccion');
         //CreateDataList(prodDa
         //CreateDetailCardProduccion(ta, histDl, (item) => { editAlim(item); }, 'colum9');
-        //};
+    };
+
 
     const cargarDLActividadesTratamientoProduccion = async () => {
-        let actTratamientoProd = await GetObjectDataByFilter("../api/Tratamiento/GetDetalleActividadDiariaTratamientoByIdTratamientoProduccion", "IdProduccion", id);
+        let actTratamientoProd = await GetObjectDataByFilter("../api/Tratamiento/GetDetalleActividadDiariaTratamientoByIdProduccion", "IdProduccion", id);
 
         CreateDataList(actTratamientoProd, dlActividadesTrat, (item) => { editAlim(item); }, 'colum7', '#');
     }
 
     const CreateDetailCardProduccion = async () => {
+
         let detalleProduccion = await GetObjectDataByFilter("../api/Produccion/GetDetalleProduccionByIdProduccion", "IdProduccion", id);
 
         CreateDetailCard(detalleProduccion, detailBox, numProd, id);

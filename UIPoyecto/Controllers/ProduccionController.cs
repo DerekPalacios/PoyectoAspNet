@@ -127,8 +127,8 @@ namespace UIPoyecto.Controllers
                                             estado = detallepro.Estado,
                                             id = detallepro.IdProduccion,
                                             galera = detallepro.NombreGalera,
-                                            Lote = detallepro.LoteActual,
-                                            peso = detallepro.PesoPromedioSemanal,
+                                            Lote = 200,
+                                            peso = 0,
                                             Actividades = new Produccion().GetProgresoActividadDiaria((int)detallepro.IdProduccion),
                                             tratamientos = new Produccion().GetProgresoTratamientoDiaria((int)detallepro.IdProduccion)
                                         };
