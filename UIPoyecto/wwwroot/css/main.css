@@ -562,6 +562,11 @@ main .date {
     margin-left: 20px;
 }
 
+.filter .box-detail .input-box .squer{
+    height: 12px;
+    width: 12px;
+}
+
 .Login-form {
     width: 50%;
     position: absolute;
