@@ -8,13 +8,16 @@
 <div>
     <div class="colum2">
         <div class="box">
-            <div class="mainHeader">
+            <div class="mainHeader colum2">
                 <div class="Title">
                     <h3 class="dl-header">Producciones Activas</h3>
                 </div>
-                <div class="filterButon" id="btnFilter">
-                    <div>
-                        <ion-icon name="filter"></ion-icon>
+                <div class="colum2">
+                    <h4 class="dl-header" style="margin-left: 75%;">Filtrar</h4>
+                    <div class="filterButon" id="btnFilter">
+                        <div>
+                            <ion-icon name="filter" role="img" class="md hydrated" aria-label="filter"></ion-icon>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,18 +107,100 @@
                 <ul class="datalist scrollable table-medium" id="prodDl"></ul>
             </div>
 
-            <div class="mainHeader">
+            <div class="mainHeader colum2">
                 <div class="Title">
                     <h3 class="dl-header">Historial de Producción</h3>
                 </div>
-                <div class="filterButon" id="btnFilter1">
-                    <div>
-                        <ion-icon name="filter"></ion-icon>
+                <div class="colum2">
+                    <h4 class="dl-header" style="margin-left: 75%;">Filtrar</h4>
+                    <div class="filterButon" id="btnFilter2">
+                        <div>
+                            <ion-icon name="filter" role="img" class="md hydrated" aria-label="filter"></ion-icon>
+                        </div>
                     </div>
                 </div>
             </div>
 
-
+            <div class="container hiden filter" id="filterBox2">
+                <div class="box-detail colum5050">
+                    <div class="input-box paddingSM">
+                        <div class="input-box colum1580">
+                            <div class="filter squer squer-active" id="fechaSimplehist"></div>
+                            <span class="detail">Fecha</span>
+                        </div>
+                        <input class="inputMargin" type="date" id="fechahist" required>
+                    </div>
+                    <div></div>
+                    <div class="input-box paddingSM">
+                        <div class="input-box colum1580">
+                            <div class="filter squer" id="fechaRangohist"></div>
+                            <span class="detail">Desde</span>
+                        </div>
+                        <input class="inputMargin" type="date" id="fechaMinhist" disabled required>
+                    </div>
+                    <div class="input-box paddingSM">
+                        <span class="detail">Hasta</span>
+                        <input type="date" id="fechaMaxhist" disabled required>
+                    </div>
+                </div>
+                <div class="box-detail colum5050">
+                    <div class="input-box paddingSM">
+                        <div class="input-box colum1580">
+                            <div class="filter squer squer-active" id="loteSimplehist"></div>
+                            <span class="detail">Lote</span>
+                        </div>
+                        <input class="inputMargin" type="number" id="lotehist" required>
+                    </div>
+                    <div></div>
+                    <div class="input-box paddingSM">
+                        <div class="input-box colum1580">
+                            <div class="filter squer" id="loteRangohist"></div>
+                            <span class="detail">Mínimo</span>
+                        </div>
+                        <input class="inputMargin" type="number" id="loteMinhist" disabled required>
+                    </div>
+                    <div class="input-box paddingSM">
+                        <span class="detail">Máximo</span>
+                        <input type="number" id="loteMaxhist" disabled required>
+                    </div>
+                </div>
+                <div class="box-detail">
+                    <h4>Actividades</h4>
+                    <div class="colum3">
+                        <div class="input-box colum1580">
+                            <div class="filter squer squer-active" id="actTodohist"></div>
+                            <span class="detail" style="margin-left: 8px;">Todas</span>
+                        </div>
+                        <div class="input-box colum1580">
+                            <div class="filter squer" id="actCompletadahist"></div>
+                            <span class="detail" style="margin-left: 8px;">Completadas</span>
+                        </div>
+                        <div class="input-box colum1580">
+                            <div class="filter squer" id="actIncompletashist"></div>
+                            <span class="detail" style="margin-left: 8px;">Pendientes</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-detail">
+                    <h4>Tratamiento</h4>
+                    <div class="colum3">
+                        <div class="input-box colum1580">
+                            <div class="filter squer squer-active" id="tratTodohist"></div>
+                            <span class="detail" style="margin-left: 8px;">Todas</span>
+                        </div>
+                        <div class="input-box colum1580">
+                            <div class="filter squer" id="tratCompletadahist"></div>
+                            <span class="detail" style="margin-left: 8px;">Completadas</span>
+                        </div>
+                        <div class="input-box colum1580">
+                            <div class="filter squer" id="tartIncompletashist"></div>
+                            <span class="detail" style="margin-left: 8px;">Pendientes</span>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+                <input type="submit" class="Primary-Button" value="Aplicarhist">
+            </div>
 
             <div class="container">
                 <ul class="datalist scrollable table-medium" id="histDl"></ul>
@@ -158,12 +243,15 @@
         let prodDataActive = await GetObjectData("../api/Produccion/GetVistaListaProduccionSimpleCalculadaActiva");
 
         //response = await response.json();
-        CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum9', 'DetalleProduccion');
-        CreateDataList(prodData, histDl, (item) => { editAlim(item); }, 'colum9');
+        CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
+        CreateDataList(prodData, histDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
     };
 
     const filterBox = document.getElementById('filterBox');
     const filterBTN = document.getElementById('btnFilter');
+
+    const filterBox = document.getElementById('filterBox2');
+    const filterBTN = document.getElementById('btnFilter2');
 
     const RDBFechaSimple = document.getElementById('fechaSimple');
     const RDBFechaRango = document.getElementById('fechaRango');
@@ -190,6 +278,11 @@
     filterBTN.addEventListener('click', () => {
         filterBox.classList.toggle('hiden');
         filterBox.classList.toggle('colum5050');
+    });
+
+    filterBTN2.addEventListener('click', () => {
+        filterBox2.classList.toggle('hiden');
+        filterBox2.classList.toggle('colum5050');
     });
 
     RDBFechaSimple.addEventListener('click', () => {

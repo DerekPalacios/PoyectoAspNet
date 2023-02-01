@@ -414,9 +414,9 @@ main .date {
     grid-template-columns: 5% 10% 17% 17% 18% 18% 15%;
 }
 
-.colum9 {
+.colum8 {
     display: grid;
-    grid-template-columns: 5% 10% 13% 12% 13% 10% 12% 10% 15%;
+    grid-template-columns: 5% 10% 13% 12% 13% 16% 16% 15%;
 }
 
 .box {
