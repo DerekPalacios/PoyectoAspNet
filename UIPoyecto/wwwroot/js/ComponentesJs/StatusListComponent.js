@@ -47,7 +47,7 @@
         const btnTable = document.createElement("a");
         btnTable.className = "link";
         btnTable.href = URLId;
-        btnTable.innerText = "Ver más...";
+        btnTable.innerText = "Detalles...";
         btnTable.onclick = () => {
             TableFunction(item);
         }
