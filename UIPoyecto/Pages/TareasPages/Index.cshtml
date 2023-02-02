@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="~/css/main.css">
 }
 
-<section class="colum33">
+<section class="colum33" style="max-height: 700px;">
     <div class="container">
         <div class="mainHeader colum5050">
             <div class="Title">
@@ -111,7 +111,24 @@
             <ul class="datalist scrollable table-medium" id="prodDl"></ul>
         </div>
     </div>
-    <div class="container">
+    <div class="formContainer Container">
+        
+                <div class="formTitle">Detalle Actividad</div>
+                <form action="#">
+                    <div class="box-detail">
+                        <div hidden>
+                            <input type="number" id="IdAct" />
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Usuario</span>
+                            <input type="text" placeholder="Usuario Actual" id="Usuario" required disabled>
+                        </div>
+                    </div>
 
-    </div>
+                    <div class="buttons">
+                        <input class="Secondary-Button" type="submit" value="Cancelar" id="btnCancelarGalera" style="width: 45%">
+                        <input class="Primary-Button" type="submit" value="Completar" id="btnGuardarGalera" style="width: 45%">
+                    </div>
+                </form>
+            </div>
 </section>
