@@ -1,0 +1,117 @@
+﻿@page
+@{
+    ViewData["Title"] = "Tareas";
+    <link rel="stylesheet" href="~/css/main.css">
+}
+
+<section class="colum33">
+    <div class="container">
+        <div class="mainHeader colum2">
+            <div class="Title">
+                <h3 class="dl-header">Lista de Tareas</h3>
+            </div>
+            <div class="colum2">
+                <h4 class="dl-header" style="margin-left: 75%;">Filtrar</h4>
+                <div class="filterButon" id="btnFilter">
+                    <div>
+                        <ion-icon name="filter" role="img" class="md hydrated" aria-label="filter"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container hiden filter" id="filterBox">
+            <div class="box-detail colum5050">
+                <div class="input-box paddingSM">
+                    <div class="input-box colum1580">
+                        <div class="squer squer-active" id="fechaSimple"></div>
+                        <span class="detail">Fecha</span>
+                    </div>
+                    <input class="inputMargin" type="date" id="fecha" required>
+                </div>
+                <div></div>
+                <div class="input-box paddingSM">
+                    <div class="input-box colum1580">
+                        <div class="squer" id="fechaRango"></div>
+                        <span class="detail">Desde</span>
+                    </div>
+                    <input class="inputMargin" type="date" id="fechaMin" disabled required>
+                </div>
+                <div class="input-box paddingSM">
+                    <span class="detail">Hasta</span>
+                    <input type="date" id="fechaMax" disabled required>
+                </div>
+            </div>
+            <div class="box-detail colum5050">
+                <div class="input-box paddingSM">
+                    <div class="input-box colum1580">
+                        <div class="squer squer-active" id="loteSimple"></div>
+                        <span class="detail">Lote</span>
+                    </div>
+                    <input class="inputMargin" type="number" id="lote" required>
+                </div>
+                <div></div>
+                <div class="input-box paddingSM">
+                    <div class="input-box colum1580">
+                        <div class="squer" id="loteRango"></div>
+                        <span class="detail">Mínimo</span>
+                    </div>
+                    <input class="inputMargin" type="number" id="loteMin" disabled required>
+                </div>
+                <div class="input-box paddingSM">
+                    <span class="detail">Máximo</span>
+                    <input type="number" id="loteMax" disabled required>
+                </div>
+            </div>
+            <div class="box-detail">
+                <h4>Actividades</h4>
+                <div class="colum3">
+                    <div class="input-box colum1580">
+                        <div class="squer squer-active" id="actTodo"></div>
+                        <span class="detail" style="margin-left: 8px;">Todas</span>
+                    </div>
+                    <div class="input-box colum1580">
+                        <div class="squer" id="actCompletada"></div>
+                        <span class="detail" style="margin-left: 8px;">Completadas</span>
+                    </div>
+                    <div class="input-box colum1580">
+                        <div class="squer" id="actIncompletas"></div>
+                        <span class="detail" style="margin-left: 8px;">Pendientes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="box-detail">
+                <h4>Tratamiento</h4>
+                <div class="colum3">
+                    <div class="input-box colum1580">
+                        <div class="squer squer-active" id="tratTodo"></div>
+                        <span class="detail" style="margin-left: 8px;">Todas</span>
+                    </div>
+                    <div class="input-box colum1580">
+                        <div class="squer" id="tratCompletada"></div>
+                        <span class="detail" style="margin-left: 8px;">Completadas</span>
+                    </div>
+                    <div class="input-box colum1580">
+                        <div class="squer" id="tartIncompletas"></div>
+                        <span class="detail" style="margin-left: 8px;">Pendientes</span>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+            <input type="submit" class="Primary-Button" value="Aplicar" id="filterNuevos">
+        </div>
+
+        <div class="container">
+            <ul class="datalist scrollable table-medium" id="prodDl"></ul>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Producciones</h2>
+        <div class="container">
+            <ul class="datalist scrollable table-medium" id="prodDl"></ul>
+        </div>
+    </div>
+    <div class="container">
+
+    </div>
+</section>

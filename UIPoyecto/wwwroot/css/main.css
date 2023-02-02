@@ -399,6 +399,11 @@ main .date {
     grid-template-columns: 25% 38% 36%;
 }
 
+.colum33{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
 .colum5 {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
