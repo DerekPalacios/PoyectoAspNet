@@ -3,26 +3,10 @@
 @{
     ViewData["Title"] = "Dashboard";
 }
-
-<section class="colum5050">
-    <div class="box container">
-        <h2>Peso Promedio de Especies</h2>
-        <canvas class="max-H-300" id="pastelPesoEspecie"></canvas>
-    </div>
-    <div class="box container">
-        <h2>Consumo Promedio de Semana</h2>
-        <select class="input" id="isEspecie" style="width: 25%; height: 1.8rem; cursor: pointer; margin-left: .8rem">
-            <option value="0">Danes</option>
-            <option value="1">New Coaster</option>
-            <option value="2">Amarilos Pequeños</option>
-        </select>
-        <canvas class="max-H-300" id="barrasEspecie"></canvas>
-    </div>
-</section>
-<section class="colum2 margin-top">
+<section class="colum2 ">
     <div class="box container">
         <h2>
-            Comparativa de características:
+            Desesos Semanales de Especies por Galeras:
             <select class="input" id="idGaleras" style="width: 25%; height: 1.8rem; cursor: pointer; margin-left: .8rem">
                 <option value="0">Galera 1</option>
                 <option value="1">Galera 2</option>
@@ -45,11 +29,29 @@
     </div>
 </section>
 
+<section class="colum5050 margin-top">
+    <div class="box container">
+        <h2>Peso Unitario Promedio Final de Especies (kg)</h2>
+        <canvas class="max-H-300" id="pastelPesoEspecie"></canvas>
+    </div>
+    <div class="box container">
+        <h2>Consumo Unitario Promedio por Semana (Kg)</h2>
+        <select class="input" id="isEspecie" style="width: 25%; height: 1.8rem; cursor: pointer; margin-left: .8rem">
+            <option value="0">Danes</option>
+            <option value="1">New Coaster</option>
+            <option value="2">Amarilos Pequeños</option>
+        </select>
+        <canvas class="max-H-300" id="barrasEspecie"></canvas>
+    </div>
+</section>
+
 <script type="module">
     Chart.defaults.color = '#9fa3a9'
     Chart.defaults.borderColor = '#9fa3a9'
 
     const decesosByGalera = [];
+    const decesosByGalera2 = [];
+    const decesosByGalera1 = [];
     const pesoPromedioByEspecie = [];
     const especieDetalle = [];
     const especieCosnsumo = [];
@@ -59,13 +61,17 @@
             //renderYearsChart(decesosByGalera[this.value]);
             const chart = Chart.getChart(decesosDiariosId);
             chart.data.datasets[0].data = decesosByGalera[this.value].map(x => x.decesos);
+            chart.data.datasets[1].data = decesosByGalera1[this.value].map(x => x.decesos);
+            chart.data.datasets[2].data = decesosByGalera2[this.value].map(x => x.decesos);
+
+
             chart.update();
         });
 
         document.querySelector("#isEspecie").addEventListener("change", function () {
             //renderYearsChart(decesosByGalera[this.value]);
             const chart = Chart.getChart(barrasEspecie);
-            chart.data.datasets[0].data = decesosByGalera[this.value].map(x => x.decesos);
+            chart.data.datasets[0].data = especieCosnsumo[this.value].map(x => x.consumo);
             chart.update();
         });
 
@@ -90,7 +96,7 @@
                 Especie: 'Hondureños'
             }, {
                 Peso: 7,
-                Especie: 'CR'
+                Especie: 'Pavos'
             },
 
         ]
@@ -100,27 +106,24 @@
     decesosByGalera.push(
         [
             {
-                decesos: 3,
-                dia: 'Lunes'
+                decesos: 2,
+                dia: 'sem1'
             },
             {
-                decesos: 1,
-                dia: 'Martes'
-            }, {
                 decesos: 2,
-                dia: 'Miercoes'
-            }, {
-                decesos: 0,
-                dia: 'Jueves'
+                dia: 'sem2'
             }, {
                 decesos: 4,
-                dia: 'Viernes'
+                dia: 'sem3'
             }, {
-                decesos: 1,
-                dia: 'Sabado'
+                decesos: 3,
+                dia: 'sem4'
+            }, {
+                decesos: 4,
+                dia: 'sem5'
             }, {
                 decesos: 0,
-                dia: 'Domingo'
+                dia: 'sem6'
             },
 
         ]
@@ -130,53 +133,207 @@
         [
             {
                 decesos: 1,
-                dia: 'Lunes'
+                dia: 'sem1'
             },
             {
                 decesos: 2,
-                dia: 'Martes'
-            }, {
-                decesos: 2,
-                dia: 'Miercoes'
+                dia: 'sem2'
             }, {
                 decesos: 0,
-                dia: 'Jueves'
+                dia: 'sem3'
             }, {
                 decesos: 0,
-                dia: 'Viernes'
+                dia: 'sem4'
             }, {
-                decesos: 0,
-                dia: 'Sabado'
+                decesos: 1,
+                dia: 'sem5'
             }, {
-                decesos: 0,
-                dia: 'Domingo'
+                decesos: 1,
+                dia: 'sem6'
             },
+
         ]
+
     );
     decesosByGalera.push(
         [
             {
                 decesos: 3,
-                dia: 'Lunes'
+                dia: 'sem1'
+            },
+            {
+                decesos: 3,
+                dia: 'sem2'
+            }, {
+                decesos: 2,
+                dia: 'sem3'
+            }, {
+                decesos: 4,
+                dia: 'sem4'
+            }, {
+                decesos: 1,
+                dia: 'sem5'
+            }, {
+                decesos: 0,
+                dia: 'sem6'
+            },
+
+        ]
+
+    );
+
+    decesosByGalera1.push(
+        [
+            {
+                decesos: 3,
+                dia: 'sem1'
             },
             {
                 decesos: 1,
-                dia: 'Martes'
+                dia: 'sem2'
+            }, {
+                decesos: 2,
+                dia: 'sem3'
             }, {
                 decesos: 0,
-                dia: 'Miercoes'
+                dia: 'sem4'
+            }, {
+                decesos: 4,
+                dia: 'sem5'
+            }, {
+                decesos: 1,
+                dia: 'sem6'
+            },
+
+        ]
+
+    );
+    decesosByGalera1.push(
+        [
+            {
+                decesos: 1,
+                dia: 'sem1'
+            },
+            {
+                decesos: 2,
+                dia: 'sem2'
             }, {
                 decesos: 0,
-                dia: 'Jueves'
+                dia: 'sem3'
+            }, {
+                decesos: 0,
+                dia: 'sem4'
             }, {
                 decesos: 1,
-                dia: 'Viernes'
+                dia: 'sem5'
             }, {
-                decesos: 10,
-                dia: 'Sabado'
+                decesos: 2,
+                dia: 'sem6'
+            },
+
+        ]
+
+    );
+    decesosByGalera1.push(
+        [
+            {
+                decesos: 1,
+                dia: 'sem1'
+            },
+            {
+                decesos: 1,
+                dia: 'sem2'
+            }, {
+                decesos: 2,
+                dia: 'sem3'
+            }, {
+                decesos: 0,
+                dia: 'sem4'
+            }, {
+                decesos: 0,
+                dia: 'sem5'
+            }, {
+                decesos: 0,
+                dia: 'sem6'
+            },
+
+        ]
+
+    );
+
+    decesosByGalera2.push(
+        [
+            {
+                decesos: 1,
+                dia: 'sem1'
+            },
+            {
+                decesos: 1,
+                dia: 'sem2'
+            }, {
+                decesos: 0,
+                dia: 'sem3'
+            }, {
+                decesos: 0,
+                dia: 'sem4'
             }, {
                 decesos: 1,
-                dia: 'Domingo'
+                dia: 'sem5'
+            }, {
+                decesos: 1,
+                dia: 'sem6'
+            },
+
+        ]
+
+    );
+    decesosByGalera2.push(
+        [
+            {
+                decesos: 1,
+                dia: 'sem1'
+            },
+            {
+                decesos: 0,
+                dia: 'sem2'
+            }, {
+                decesos: 2,
+                dia: 'sem3'
+            }, {
+                decesos: 0,
+                dia: 'sem4'
+            }, {
+                decesos: 4,
+                dia: 'sem5'
+            }, {
+                decesos: 0,
+                dia: 'sem6'
+            },
+
+        ]
+
+    );
+    decesosByGalera2.push(
+        [
+            {
+                decesos: 1,
+                dia: 'sem1'
+            },
+            {
+                decesos: 2,
+                dia: 'sem2'
+            }, {
+                decesos: 0,
+                dia: 'sem3'
+            }, {
+                decesos: 0,
+                dia: 'sem4'
+            }, {
+                decesos: 1,
+                dia: 'sem5'
+            }, {
+                decesos: 2,
+                dia: 'sem6'
             },
 
         ]
@@ -248,7 +405,7 @@
                 dia: 'Sem 1'
             },
             {
-                consumo: 1,
+                consumo: 1.5,
                 dia: 'Sem 2'
             }, {
                 consumo: 2,
@@ -274,19 +431,19 @@
                 dia: 'Sem 1'
             },
             {
-                consumo: 1,
+                consumo: 1.3,
                 dia: 'Sem 2'
             }, {
-                consumo: 1,
+                consumo: 1.9,
                 dia: 'Sem 3'
             }, {
-                consumo: 1,
+                consumo: 2.5,
                 dia: 'Sem 4'
             }, {
-                consumo: 1,
+                consumo: 3,
                 dia: 'Sem 5'
             }, {
-                consumo: 1,
+                consumo: 4,
                 dia: 'Sem 6'
             }
 
@@ -408,25 +565,34 @@
 
 
         const data = {
-            labels: x.map(x => x.dia),
+            labels: decesosByGalera[0].map(x => x.dia),
             datasets: [{
-                data: x.map(x => x.decesos),
-                label: 'Decesos Diarios Por Galera',
-                tension: .5,
-                borderColor: getDataColors()[1],
-                backgroundColor: getDataColors(20)[1],
-                fill: true,
-                pointBorderWidth: 5
+                label: 'Danes',
+                data: decesosByGalera[0].map(x => x.decesos),
+                fill: true
+            }, {
+                label: 'New Coaster',
+                data: decesosByGalera1[0].map(x => x.decesos),
+                fill: true
+            }, {
+                label: 'Amarilos Pequeños',
+                data: decesosByGalera2[0].map(x => x.decesos),
+                fill: true
             }]
+
+
         }
 
         const options = {
-            plugins: {
-                legend: { display: false }
+            
+            elements: {
+                line: {
+                    tension: 0.2
+                }
             }
         }
 
-        new Chart('decesosDiariosId', { type: 'line', data })
+        new Chart('decesosDiariosId', { type: 'line', data, options })
     }
 
 
