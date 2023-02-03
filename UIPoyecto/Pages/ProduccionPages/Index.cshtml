@@ -302,14 +302,14 @@
     };
 
     const cargarDLProduccionFiltradaMes = async () => {
-        let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', "mes", 2);
+        let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', "mes", ddlMes.value);
 
         //response = await response.json();
         CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
     };
 
     const cargarDLProduccionFiltradaMesRango = async () => {
-        let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', ["mesInicio", "mesFinal"], [2, 5]);
+        let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', ["mesInicio", "mesFinal"], [ddlMesInicio.value, ddlMesFin.value]);
 
         //response = await response.json();
         CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
