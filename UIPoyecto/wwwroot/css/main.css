@@ -564,6 +564,10 @@ main .date {
     padding: 8px;
 }
 
+.filter .box-detail .input-box .input{
+    font-size: 12px;
+}
+
 .filter .box-detail .input-box .inputMargin {
     margin-left: 20px;
 }
