@@ -282,8 +282,10 @@
         filterNuevos.onclick = async () => {
             switch (filterType) {
                 case 1:
-                    cargarDLProduccionFiltrada();
+                    cargarDLProduccionFiltradaMes();
+                    console.log('Juan');
                 case 2:
+                    cargarDLProduccionFiltradaMesRango();
                     console.log('Pepe');
                     break;
             }
@@ -299,8 +301,15 @@
         CreateDataList(prodData, histDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
     };
 
-    const cargarDLProduccionFiltrada = async () => {
+    const cargarDLProduccionFiltradaMes = async () => {
         let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', "mes", 2);
+
+        //response = await response.json();
+        CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
+    };
+
+    const cargarDLProduccionFiltradaMesRango = async () => {
+        let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', ["mesInicio", "mesFinal"], [2, 5]);
 
         //response = await response.json();
         CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
