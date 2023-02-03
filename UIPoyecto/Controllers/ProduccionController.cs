@@ -121,9 +121,9 @@ namespace UIPoyecto.Controllers
                                             estado = detallepro.Estado,
                                             id = detallepro.IdProduccion,
                                             galera = detallepro.NombreGalera,
-                                            Lote = detallepro.LoteActual,
-                                            peso = detallepro.PesoPromedioSemanal,
-                                            actividades = new Produccion().GetProgresoActividadDiaria((int)detallepro.IdProduccion),
+                                            Lote = 200,
+                                            peso = 0,
+                                            Actividades = new Produccion().GetProgresoActividadDiaria((int)detallepro.IdProduccion),
                                             tratamientos = new Produccion().GetProgresoTratamientoDiaria((int)detallepro.IdProduccion)
                                         };
 
@@ -153,15 +153,15 @@ namespace UIPoyecto.Controllers
         public object GetVistaListaProduccionSimpleCalculadaFilteredByMes(int mes)
         {
             var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>(" Estado = 1 ")
-                                        where mes >= detallepro.FechaDeIngreso.Month && mes <= detallepro.FechaSalida.Month
+                                        where (detallepro.FechaDeIngreso.Month <= mes && mes <= detallepro.FechaSalida.Month)
                                         select new
                                         {
                                             estado = detallepro.Estado,
                                             id = detallepro.IdProduccion,
                                             galera = detallepro.NombreGalera,
-                                            Lote = detallepro.LoteActual,
-                                            peso = detallepro.PesoPromedioSemanal,
-                                            actividades = new Produccion().GetProgresoActividadDiaria((int)detallepro.IdProduccion),
+                                            Lote = 200,
+                                            peso = 0,
+                                            Actividades = new Produccion().GetProgresoActividadDiaria((int)detallepro.IdProduccion),
                                             tratamientos = new Produccion().GetProgresoTratamientoDiaria((int)detallepro.IdProduccion)
                                         };
 
