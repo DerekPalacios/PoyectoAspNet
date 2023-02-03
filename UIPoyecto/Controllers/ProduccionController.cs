@@ -114,7 +114,7 @@ namespace UIPoyecto.Controllers
         [HttpGet]
         public object GetVistaListaProduccionSimpleCalculadaFilteredByLote(int lote)
         {
-            var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>()
+            var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>(" Estado = 1 ")
                                         where detallepro.LoteActual == lote
                                         select new
                                         {
@@ -133,7 +133,7 @@ namespace UIPoyecto.Controllers
         [HttpGet]
         public object GetVistaListaProduccionSimpleCalculadaFilteredByLote(int loteInicial, int loteFinal)
         {
-            var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>()
+            var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>(" Estado = 1 ")
                                         where detallepro.LoteActual >= loteInicial && detallepro.LoteActual <= loteFinal
                                         select new
                                         {
@@ -152,7 +152,7 @@ namespace UIPoyecto.Controllers
         [HttpGet]
         public object GetVistaListaProduccionSimpleCalculadaFilteredByMes(int mes)
         {
-            var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>()
+            var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>(" Estado = 1 ")
                                         where mes >= detallepro.FechaDeIngreso.Month && mes <= detallepro.FechaSalida.Month
                                         select new
                                         {
@@ -171,7 +171,7 @@ namespace UIPoyecto.Controllers
         [HttpGet]
         public object GetVistaListaProduccionSimpleCalculadaFilteredByMes(int mesInicio, int mesFinal)
         {
-            var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>()
+            var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>(" Estado = 1 ")
                                         where detallepro.FechaDeIngreso.Month >= mesInicio && detallepro.FechaDeIngreso.Month <= mesFinal || detallepro.FechaSalida.Month >= mesInicio && detallepro.FechaSalida.Month <= mesFinal
                                         select new
                                         {
