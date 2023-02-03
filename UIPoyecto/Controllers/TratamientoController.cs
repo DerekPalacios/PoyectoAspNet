@@ -103,8 +103,7 @@ namespace UIPoyecto.Controllers
             return obj.First();
 
         }
-
-
+   
 
         ///<summary>
         ///Extrae los tratamientos en literal
@@ -203,6 +202,25 @@ namespace UIPoyecto.Controllers
                           DosisRecomendada = Tratamiento.DosisDiariaRecomendada,
                           Periodicidad = Tratamiento.PeriodicidadVar,
                           IdUsuario = Tratamiento.IdUsuarioRegistro,
+                          FechaRegsitro = Tratamiento.FechaRegistro,
+                          Dosis = Tratamiento.DosisTotalesRecomendadas
+                      };
+            return obj;
+
+        }
+        [HttpGet]
+        public object GetTratamientobasico()
+        {
+
+            //con true carga peridiocidad
+            var obj = from Tratamiento in new Tratamiento().Get<Tratamiento>()
+                      select new
+                      {
+                          IdTratamiento = Tratamiento.IdTratamiento,
+                          Nombre = Tratamiento.Nombre,
+                          Descripcion = Tratamiento.Descripcion,
+                          Marca = Tratamiento.Marca,
+                          DosisRecomendada = Tratamiento.DosisDiariaRecomendada,
                           FechaRegsitro = Tratamiento.FechaRegistro,
                           Dosis = Tratamiento.DosisTotalesRecomendadas
                       };
