@@ -281,7 +281,7 @@
                                         </div>
                                         <div class="input-box">
                                             <span class="detail">Usuario</span>
-                                            <input type="text" placeholder="Usuario Actual" id="Usuario" required disabled>
+                                            <input type="text" placeholder="Usuario Actual" id="usertxt" required disabled>
                                         </div>
                                     </div>
 
@@ -316,6 +316,7 @@
         await cargarDLActividadesProduccion();
         await CreateDetailCardProduccion();
         await cargarDLActividadesTratamientoProduccion();
+        await cargarUsuario();
     };
     const formatear = f => {
         const año = f.getFullYear();
@@ -323,6 +324,11 @@
         const dia = ("0" + f.getDate()).substr(-2);
         return `${año}-${mes}-${dia}`
     };
+
+    const cargarUsuario = async () =>{
+      var name =  await GetObjectData("../api/Catalogos/getCurrentUser");
+      document.getElementById("usertxt").value = name;
+    }
 
     const cargarDLActividadesProduccion = async () => {
         let fecha = formatear(new Date());
