@@ -16,27 +16,13 @@
     </header>
 
     <section class="box">
-        <div class="formTitle">Nueva Producci&oacute;n</div>
+        <div class="formTitle" id="titulo">Nueva Producci&oacute;n</div>
         <div class="slider">
             <div class="box row8515 row1">
                 <form class="colum5050" action="#">
                     <div class="box-detail">
                         <div hidden>
                             <input type="number" id="IdProduccion" />
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Fecha de Ingreso</span>
-                            <input type="date" required id="dpFechaInicio">
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Costo Unitario del Lote</span>
-                            <input type="number" min="0" step="1" placeholder="Ingrese el Costo" id="txtPrecioUnitario" required>
-                        </div>
-                        <div class="input-box">
-                            <span class="detail">Semanas de Producci&oacute;n</span>
-
-                            <input type="number" step="1" min="1" max="9" placeholder="Selecione una Especie" id="txtSemanasProd" required>
-
                         </div>
                         <div class="input-box">
                             <span class="detail">Especie De Pollo</span>
@@ -62,6 +48,20 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Fecha de Ingreso</span>
+                            <input type="date" required id="dpFechaInicio">
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Costo Unitario del Lote</span>
+                            <input type="number" min="0" step="1" placeholder="Ingrese el Costo" id="txtPrecioUnitario" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Semanas de Producci&oacute;n</span>
+
+                            <input type="number" step="1" min="1" max="9" placeholder="Selecione una Especie" id="txtSemanasProd" required>
+
                         </div>
                     </div>
                     <div class="box-detail">
@@ -999,11 +999,29 @@
         await cargarDLFinalizacionLinea(property);
     }
 
+    document.querySelector('#tab-1').onChange = async e => {
 
+        if (document.getElementById("tab-1").value = true) {
+            document.getElementById("titulo").innerHTML = "";
+            document.getElementById("titulo").innerHTML = "Nueva Producción";
+        }
+    }
 
+    document.querySelector('#tab-2').onChange = async e => {
 
+        if (document.getElementById("tab-2").value = true) {
+            document.getElementById("titulo").innerHTML = "";
+            document.getElementById("titulo").innerHTML = "Nueva Producción - Alimentación";
+        }
+    }
 
+    document.querySelector('#tab-3').onChange = async e => {
 
+        if (document.getElementById("tab-3").value = true) {
+            document.getElementById("titulo").innerHTML = "";
+            document.getElementById("titulo").innerHTML = "Nueva Producción - Tratamiento";
+        }
+    }
 
 
 </script>
