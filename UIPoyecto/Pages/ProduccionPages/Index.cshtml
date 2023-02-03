@@ -27,9 +27,23 @@
                     <div class="input-box paddingSM">
                         <div class="input-box colum1580">
                             <div class="squer squer-active" id="fechaSimple"></div>
-                            <span class="detail">Fecha</span>
+                            <span class="detail">Filtrar por Mes</span>
                         </div>
-                        <input class="inputMargin" type="date" id="fecha" required>
+                        <select class="input inputMargin" id="ddlMes">
+                            <option value="0">--Seleccione--</option>
+                            <option value="1">Enero</option>
+                            <option value="2">Febrero</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Mayo</option>
+                            <option value="6">Junio</option>
+                            <option value="7">Julio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                        </select>
                     </div>
                     <div></div>
                     <div class="input-box paddingSM">
@@ -37,11 +51,39 @@
                             <div class="squer" id="fechaRango"></div>
                             <span class="detail">Desde</span>
                         </div>
-                        <input class="inputMargin" type="date" id="fechaMin" disabled required>
+                        <select class="input inputMargin" id="ddlMesInicio" disabled>
+                            <option value="0">--Seleccione--</option>
+                            <option value="1">Enero</option>
+                            <option value="2">Febrero</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Mayo</option>
+                            <option value="6">Junio</option>
+                            <option value="7">Julio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                        </select>
                     </div>
                     <div class="input-box paddingSM">
                         <span class="detail">Hasta</span>
-                        <input type="date" id="fechaMax" disabled required>
+                        <select class="input inputMargin" id="ddlMesFin" disabled>
+                            <option value="0">--Seleccione--</option>
+                            <option value="1">Enero</option>
+                            <option value="2">Febrero</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Mayo</option>
+                            <option value="6">Junio</option>
+                            <option value="7">Julio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                        </select>
                     </div>
                 </div>
                 <div class="box-detail colum5050">
@@ -240,8 +282,11 @@
         filterNuevos.onclick = async () => {
             switch (filterType) {
                 case 1:
+                    cargarDLProduccionFiltradaMes();
                     console.log('Juan');
-
+                case 2:
+                    cargarDLProduccionFiltradaMesRango();
+                    console.log('Pepe');
                     break;
             }
         };
@@ -254,6 +299,20 @@
         //response = await response.json();
         CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
         CreateDataList(prodData, histDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
+    };
+
+    const cargarDLProduccionFiltradaMes = async () => {
+        let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', "mes", 2);
+
+        //response = await response.json();
+        CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
+    };
+
+    const cargarDLProduccionFiltradaMesRango = async () => {
+        let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', ["mesInicio", "mesFinal"], [2, 5]);
+
+        //response = await response.json();
+        CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
     };
 
     const filterBox = document.getElementById('filterBox');
@@ -276,9 +335,9 @@
     const RDBTratCom = document.getElementById('tratCompletada');
     const RDBTratPend = document.getElementById('tartIncompletas');
 
-    const INPFecha = document.getElementById('fecha');
-    const INPFechaMin = document.getElementById('fechaMin');
-    const INPFechaMax = document.getElementById('fechaMax');
+    const INPFecha = document.getElementById('ddlMes');
+    const INPFechaMin = document.getElementById('ddlMesInicio');
+    const INPFechaMax = document.getElementById('ddlMesFin');
 
     const INPLote = document.getElementById('lote');
     const INPLoteMin = document.getElementById('loteMin');
