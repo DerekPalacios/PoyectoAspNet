@@ -559,7 +559,7 @@ main .date {
 /*----------------------------------------------------------------------------------*/
 .filter .box-detail .input-box input,
 .filter .box-detail .input-box .input {
-    height: 24px;
+    height: 30px;
     width: 75%;
     padding: 8px;
 }
