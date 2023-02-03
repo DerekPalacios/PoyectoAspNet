@@ -5,6 +5,7 @@ using CAPA_NEGOCIO.Models.SubModel;
 using System.Collections.Generic;
 using CAPA_NEGOCIO.Security;
 using System.Linq;
+using System;
 
 namespace UIPoyecto.Controllers
 {
@@ -35,6 +36,17 @@ namespace UIPoyecto.Controllers
 
 
 
+        [HttpGet]
+        public object GetListaProdByAct(int idAct, DateTime fecha)
+        {
+            var obj = from proact in new produccionbyactividades().Get<produccionbyactividades>($" FechaAsignacionActividad = '{fecha}' and dbo.ActividadProduccion.IdActividad = {idAct}")
+                      select new
+                      {
+                          id = proact.IdProduccion,
+                          galera = proact.Nombre
+                      };
+            return obj;
+        }
 
 
 

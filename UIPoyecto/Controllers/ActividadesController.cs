@@ -57,7 +57,18 @@ namespace UIPoyecto.Controllers
             return  new ActividadProduccion().Get<ActividadProduccion>("IdActividadProduccion + " + id );
 
         }
+        [HttpGet]
+        public object GetActividadGeneral()
+        {
+            var obj = from act in new ActividadGeneral().Get<ActividadGeneral>()
+                      select new {
+                          id = act.IdActividad,
+                          nombre = act.NombreActividad
 
+                      };
+            return obj;
+
+        }
 
         ///<summary>
         ///Extraer datos de actividades por id de produccion
