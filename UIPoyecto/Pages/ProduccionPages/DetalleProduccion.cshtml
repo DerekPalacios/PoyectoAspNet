@@ -314,7 +314,7 @@
     import CreateDetailCard from "../js/ComponentesJs/CardDetailComponent.js";
 
     window.onload = async () => {
-
+        renderGraficoPastel();
         await cargarDLActividadesProduccion();
         await CreateDetailCardProduccion();
         await cargarDLActividadesTratamientoProduccion();
@@ -327,9 +327,49 @@
         return `${año}-${mes}-${dia}`
     };
 
-    const cargarUsuario = async () =>{
-      var name =  await GetObjectData("../api/Catalogos/getCurrentUser");
-      document.getElementById("usertxt").value = name;
+    const renderGraficoPastel = () => {
+
+        const data = {
+
+            datasets: [{
+                data: [96, 4],
+                borderColor: ["rgba(128, 128, 128, 0.5)", "rgba(0, 128, 0, 0.5)"],
+                backgroundColor: ["rgba(128, 128, 128, 0.5)", "rgba(0, 128, 0, 0.5)"],
+            }]
+        }
+
+
+        const options={
+            cutoutPercentage: 50,
+                plugins: {
+                doughnutlabel: {
+                    labels: [
+                        {
+                            text: '10%',
+                            font: {
+                                size: '16'
+                            }
+                        },
+                        {
+                            text: '20%',
+                            font: {
+                                size: '16'
+                            }
+                        },
+                        {
+                            text: '30%',
+                            font: {
+                                size: '16'
+                            }
+                        }
+                    ]
+                }
+            }}
+        new Chart('progresoDougnut', { type: 'doughnut', data,options })
+    };
+    const cargarUsuario = async () => {
+        var name = await GetObjectData("../api/Catalogos/getCurrentUser");
+        document.getElementById("usertxt").value = name;
     }
 
     const cargarDLActividadesProduccion = async () => {

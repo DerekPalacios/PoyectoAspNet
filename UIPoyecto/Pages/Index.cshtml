@@ -569,15 +569,21 @@
             datasets: [{
                 label: 'Danes',
                 data: decesosByGalera[0].map(x => x.decesos),
-                fill: true
+                fill: true,
+                borderColor: getDataColors(),
+                backgroundColor: getDataColors(40)
             }, {
                 label: 'New Coaster',
                 data: decesosByGalera1[0].map(x => x.decesos),
-                fill: true
+                fill: true,
+                borderColor: getDataColors(),
+                backgroundColor: getDataColors(40)
             }, {
                 label: 'Amarilos Pequeños',
                 data: decesosByGalera2[0].map(x => x.decesos),
-                fill: true
+                fill: true,
+                borderColor: getDataColors(),
+                backgroundColor: getDataColors(40)
             }]
 
 
