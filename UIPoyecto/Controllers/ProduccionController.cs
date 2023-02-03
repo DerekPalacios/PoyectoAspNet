@@ -149,7 +149,7 @@ namespace UIPoyecto.Controllers
 
         //    return listaProduccionSimple;
         //}
-        //[HttpGet]
+        [HttpGet]
         public object GetVistaListaProduccionSimpleCalculadaFilteredByMes(int mes)
         {
             var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>(" Estado = 1 ")

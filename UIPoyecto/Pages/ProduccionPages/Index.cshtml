@@ -304,12 +304,12 @@
 
     const cargarDLProduccionFiltradaMes = async () => {
 
-        let prodDataActive = await GetObjectDataByFilter('../api/Produccion/GetVistaListaProduccionSimpleCalculadaFilteredByMes', "mes", ddlMes.value);
+        let prodDataActiveF = await GetObjectDataByFilter('../api/Produccion/GetVistaListaProduccionSimpleCalculadaFilteredByMes', "mes", ddlMes.value);
 
 
 
         //response = await response.json();
-        CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
+        CreateDataList(prodDataActiveF, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
     };
 
     const cargarDLProduccionFiltradaMesRango = async () => {
