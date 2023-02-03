@@ -27,9 +27,9 @@
                     <div class="input-box paddingSM">
                         <div class="input-box colum1580">
                             <div class="squer squer-active" id="fechaSimple"></div>
-                            <span class="detail">Fecha</span>
+                            <span class="detail">Filtrar por Mes</span>
                         </div>
-                        <select class="input inputMargin">
+                        <select class="input inputMargin" id="ddlMes">
                             <option value="0">--Seleccione--</option>
                             <option value="1">Enero</option>
                             <option value="2">Febrero</option>
@@ -51,7 +51,7 @@
                             <div class="squer" id="fechaRango"></div>
                             <span class="detail">Desde</span>
                         </div>
-                        <select class="input inputMargin">
+                        <select class="input inputMargin" id="ddlMesInicio">
                             <option value="0">--Seleccione--</option>
                             <option value="1">Enero</option>
                             <option value="2">Febrero</option>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="input-box paddingSM">
                         <span class="detail">Hasta</span>
-                        <select class="input inputMargin">
+                        <select class="input inputMargin" id="ddlMesFin">
                             <option value="0">--Seleccione--</option>
                             <option value="1">Enero</option>
                             <option value="2">Febrero</option>
@@ -282,8 +282,7 @@
         filterNuevos.onclick = async () => {
             switch (filterType) {
                 case 1:
-                    console.log('Juan');
-                    break;
+                    cargarDLProduccionFiltrada();
                 case 2:
                     console.log('Pepe');
                     break;
@@ -298,6 +297,13 @@
         //response = await response.json();
         CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
         CreateDataList(prodData, histDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
+    };
+
+    const cargarDLProduccionFiltrada = async () => {
+        let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', "mes", 2);
+
+        //response = await response.json();
+        CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
     };
 
     const filterBox = document.getElementById('filterBox');
