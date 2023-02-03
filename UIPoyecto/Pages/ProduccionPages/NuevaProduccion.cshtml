@@ -9,9 +9,9 @@
     <input type="radio" name="slider" id="tab-2">
     <input type="radio" name="slider" id="tab-3">
     <header>
-        <label for="tab-1" class="tab-1">1</label>
-        <label for="tab-2" class="tab-2">2</label>
-        <label for="tab-3" class="tab-3">3</label>
+        <label for="tab-1" id="tab1btn" class="tab-1">1</label>
+        <label for="tab-2" id="tab2btn" class="tab-2">2</label>
+        <label for="tab-3" id="tab3btn" class="tab-3">3</label>
         <div class="slider-btn"></div>
     </header>
 
@@ -415,7 +415,6 @@
     window.onload = async () => {
 
         
-
         await cargarDLEspecie();
         await cargarDLGalera();
         await cargarDLLinea();
@@ -999,28 +998,21 @@
         await cargarDLFinalizacionLinea(property);
     }
 
-    document.querySelector('#tab-1').onChange = async e => {
-
-        if (document.getElementById("tab-1").value = true) {
+    document.getElementById('tab1btn').onclick = () => {
             document.getElementById("titulo").innerHTML = "";
             document.getElementById("titulo").innerHTML = "Nueva Producción";
-        }
     }
+    
+    document.getElementById('tab2btn').onclick = () => {
 
-    document.querySelector('#tab-2').onChange = async e => {
-
-        if (document.getElementById("tab-2").value = true) {
             document.getElementById("titulo").innerHTML = "";
             document.getElementById("titulo").innerHTML = "Nueva Producción - Alimentación";
-        }
     }
 
-    document.querySelector('#tab-3').onChange = async e => {
+    document.getElementById('tab3btn').onclick = () => {
 
-        if (document.getElementById("tab-3").value = true) {
             document.getElementById("titulo").innerHTML = "";
             document.getElementById("titulo").innerHTML = "Nueva Producción - Tratamiento";
-        }
     }
 
 

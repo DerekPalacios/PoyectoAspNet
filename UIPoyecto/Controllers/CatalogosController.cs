@@ -109,6 +109,13 @@ namespace UIPoyecto.Controllers
         }
 
 
+        [HttpGet]
+        public object getCurrentUser()
+        {
+            string name =AuthNetCore.User.user.ToString();
+            return name;
+        }
+
 
 
     }
