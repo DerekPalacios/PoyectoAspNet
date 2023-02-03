@@ -51,7 +51,7 @@
                             <div class="squer" id="fechaRango"></div>
                             <span class="detail">Desde</span>
                         </div>
-                        <select class="input inputMargin" id="ddlMesInicio">
+                        <select class="input inputMargin" id="ddlMesInicio" disabled>
                             <option value="0">--Seleccione--</option>
                             <option value="1">Enero</option>
                             <option value="2">Febrero</option>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="input-box paddingSM">
                         <span class="detail">Hasta</span>
-                        <select class="input inputMargin" id="ddlMesFin">
+                        <select class="input inputMargin" id="ddlMesFin" disabled>
                             <option value="0">--Seleccione--</option>
                             <option value="1">Enero</option>
                             <option value="2">Febrero</option>
@@ -326,9 +326,9 @@
     const RDBTratCom = document.getElementById('tratCompletada');
     const RDBTratPend = document.getElementById('tartIncompletas');
 
-    const INPFecha = document.getElementById('fecha');
-    const INPFechaMin = document.getElementById('fechaMin');
-    const INPFechaMax = document.getElementById('fechaMax');
+    const INPFecha = document.getElementById('ddlMes');
+    const INPFechaMin = document.getElementById('ddlMesInicio');
+    const INPFechaMax = document.getElementById('ddlMesFin');
 
     const INPLote = document.getElementById('lote');
     const INPLoteMin = document.getElementById('loteMin');
