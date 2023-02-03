@@ -89,7 +89,7 @@ namespace UIPoyecto.Controllers
                            fechaAsignacion = activicidades.FechaAsignacionActividad.ToShortDateString(),
                            nombre = activicidades.NombreActividad,
                            descripcion = activicidades.DescripcionActividad,
-                           usuario = activicidades.NombreUsuario == "null" ? activicidades.NombreUsuario : "N/C"
+                           usuario = activicidades.NombreUsuario == null ? activicidades.NombreUsuario : "N/C"
                        };
 
 
