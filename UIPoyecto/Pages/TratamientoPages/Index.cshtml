@@ -25,27 +25,82 @@
 
         <div class="box">
             <div class="formContainer">
-                <div class="dateTask">
-                    <div class="date-left">
-                        <div id="date-number"></div>
-                        <div>
-                            <div id="datemonth"></div>
-                            <div id="dateyear"></div>
+                <div class="formTitle">Nuevo Tratamiento</div>
+                <form action="#">
+                    <div class="box-detail">
+                        <div hidden>
+                            <input type="number" id="IdTratamiento" />
+                        </div>                        
+                        <div class="input-box" id="txtTratamiento">
+                            <span class="detail">Nombre Tratamiento</span>
+                            <input type="text" id="txtNombreTrat" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Descripcion Tratamiento</span>
+                            <input type="text" placeholder="Ingrese descripcion" id="txtDescTrat" required disabled>
+                        </div>
+                        <div class="input-box">
+                            <span class="detail">Descripcion Dosis</span>
+                            <input type="text" placeholder="Ingrese descripcion" id="txtDescDosis" required disabled>
+                        </div>
+                        <div class="input-box colum5050">
+                            <div class="input-box">
+                                <span class="detail">Marca</span>
+                                <input type="text" placeholder="Ingrese Marca" id="txtMarcaTrat" required disabled>
+                            </div>
+                            <div class="input-box">
+                                <span class="detail">Dosis Recomendada</span>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTrat" required disabled>
+                            </div>
+                        </div>
+                        <div class="input-box colum5050">
+                            <div class="input-box">
+                                <span class="detail">Lote Recomendado</span>
+                                <input type="text" placeholder="Ingrese el Tamaño del Lote" id="txtTamaño" required disabled>
+                            </div>
+                            <div class="input-box">
+                                <span class="detail">Dosis Totales</span>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtDosisTotales" required disabled>
+                            </div>
+                        </div>
+
+                        <div class="hiden input-box" id="ddlBox">
+                            <div class="input-box">
+                                <span class="detail">Peridiocidad Recomendado</span>
+                                <select class="input" id="ddlPeridiocidadRecom">
+                                    <option value="0">
+                                        --Seleccione--
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <span class="detail">Via Recomendada</span>
+                                <select class="input" id="ddlViaRecom">
+                                    <option value="0">
+                                        --Seleccione--
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-box colum5050" id="txtBox">
+                            <div class="input-box">
+                                <span class="detail">Peridiocidad Recomendado</span>
+                                <input type="text" placeholder="Ingrese la Peridiosidad" id="txtPeridiocidadRecom" required disabled>
+                            </div>
+                            <div class="input-box">
+                                <span class="detail">Via Recomendada</span>
+                                <input type="text" placeholder="Ingrese Dosis" id="txtViaRecomendada" required disabled>
+                            </div>
                         </div>
                     </div>
-                    <div id="dateday"></div>
-                </div>
-                <form class="task" onsubmit="addNewTask(event)">
-                    <div class="box-detail">
-                        <div class="input-box">
-                            <input type="text" name="taskTitle" autocomplete="off" placeholder="Nueva Tarea">
-                            <button type="submit" class="btn_addTask">+</button>
-                        </div>
+
+                    <div class="buttons">
+                        <input class="Secondary-Button" type="submit" value="Cancelar" id="btnCancelarGalera" style="width: 45%">
+                        <input class="Primary-Button" type="submit" value="Registrar" id="btnGuardarGalera" style="width: 45%">
                     </div>
                 </form>
-                <div id="tasklist"></div>
             </div>
-            <button type="submit" class="Primary-Button" style="width: 100%;">+ Agregar Tratamiento</button>
         </div>
     </div>
 </div>
@@ -54,19 +109,50 @@
 
 <script>
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
-    import CreateDataList from "../js/ComponentesJs/StatusListComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
     import CreateTable from "../js/ComponentesJs/TableComponent.js";
+    import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
 
     window.onload = async () => {
         await cargarDLTratamiento();
+
+        btnCancelarGalera.onclick = async () => {
+            limpiarForm();
+        }
+
+        btnGuardarGalera.onclick = async () => {
+            let url = '../api/Galera/SaveGalera';
+            const TratObj = {
+                IdGalera: IdGal.value,
+                Nombre: NombreGal.value,
+                DimensionL: DimL.value,
+                DimensionA: DimA.value,
+                Latitud: UbiLat.value,
+                Longitud: UbiLon.value,
+                CapMproduccion: CapMax.value
+            }
+
+            await SaveObjectData(url, TratObj);
+            limpiarForm();
+            cargarDLTratamiento();
+        }
     };
 
     const cargarDLTratamiento = async () => {
-        let tratData = await GetObjectData("../api/Tratamiento/GetTratamientosProduccion");
+        let tratData = await GetObjectData("../api/Tratamiento/GetTratamientobasico");
         //response = await response.json();
         CreateTable(tratamientoTd, tratData, (item) => { editAlim(item); });
     };
+
+    const limpiarForm = () => {
+        IdGal.value = 0;
+        NombreGal.value = "";
+        DimL.value = "";
+        DimA.value = "";
+        UbiLat.value = "";
+        UbiLon.value = "";
+        CapMax.value = "";
+    }
 
 </script>
 
