@@ -288,6 +288,12 @@
                 case 2:
                     await cargarDLProduccionFiltradaMesRango();
                     break;
+                case 3:
+                    await cargarDLProduccionFiltradaLote();
+                    break;
+                case 4:
+                    await cargarDLProduccionFiltradaLoteRango();
+                    break;
             }
         };
     };
@@ -313,6 +319,23 @@
 
     const cargarDLProduccionFiltradaMesRango = async () => {
         let prodDataActive = await GetObjectDataByFilter('../api/Produccion/GetVistaListaProduccionSimpleCalculadaFilteredByMes', ["mesInicio", "mesFinal"], [ddlMesInicio.value, ddlMesFin.value]);
+
+        //response = await response.json();
+        CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
+    };
+
+    const cargarDLProduccionFiltradaLote = async () => {
+
+        let prodDataActiveF = await GetObjectDataByFilter('../api/Produccion/GetVistaListaProduccionSimpleCalculadaFilteredByLote', "lote", lote.value);
+
+
+
+        //response = await response.json();
+        CreateDataList(prodDataActiveF, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
+    };
+
+    const cargarDLProduccionFiltradaLoteRango = async () => {
+        let prodDataActive = await GetObjectDataByFilter('../api/Produccion/GetVistaListaProduccionSimpleCalculadaFilteredByLote', ["loteInicial", "loteFinal"], [loteMin.value, loteMax.value]);
 
         //response = await response.json();
         CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
