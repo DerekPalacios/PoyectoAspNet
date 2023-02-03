@@ -130,26 +130,26 @@ namespace UIPoyecto.Controllers
 
             return listaProduccionSimple;
         }
-        [HttpGet]
-        public object GetVistaListaProduccionSimpleCalculadaFilteredByLote(int loteInicial, int loteFinal)
-        {
-            var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>(" Estado = 1 ")
-                                        where detallepro.LoteActual >= loteInicial && detallepro.LoteActual <= loteFinal
-                                        select new
-                                        {
-                                            estado = detallepro.Estado,
-                                            id = detallepro.IdProduccion,
-                                            galera = detallepro.NombreGalera,
-                                            Lote = detallepro.LoteActual,
-                                            peso = detallepro.PesoPromedioSemanal,
-                                            actividades = new Produccion().GetProgresoActividadDiaria((int)detallepro.IdProduccion),
-                                            tratamientos = new Produccion().GetProgresoTratamientoDiaria((int)detallepro.IdProduccion)
-                                        };
+        //[HttpGet]
+        //public object GetVistaListaProduccionSimpleCalculadaFilteredByLote(int loteInicial, int loteFinal)
+        //{
+        //    var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>(" Estado = 1 ")
+        //                                where detallepro.LoteActual >= loteInicial && detallepro.LoteActual <= loteFinal
+        //                                select new
+        //                                {
+        //                                    estado = detallepro.Estado,
+        //                                    id = detallepro.IdProduccion,
+        //                                    galera = detallepro.NombreGalera,
+        //                                    Lote = detallepro.LoteActual,
+        //                                    peso = detallepro.PesoPromedioSemanal,
+        //                                    actividades = new Produccion().GetProgresoActividadDiaria((int)detallepro.IdProduccion),
+        //                                    tratamientos = new Produccion().GetProgresoTratamientoDiaria((int)detallepro.IdProduccion)
+        //                                };
 
 
-            return listaProduccionSimple;
-        }
-        [HttpGet]
+        //    return listaProduccionSimple;
+        //}
+        //[HttpGet]
         public object GetVistaListaProduccionSimpleCalculadaFilteredByMes(int mes)
         {
             var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>(" Estado = 1 ")
@@ -168,25 +168,25 @@ namespace UIPoyecto.Controllers
 
             return listaProduccionSimple;
         }
-        [HttpGet]
-        public object GetVistaListaProduccionSimpleCalculadaFilteredByMes(int mesInicio, int mesFinal)
-        {
-            var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>(" Estado = 1 ")
-                                        where detallepro.FechaDeIngreso.Month >= mesInicio && detallepro.FechaDeIngreso.Month <= mesFinal || detallepro.FechaSalida.Month >= mesInicio && detallepro.FechaSalida.Month <= mesFinal
-                                        select new
-                                        {
-                                            estado = detallepro.Estado,
-                                            id = detallepro.IdProduccion,
-                                            galera = detallepro.NombreGalera,
-                                            Lote = detallepro.LoteActual,
-                                            peso = detallepro.PesoPromedioSemanal,
-                                            actividades = new Produccion().GetProgresoActividadDiaria((int)detallepro.IdProduccion),
-                                            tratamientos = new Produccion().GetProgresoTratamientoDiaria((int)detallepro.IdProduccion)
-                                        };
+        //[HttpGet]
+        //public object GetVistaListaProduccionSimpleCalculadaFilteredByMes(int mesInicio, int mesFinal)
+        //{
+        //    var listaProduccionSimple = from detallepro in new VistaListaProduccionSimpleCalculada().Get<VistaListaProduccionSimpleCalculada>(" Estado = 1 ")
+        //                                where detallepro.FechaDeIngreso.Month >= mesInicio && detallepro.FechaDeIngreso.Month <= mesFinal || detallepro.FechaSalida.Month >= mesInicio && detallepro.FechaSalida.Month <= mesFinal
+        //                                select new
+        //                                {
+        //                                    estado = detallepro.Estado,
+        //                                    id = detallepro.IdProduccion,
+        //                                    galera = detallepro.NombreGalera,
+        //                                    Lote = detallepro.LoteActual,
+        //                                    peso = detallepro.PesoPromedioSemanal,
+        //                                    actividades = new Produccion().GetProgresoActividadDiaria((int)detallepro.IdProduccion),
+        //                                    tratamientos = new Produccion().GetProgresoTratamientoDiaria((int)detallepro.IdProduccion)
+        //                                };
 
 
-            return listaProduccionSimple;
-        }
+        //    return listaProduccionSimple;
+        //}
 
 
 
