@@ -54,7 +54,6 @@
 
 <script>
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
-    import CreateDataList from "../js/ComponentesJs/StatusListComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
     import CreateTable from "../js/ComponentesJs/TableComponent.js";
 
@@ -63,7 +62,7 @@
     };
 
     const cargarDLTratamiento = async () => {
-        let tratData = await GetObjectData("../api/Tratamiento/GetTratamientosProduccion");
+        let tratData = await GetObjectData("../api/Tratamiento/GetTratamientobasico");
         //response = await response.json();
         CreateTable(tratamientoTd, tratData, (item) => { editAlim(item); });
     };
