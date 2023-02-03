@@ -303,22 +303,17 @@
     };
 
     const cargarDLProduccionFiltradaMes = async () => {
-<<<<<<< Updated upstream
-        let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', "mes", ddlMes.value);
-=======
-        let prodDataActive = await GetObjectDataByFilter('../api/Produccion/GetVistaListaProduccionSimpleCalculadaFilteredByMes', "mes", 2);
->>>>>>> Stashed changes
+
+        let prodDataActive = await GetObjectDataByFilter('../api/Produccion/GetVistaListaProduccionSimpleCalculadaFilteredByMes', "mes", ddlMes.value);
+
+
 
         //response = await response.json();
         CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
     };
 
     const cargarDLProduccionFiltradaMesRango = async () => {
-<<<<<<< Updated upstream
-        let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', ["mesInicio", "mesFinal"], [ddlMesInicio.value, ddlMesFin.value]);
-=======
-        let prodDataActive = await GetObjectDataByFilter('../api/Produccion/GetVistaListaProduccionSimpleCalculadaFilteredByMes', ["mesInicio", "mesFinal"], [2, 5]);
->>>>>>> Stashed changes
+        let prodDataActive = await GetObjectDataByFilter('../api/Produccion/GetVistaListaProduccionSimpleCalculadaFilteredByMes', ["mesInicio", "mesFinal"], [ddlMesInicio.value, ddlMesFin.value]);
 
         //response = await response.json();
         CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
