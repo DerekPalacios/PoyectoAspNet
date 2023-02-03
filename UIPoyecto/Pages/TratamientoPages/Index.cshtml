@@ -111,9 +111,31 @@
     import CreateDropdown from "../js/ComponentesJs/DropDownComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
     import CreateTable from "../js/ComponentesJs/TableComponent.js";
+    import SaveObjectData from "../js/ComponentesJs/PutDatoByApiUrlComponent.js";
 
     window.onload = async () => {
         await cargarDLTratamiento();
+
+        btnCancelarGalera.onclick = async () => {
+            limpiarForm();
+        }
+
+        btnGuardarGalera.onclick = async () => {
+            let url = '../api/Galera/SaveGalera';
+            const TratObj = {
+                IdGalera: IdGal.value,
+                Nombre: NombreGal.value,
+                DimensionL: DimL.value,
+                DimensionA: DimA.value,
+                Latitud: UbiLat.value,
+                Longitud: UbiLon.value,
+                CapMproduccion: CapMax.value
+            }
+
+            await SaveObjectData(url, TratObj);
+            limpiarForm();
+            cargarDLTratamiento();
+        }
     };
 
     const cargarDLTratamiento = async () => {
@@ -121,6 +143,16 @@
         //response = await response.json();
         CreateTable(tratamientoTd, tratData, (item) => { editAlim(item); });
     };
+
+    const limpiarForm = () => {
+        IdGal.value = 0;
+        NombreGal.value = "";
+        DimL.value = "";
+        DimA.value = "";
+        UbiLat.value = "";
+        UbiLon.value = "";
+        CapMax.value = "";
+    }
 
 </script>
 
