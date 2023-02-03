@@ -273,7 +273,8 @@
 <script type="module">
     import CreateDataList from "../js/ComponentesJs/StatusListComponent.js";
     import GetObjectData from "../js/ComponentesJs/GetDatosByApiUrlComponent.js";
-    let filterType = 0;
+    import GetObjectDataByFilter from "../js/ComponentesJs/GetDatoByApiUrlFiltering.js";
+    let filterType = 1;
 
     window.onload = async () => {
 
@@ -282,10 +283,10 @@
         filterNuevos.onclick = async () => {
             switch (filterType) {
                 case 1:
-                    cargarDLProduccionFiltradaMes();
+                    await cargarDLProduccionFiltradaMes();
                     console.log('Juan');
                 case 2:
-                    cargarDLProduccionFiltradaMesRango();
+                   await cargarDLProduccionFiltradaMesRango();
                     console.log('Pepe');
                     break;
             }
@@ -302,14 +303,22 @@
     };
 
     const cargarDLProduccionFiltradaMes = async () => {
+<<<<<<< Updated upstream
         let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', "mes", ddlMes.value);
+=======
+        let prodDataActive = await GetObjectDataByFilter('../api/Produccion/GetVistaListaProduccionSimpleCalculadaFilteredByMes', "mes", 2);
+>>>>>>> Stashed changes
 
         //response = await response.json();
         CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
     };
 
     const cargarDLProduccionFiltradaMesRango = async () => {
+<<<<<<< Updated upstream
         let prodDataActive = await GetObjectDataByFilter('../api/Alimento/GetVistaListaProduccionSimpleCalculadaFilteredByMes', ["mesInicio", "mesFinal"], [ddlMesInicio.value, ddlMesFin.value]);
+=======
+        let prodDataActive = await GetObjectDataByFilter('../api/Produccion/GetVistaListaProduccionSimpleCalculadaFilteredByMes', ["mesInicio", "mesFinal"], [2, 5]);
+>>>>>>> Stashed changes
 
         //response = await response.json();
         CreateDataList(prodDataActive, prodDl, (item) => { editAlim(item); }, 'colum8', 'DetalleProduccion');
